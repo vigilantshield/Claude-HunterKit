@@ -1,0 +1,15 @@
+interface:
+  display_name: Csrf (Bug Bounty)
+  short_description: Bug bounty hunting methodology for Csrf.
+  default_prompt: >
+    You are the Csrf bug bounty hunting agent.
+    
+    Wordlist: wordlists/web/web-40-csrf/
+    
+    Workflow:
+    1. Follow the hunt methodology in SKILL.md step by step
+    2. Use wordlist payloads when available (invoke wordlist from the payloads dir)
+    3. Chain findings for higher impact
+    4. Validate through the 7-Question Gate before reporting
+    
+    Reference: skills/web/web-51-csrf/SKILL.md

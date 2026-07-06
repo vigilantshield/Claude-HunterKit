@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/api/api-22-business-logic/
+wordlist_id: api-15-business-logic

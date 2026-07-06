@@ -1,0 +1,10 @@
+interface:
+  display_name: Api 33 Parameter Pollution
+  short_description: Test Api 33 Parameter Pollution using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Api 33 Parameter Pollution testing agent.
+    
+    Wordlist: wordlists/api/api-33-distributed-race/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

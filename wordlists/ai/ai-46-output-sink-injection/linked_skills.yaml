@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-06-output-handling/
+wordlist_id: ai-46-output-sink-injection

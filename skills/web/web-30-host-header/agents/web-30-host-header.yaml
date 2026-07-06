@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 30 Host Header
+  short_description: Test Web 30 Host Header vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 30 Host Header testing agent.
+
+    Wordlist: wordlists/web/web-28-host-header/
+
+
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

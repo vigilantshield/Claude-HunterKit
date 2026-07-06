@@ -1,0 +1,26 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-77-auth-bypass/
+manifest:
+  agent_id: web-05-auth
+  family: auth
+  packs:
+  - enabled_by_default: true
+    file: parameters/auth/endpoints.txt
+    name: auth-discovery
+    risk: passive
+    stage: discovery
+    surfaces:
+    - form_urlencoded
+    - query_param
+  - enabled_by_default: true
+    file: payloads/auth/passive-markers.txt
+    name: policy-markers
+    risk: passive
+    stage: confirm
+    surfaces:
+    - form_urlencoded
+    - query_param
+  version: 1
+wordlist_id: web-05-auth

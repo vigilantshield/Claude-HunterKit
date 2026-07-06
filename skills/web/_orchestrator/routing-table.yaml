@@ -1,0 +1,8 @@
+category_routing:
+  access-control: web-23 to web-26
+  auth: web-09 to web-15
+  injection: web-01 to web-08
+  protocol/misc: web-32 to web-41
+  ssrf: web-27 to web-31
+  xss: web-16 to web-22
+domain: web

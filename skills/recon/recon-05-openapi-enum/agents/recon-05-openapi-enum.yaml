@@ -1,0 +1,8 @@
+interface:
+  display_name: Recon 05 Openapi Enum
+  short_description: Test Recon 05 Openapi Enum using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Recon 05 Openapi Enum testing agent.
+    Wordlist: wordlists/recon/recon-32-openapi-active-enum/
+    Workflow:
+    Run 'bash agents/invoke.payloads.sh <target> <param> <stage>' with stage=low then med then high.

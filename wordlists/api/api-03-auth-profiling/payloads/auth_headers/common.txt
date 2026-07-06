@@ -1,0 +1,7 @@
+Authorization: Bearer FUZZ
+Authorization: Basic FUZZ
+X-API-Key: FUZZ
+Api-Key: FUZZ
+X-Auth-Token: FUZZ
+X-Internal-Service: backend
+X-Partner-Id: trusted

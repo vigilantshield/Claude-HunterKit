@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/api/api-02-api-doc-leakage/
+wordlist_id: api-26-api-doc-leakage

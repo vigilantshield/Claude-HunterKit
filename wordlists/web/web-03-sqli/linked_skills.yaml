@@ -1,0 +1,32 @@
+invoke_order:
+- payloads
+linked_skills:
+ - skills/api/api-10-sqli/
+- skills/web/web-01-sqli/
+manifest:
+  agent_id: web-03-sqli
+  family: sqli
+  packs:
+  - enabled_by_default: true
+    file: confirm/sqli.txt
+    max_payloads: 3
+    name: safe-confirm
+    risk: low_impact
+    stage: confirm
+    surfaces:
+    - query_param
+    - form_urlencoded
+    - json_body
+  - enabled_by_default: true
+    file: payloads/sqli/generic.txt
+    max_payloads: 20
+    name: generic-advanced
+    risk: active
+    stage: advanced
+    surfaces:
+    - query_param
+    - form_urlencoded
+    - json_body
+  version: 1
+wordlist_id: web-03-sqli
+- skills/web/web-42-sqli/

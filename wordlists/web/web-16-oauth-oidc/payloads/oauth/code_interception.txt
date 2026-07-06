@@ -1,0 +1,15 @@
+# Authorization code interception
+# Test 1: Replay code from attacker's session
+code=<STOLEN_CODE>&grant_type=authorization_code
+# Test 2: Code substitution — swap code between two valid flows
+code=<USER_A_CODE>&grant_type=authorization_code  # in USER_B's session
+# Test 3: Re-use code after token already issued
+code=<USED_CODE>&grant_type=authorization_code
+# Test 4: Code injection via redirect_uri
+/callback?code=<INJECTED>&state=xyz
+# Test 5: PKCE code_verifier bypass
+code=<CODE>&code_verifier=&grant_type=authorization_code
+# Test 6: Empty code_verifier
+code=<CODE>&code_verifier=&grant_type=authorization_code
+# Test 7: code_verifier mismatch
+code=<CODE>&code_verifier=WRONG_VALUE&grant_type=authorization_code

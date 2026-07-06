@@ -1,0 +1,6 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-03-ssti/
+wordlist_id: web-14-ssti
+- skills/web/web-47-ssti/

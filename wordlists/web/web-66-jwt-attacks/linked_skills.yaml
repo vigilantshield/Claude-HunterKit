@@ -1,0 +1,6 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-09-jwt/
+- skills/auth/auth-01-jwt/
+wordlist_id: web-66-jwt-attacks

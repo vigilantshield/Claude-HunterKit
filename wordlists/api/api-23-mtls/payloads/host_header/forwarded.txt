@@ -1,0 +1,14 @@
+# Host and forwarded-header probes
+Host: 127.0.0.1
+Host: localhost
+Host: internal.local
+Host: admin.local
+X-Forwarded-Host: 127.0.0.1
+X-Forwarded-Host: internal.local
+X-Original-Host: 127.0.0.1
+X-Host: 127.0.0.1
+Forwarded: host=127.0.0.1
+X-Forwarded-Server: 127.0.0.1
+X-HTTP-Host-Override: 127.0.0.1
+Host: example.com:443@127.0.0.1
+Host: 127.0.0.1.example.invalid

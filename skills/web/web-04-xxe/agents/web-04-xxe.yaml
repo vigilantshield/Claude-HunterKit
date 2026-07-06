@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 04 Xxe
+  short_description: Test Web 04 Xxe vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 04 Xxe testing agent.
+    
+    Wordlist: wordlists/web/web-15-xxe/
+    
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/api/api-26-supply-chain/
+wordlist_id: api-21-supply-chain

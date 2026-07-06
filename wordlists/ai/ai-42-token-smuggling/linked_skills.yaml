@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-21-context-token-smuggling/
+wordlist_id: ai-42-token-smuggling

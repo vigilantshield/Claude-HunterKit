@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/api/api-04-bola/
+wordlist_id: api-04-bola

@@ -1,0 +1,9 @@
+O:8:"stdClass":1:{s:4:"test";s:1:"1";}
+O:10:"UserObject":0:{}
+O:15:"RCE_Payload_Test":1:{s:4:"test";s:2:"id";}
+a:1:{i:0;O:7:"PHPUser":0:{}}
+# PHAR deserialization (trigger via phar:// wrapper)
+# Create phar:// payload with O:7:"TestObj":0:{}
+# Common gadget chains:
+# Guzzle, SwiftMailer, Monolog, WordPress, ThinkPHP, CodeIgniter, Zend Framework, Yii, Laravel
+# Detection: serialize("data") in cookies/params → try phar:// wrapper or unserialize()

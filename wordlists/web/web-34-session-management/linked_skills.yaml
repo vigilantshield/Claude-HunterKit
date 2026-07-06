@@ -1,0 +1,6 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-12-session-management/
+wordlist_id: web-34-session-management
+- skills/web/web-74-session/

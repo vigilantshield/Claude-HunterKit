@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-07-sensitive-disclosure/
+wordlist_id: ai-07-sensitive-disclosure

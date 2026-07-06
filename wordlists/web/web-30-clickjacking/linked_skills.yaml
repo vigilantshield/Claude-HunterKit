@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-19-clickjacking/
+wordlist_id: web-30-clickjacking

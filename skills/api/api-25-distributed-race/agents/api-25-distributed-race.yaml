@@ -1,0 +1,10 @@
+interface:
+  display_name: Api 25 Distributed Race
+  short_description: Test Api 25 Distributed Race using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Api 25 Distributed Race testing agent.
+    
+    Wordlist: wordlists/api/api-33-distributed-race/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

@@ -1,0 +1,15 @@
+interface:
+  display_name: Rce (Bug Bounty)
+  short_description: Bug bounty hunting methodology for Rce.
+  default_prompt: >
+    You are the Rce bug bounty hunting agent.
+    
+    Wordlist: wordlists/api/api-07-resource-limits/
+    
+    Workflow:
+    1. Follow the hunt methodology in SKILL.md step by step
+    2. Use wordlist payloads when available (invoke wordlist from the payloads dir)
+    3. Chain findings for higher impact
+    4. Validate through the 7-Question Gate before reporting
+    
+    Reference: skills/web/web-56-rce/SKILL.md

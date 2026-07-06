@@ -1,0 +1,28 @@
+ac ed 00 05  # Java serialization magic bytes (hex)
+rO0           # Java serialization Base64 prefix
+# Common ysoserial gadget chains:
+CommonsCollections1
+CommonsCollections2
+CommonsCollections3
+CommonsCollections4
+CommonsCollections5
+CommonsCollections6
+CommonsCollections7
+CommonsCollections8
+CommonsCollections10
+Jdk7u21
+Jdk8u20
+Spring1
+Spring2
+Spring3
+Hibernate1
+Hibernate2
+C3P0
+Clojure
+BeanShell1
+MozillaRhino1
+MozillaRhino2
+ROME
+JSON1
+Wicket1
+# Detection: send serialized object → observe error containing class name or timing delay

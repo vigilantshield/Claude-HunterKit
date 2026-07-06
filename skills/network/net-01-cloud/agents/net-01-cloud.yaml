@@ -1,0 +1,8 @@
+interface:
+  display_name: Net 01 Cloud
+  short_description: Test Net 01 Cloud using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Net 01 Cloud testing agent.
+    Wordlist: wordlists/network/net-26-cloud-iam/
+    Workflow:
+    Run 'bash agents/invoke.payloads.sh <target> <param> <stage>' with stage=low then med then high.

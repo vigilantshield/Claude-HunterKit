@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 27 Ssrf
+  short_description: Test Web 27 Ssrf vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 27 Ssrf testing agent.
+
+    Wordlist: wordlists/web/web-07-ssrf/
+
+
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

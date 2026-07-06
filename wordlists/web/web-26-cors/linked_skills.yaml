@@ -1,0 +1,6 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-20-cors/
+wordlist_id: web-26-cors
+- skills/web/web-57-cors/

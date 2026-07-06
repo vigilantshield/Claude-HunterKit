@@ -1,0 +1,8 @@
+interface:
+  display_name: Net 11 Auth Federation
+  short_description: Test Net 11 Auth Federation using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Net 11 Auth Federation testing agent.
+    Wordlist: wordlists/network/net-52-auth-federation/
+    Workflow:
+    Run 'bash agents/invoke.payloads.sh <target> <param> <stage>' with stage=low then med then high.

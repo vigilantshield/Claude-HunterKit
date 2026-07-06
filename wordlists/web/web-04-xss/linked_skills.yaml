@@ -1,0 +1,31 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-16-xss/
+manifest:
+  agent_id: web-04-xss
+  family: xss
+  packs:
+  - enabled_by_default: true
+    file: confirm/xss.txt
+    max_payloads: 3
+    name: safe-confirm
+    risk: low_impact
+    stage: confirm
+    surfaces:
+    - query_param
+    - form_urlencoded
+    - json_body
+  - enabled_by_default: true
+    file: payloads/xss/reflected.txt
+    max_payloads: 20
+    name: reflected-advanced
+    risk: active
+    stage: advanced
+    surfaces:
+    - query_param
+    - form_urlencoded
+    - json_body
+  version: 1
+wordlist_id: web-04-xss
+- skills/web/web-43-xss/

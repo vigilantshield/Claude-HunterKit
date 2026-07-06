@@ -1,0 +1,8 @@
+interface:
+  display_name: Net 14 Ai Infra
+  short_description: Test Net 14 Ai Infra using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Net 14 Ai Infra testing agent.
+    Wordlist: wordlists/network/net-56-ai-infra/
+    Workflow:
+    Run 'bash agents/invoke.payloads.sh <target> <param> <stage>' with stage=low then med then high.

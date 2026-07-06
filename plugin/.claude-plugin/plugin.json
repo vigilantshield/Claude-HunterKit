@@ -1,0 +1,56 @@
+{
+  "name": "claude-hunterkit",
+  "version": "1.0.0",
+  "description": "170 offensive security skills — web, API, AI, network, cloud, recon, auth. Bug bounty, red team, pentest.",
+  "author": "claude-hunterKit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/claude-hunterKit"
+  },
+  "display_name": "claude-hunterKit",
+  "short_description": "The largest open-source offensive security skill library. 170 skills, 1,770+ payload files, 51 web vuln types, 24 AI/LLM security skills.",
+  "categories": ["security", "pentest", "bug-bounty", "red-team", "penetration-testing"],
+  "tags": [
+    "sqli", "xss", "ssrf", "idor", "xxe", "ssti", "rce", "jwt", "oauth", "saml",
+    "csrf", "graphql", "websocket", "business-logic", "race-condition", "deserialization",
+    "prototype-pollution", "command-injection", "file-upload", "path-traversal",
+    "subdomain-takeover", "cors", "csp", "clickjacking", "cache-poisoning",
+    "host-header", "open-redirect", "request-smuggling",
+    "ai-security", "prompt-injection", "jailbreaking", "rag-poisoning", "agentic-attacks",
+    "llm-security", "cloud-security", "aws", "azure", "gcp", "k8s", "cicd",
+    "osint", "recon", "bug-bounty", "red-team", "pentest"
+  ],
+  "skills": [
+    {"name": "bugbounty-master", "description": "Full bug bounty workflow: recon → hunt → chain → report"},
+    {"name": "web-sqli", "description": "SQL injection — error, blind, time-based, OOB, all databases"},
+    {"name": "web-xss", "description": "Cross-site scripting — stored, reflected, DOM, blind, CSP bypass"},
+    {"name": "web-ssrf", "description": "SSRF — cloud metadata, IMDSv2, blind OOB, K8s pivot"},
+    {"name": "web-idor", "description": "IDOR — horizontal, vertical, UUID, blind detection"},
+    {"name": "web-rce", "description": "Remote code execution — all vectors, chaining methods"},
+    {"name": "api-bola", "description": "Broken Object Level Authorization for APIs"},
+    {"name": "api-spec", "description": "API specification ingestion and attack surface mapping"},
+    {"name": "ai-prompt-injection", "description": "Prompt injection, jailbreaking, DAN roleplay, system prompt extraction"},
+    {"name": "ai-rag-poisoning", "description": "RAG injection, vector database poisoning, document manipulation"},
+    {"name": "ai-agentic-attacks", "description": "Goal hijacking, task chain manipulation, sub-agent confusion"},
+    {"name": "network-cloud", "description": "Cloud security — AWS, Azure, GCP credential theft and escalation"},
+    {"name": "network-k8s", "description": "Kubernetes attacks — API server, kubelet, RBAC, pod escape"},
+    {"name": "auth-jwt", "description": "JWT attacks — alg:none, RS256→HS256, kid injection, JWK injection"},
+    {"name": "auth-oauth", "description": "OAuth — redirect_uri bypass, PKCE bypass, state CSRF"},
+    {"name": "recon-osint", "description": "OSINT methodology — domain recon, subdomain enum, JS analysis"},
+    {"name": "reporting", "description": "Human-voice bug bounty report writing"},
+    {"name": "devtools-mcp", "description": "Chrome DevTools MCP — browser automation for XSS, SSRF, OAuth"}
+  ],
+  "mcp": {
+    "server": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"],
+      "description": "Browser automation for XSS verification, SSRF confirmation, OAuth interception"
+    }
+  },
+  "install_instructions": {
+    "claude_code": "claude mcp add claude-hunterkit npx -y chrome-devtools-mcp@latest",
+    "codex_cli": "codex mcp add claude-hunterkit -- npx -y chrome-devtools-mcp@latest",
+    "gemini_cli": "gemini mcp add claude-hunterkit npx -y chrome-devtools-mcp@latest",
+    "cursor": "Add to cursor MCP config: npx -y chrome-devtools-mcp@latest"
+  }
+}

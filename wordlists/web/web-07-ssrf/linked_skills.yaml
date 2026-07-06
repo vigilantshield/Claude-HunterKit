@@ -1,0 +1,7 @@
+invoke_order:
+- payloads
+linked_skills:
+ - skills/api/api-13-ssrf/
+- skills/web/web-27-ssrf/
+wordlist_id: web-07-ssrf
+- skills/web/web-44-ssrf/

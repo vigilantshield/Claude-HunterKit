@@ -1,0 +1,8 @@
+interface:
+  display_name: Net 09 Observability
+  short_description: Test Net 09 Observability using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Net 09 Observability testing agent.
+    Wordlist: wordlists/network/net-47-observability-stack/
+    Workflow:
+    Run 'bash agents/invoke.payloads.sh <target> <param> <stage>' with stage=low then med then high.

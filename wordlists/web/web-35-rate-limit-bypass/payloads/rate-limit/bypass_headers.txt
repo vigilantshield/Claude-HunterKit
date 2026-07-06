@@ -1,0 +1,20 @@
+# IP rotation headers
+X-Forwarded-For: 127.0.0.1
+X-Forwarded-For: 10.0.0.1
+X-Real-IP: 192.168.1.1
+X-Originating-IP: 172.16.0.1
+X-Remote-IP: 10.10.10.1
+X-Client-IP: 203.0.113.1
+X-Host: 127.0.0.1
+# Endpoint mirror bypass
+POST /api/v1/login
+POST /api/v2/login
+POST /api/login
+POST /auth/login
+POST /api/user/auth
+POST /api/authenticate
+GET /api/login
+OPTIONS /api/login
+# CAPTCHA replay — solve once, reuse token 100x
+# HTTP/2 multiplex — 100 streams in 1 TCP connection
+# Case variation — POST /Login vs POST /login

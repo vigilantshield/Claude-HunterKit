@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 25 File Upload
+  short_description: Test Web 25 File Upload vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 25 File Upload testing agent.
+    
+    Wordlist: wordlists/web/web-08-file-upload-lfi/
+    
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

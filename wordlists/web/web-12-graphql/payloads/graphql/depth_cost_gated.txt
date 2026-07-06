@@ -1,0 +1,5 @@
+# Gated GraphQL depth and cost probes
+{viewer{friends{friends{friends{id}}}}}
+{node(id:"1"){... on User{friends{edges{node{friends{edges{node{id}}}}}}}}}
+query Batch{a:__typename b:__typename c:__typename d:__typename e:__typename}
+[{"query":"{viewer{id}}"},{"query":"{viewer{id}}"},{"query":"{viewer{id}}"}]

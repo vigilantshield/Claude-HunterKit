@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-09-agentic-attacks/
+wordlist_id: ai-44-human-oversight-bypass

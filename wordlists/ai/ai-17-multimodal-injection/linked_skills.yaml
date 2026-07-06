@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-15-ai-multimodal/
+wordlist_id: ai-17-multimodal-injection

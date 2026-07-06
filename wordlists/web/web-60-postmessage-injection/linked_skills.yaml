@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-21-postmessage/
+wordlist_id: web-60-postmessage-injection

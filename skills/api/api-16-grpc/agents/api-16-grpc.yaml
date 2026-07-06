@@ -1,0 +1,10 @@
+interface:
+  display_name: Api 16 Grpc
+  short_description: Test Api 16 Grpc using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Api 16 Grpc testing agent.
+    
+    Wordlist: wordlists/api/api-10-grpc/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

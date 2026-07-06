@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 20 Cors
+  short_description: Test Web 20 Cors vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 20 Cors testing agent.
+    
+    Wordlist: wordlists/web/web-26-cors/
+    
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

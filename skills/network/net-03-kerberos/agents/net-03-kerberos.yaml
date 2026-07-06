@@ -1,0 +1,8 @@
+interface:
+  display_name: Net 03 Kerberos
+  short_description: Test Net 03 Kerberos using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Net 03 Kerberos testing agent.
+    Wordlist: wordlists/network/net-08-kerberos/
+    Workflow:
+    Run 'bash agents/invoke.payloads.sh <target> <param> <stage>' with stage=low then med then high.

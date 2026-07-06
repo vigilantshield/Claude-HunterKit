@@ -1,0 +1,6 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-13-2fa-bypass/
+wordlist_id: web-32-2fa-bypass
+- skills/web/web-78-mfa-bypass/

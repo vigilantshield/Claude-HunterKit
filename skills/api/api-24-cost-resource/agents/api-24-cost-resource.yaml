@@ -1,0 +1,10 @@
+interface:
+  display_name: Api 24 Cost Resource
+  short_description: Test Api 24 Cost Resource using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Api 24 Cost Resource testing agent.
+    
+    Wordlist: wordlists/api/api-18-cost-resource/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

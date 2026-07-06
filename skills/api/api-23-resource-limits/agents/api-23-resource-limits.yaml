@@ -1,0 +1,10 @@
+interface:
+  display_name: Api 23 Resource Limits
+  short_description: Test Api 23 Resource Limits using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Api 23 Resource Limits testing agent.
+    
+    Wordlist: wordlists/api/api-19-security-misconfig/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

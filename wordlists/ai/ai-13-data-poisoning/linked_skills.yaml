@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-13-data-poisoning/
+wordlist_id: ai-13-data-poisoning

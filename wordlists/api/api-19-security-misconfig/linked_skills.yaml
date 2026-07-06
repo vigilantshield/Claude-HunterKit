@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills: []
+ - skills/api/api-23-resource-limits/
+wordlist_id: api-19-security-misconfig

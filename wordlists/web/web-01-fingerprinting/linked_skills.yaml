@@ -1,0 +1,37 @@
+invoke_order:
+- payloads
+linked_skills: []
+manifest:
+  agent_id: web-01-fingerprinting
+  family: paths
+  packs:
+  - enabled_by_default: true
+    file: parameters/paths/metadata.txt
+    name: metadata-discovery
+    risk: passive
+    stage: discovery
+    surfaces:
+    - query_param
+  - enabled_by_default: true
+    file: parameters/paths/framework.txt
+    name: framework-discovery
+    risk: passive
+    stage: discovery
+    surfaces:
+    - query_param
+  - enabled_by_default: true
+    file: parameters/paths/cms.txt
+    name: cms-discovery
+    risk: passive
+    stage: discovery
+    surfaces:
+    - query_param
+  - enabled_by_default: true
+    file: parameters/paths/source-maps.txt
+    name: source-map-discovery
+    risk: passive
+    stage: discovery
+    surfaces:
+    - query_param
+  version: 1
+wordlist_id: web-01-fingerprinting

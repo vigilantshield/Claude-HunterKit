@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-36-waf-bypass/
+wordlist_id: web-41-sspp

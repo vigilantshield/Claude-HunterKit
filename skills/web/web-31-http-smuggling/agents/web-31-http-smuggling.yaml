@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 31 Http Smuggling
+  short_description: Test Web 31 Http Smuggling vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 31 Http Smuggling testing agent.
+
+    Wordlist: wordlists/web/web-39-http-smuggling/
+
+
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

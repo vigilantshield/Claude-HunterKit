@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-17-csp-analysis/
+wordlist_id: web-18-csp-analysis

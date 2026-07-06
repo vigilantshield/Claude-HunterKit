@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/api/api-06-mass-assignment/
+wordlist_id: api-06-mass-assignment

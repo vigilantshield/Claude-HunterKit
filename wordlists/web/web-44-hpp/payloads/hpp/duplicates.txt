@@ -1,0 +1,12 @@
+# HTTP parameter pollution probes
+id=1&id=2
+role=user&role=admin
+redirect=/home&redirect=//example.invalid
+next=/safe&next=https://example.invalid
+user[id]=1&user[id]=2
+id[]=1&id[]=2
+id=1,2
+id=1%26id=2
+id=1%3bid=2
+a.b=1&a[b]=2
+__proto__[polluted]=true&__proto__.polluted=true

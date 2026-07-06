@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-02-llm-enum-recon/
+wordlist_id: ai-43-model-api-enumeration

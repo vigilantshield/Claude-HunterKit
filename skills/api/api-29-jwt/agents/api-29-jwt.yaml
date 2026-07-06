@@ -1,0 +1,11 @@
+interface:
+  display_name: Api 29 Jwt
+  short_description: Test Api 29 Jwt vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Api 29 Jwt testing agent.
+    
+    Wordlist: wordlists/api/api-28-jwt-attacks/
+    
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

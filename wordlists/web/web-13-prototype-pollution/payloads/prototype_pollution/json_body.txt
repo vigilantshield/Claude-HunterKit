@@ -1,0 +1,12 @@
+# Prototype pollution JSON and constructor probes
+{"__proto__":{"polluted":true}}
+{"constructor":{"prototype":{"polluted":true}}}
+{"prototype":{"polluted":true}}
+{"__proto__.polluted":true}
+__proto__[polluted]=true
+constructor[prototype][polluted]=true
+constructor.prototype.polluted=true
+a[__proto__][polluted]=true
+a.constructor.prototype.polluted=true
+{"settings":{"__proto__":{"admin":true}}}
+{"merge":{"constructor":{"prototype":{"admin":true}}}}

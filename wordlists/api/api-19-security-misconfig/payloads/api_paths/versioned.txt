@@ -1,0 +1,23 @@
+# API version and discovery path probes
+api/v1
+api/v2
+api/v3
+api/latest
+v1
+v2
+v3
+openapi.json
+swagger.json
+swagger/v1/swagger.json
+api-docs
+.well-known/openid-configuration
+.well-known/jwks.json
+graphql
+graphiql
+playground
+grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo
+admin/api
+internal/api
+private/api
+partner/api
+beta/api

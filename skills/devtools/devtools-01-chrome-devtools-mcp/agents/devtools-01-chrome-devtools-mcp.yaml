@@ -1,0 +1,10 @@
+interface:
+  display_name: Chrome DevTools MCP
+  short_description: Browser automation via Chrome DevTools MCP (46k+ stars on GitHub).
+  default_prompt: >
+    Chrome DevTools MCP server for browser automation, debugging, and performance.
+    Use for XSS verification (take_snapshot after injecting), SSRF confirmation
+    (list_network_requests), OAuth interception, and CSP header inspection.
+    
+    Install: npx -y chrome-devtools-mcp@latest
+    GitHub: https://github.com/ChromeDevTools/chrome-devtools-mcp

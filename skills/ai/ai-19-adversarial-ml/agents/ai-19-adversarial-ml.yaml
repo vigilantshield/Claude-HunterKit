@@ -1,0 +1,10 @@
+interface:
+  display_name: Ai 19 Adversarial Ml
+  short_description: Test Ai 19 Adversarial Ml using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Ai 19 Adversarial Ml testing agent.
+    
+    Wordlist: wordlists/ai/ai-35-adversarial-ml/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

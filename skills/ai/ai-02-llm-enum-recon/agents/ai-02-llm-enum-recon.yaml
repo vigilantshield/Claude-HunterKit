@@ -1,0 +1,10 @@
+interface:
+  display_name: Ai 02 Llm Enum Recon
+  short_description: Test Ai 02 Llm Enum Recon using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Ai 02 Llm Enum Recon testing agent.
+    
+    Wordlist: wordlists/ai/ai-43-model-api-enumeration/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

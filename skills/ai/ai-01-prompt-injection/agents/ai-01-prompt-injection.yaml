@@ -1,0 +1,8 @@
+interface:
+  display_name: Ai 01 Prompt Injection
+  short_description: Test Ai 01 Prompt Injection using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Ai 01 Prompt Injection testing agent.
+    Wordlist: wordlists/ai/ai-03-prompt-injection/
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

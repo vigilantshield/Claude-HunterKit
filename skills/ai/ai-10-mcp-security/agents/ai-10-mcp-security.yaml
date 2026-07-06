@@ -1,0 +1,10 @@
+interface:
+  display_name: Ai 10 Mcp Security
+  short_description: Test Ai 10 Mcp Security using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Ai 10 Mcp Security testing agent.
+    
+    Wordlist: wordlists/ai/ai-16-mcp-security/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

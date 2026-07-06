@@ -1,0 +1,7 @@
+invoke_order:
+- payloads
+linked_skills:
+ - skills/web/web-31-http-smuggling/
+- skills/web/web-29-request-smuggling/
+wordlist_id: web-39-http-smuggling
+- skills/web/web-53-http-smuggling/

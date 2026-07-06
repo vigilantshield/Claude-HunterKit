@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 23 Idor
+  short_description: Test Web 23 Idor vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 23 Idor testing agent.
+    
+    Wordlist: wordlists/web/web-36-guid-idor/
+    
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

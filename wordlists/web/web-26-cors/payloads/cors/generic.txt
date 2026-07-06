@@ -1,0 +1,16 @@
+# CORS advanced origins
+https://evil.example
+http://evil.example
+null
+file://
+https://example.com.evil.example
+https://evil-example.com
+https://sub.example.com.evil.example
+http://localhost
+http://127.0.0.1
+http://[::1]
+https://attacker.invalid
+https://%65xample.com.evil.example
+https://example.com%60.evil.example
+https://example.com@evil.example
+https://evil.example#example.com

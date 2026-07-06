@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-23-agent-secret-leakage/
+wordlist_id: ai-47-agent-secret-leakage

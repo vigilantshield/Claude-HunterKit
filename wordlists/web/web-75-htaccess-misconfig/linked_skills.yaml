@@ -1,0 +1,6 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-72-api-misconfig/
+wordlist_id: web-75-htaccess-misconfig
+- skills/web/web-73-misc/

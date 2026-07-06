@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-22-csti/
+wordlist_id: web-56-csti

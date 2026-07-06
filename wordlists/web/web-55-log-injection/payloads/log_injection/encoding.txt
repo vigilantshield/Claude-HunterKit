@@ -1,0 +1,11 @@
+# Log injection encoding and structured sink probes
+ZF_LOG_CANARY
+ZF_LOG_CANARY%0aINJECTED=true
+ZF_LOG_CANARY%0d%0aINJECTED=true
+ZF_LOG_CANARY\nINJECTED=true
+ZF_LOG_CANARY\r\nINJECTED=true
+{"level":"error","msg":"ZF_LOG_CANARY"}
+"ZF_LOG_CANARY",admin,true
+<134>May 25 00:00:00 host app: ZF_LOG_CANARY
+INFO user=ZF_LOG_CANARY action=login
+ZF_LOG_CANARY	role=admin

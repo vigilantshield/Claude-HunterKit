@@ -1,0 +1,8 @@
+interface:
+  display_name: Net 07 Serverless
+  short_description: Test Net 07 Serverless using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Net 07 Serverless testing agent.
+    Wordlist: wordlists/network/net-45-serverless-faas/
+    Workflow:
+    Run 'bash agents/invoke.payloads.sh <target> <param> <stage>' with stage=low then med then high.

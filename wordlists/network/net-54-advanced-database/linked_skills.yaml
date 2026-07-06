@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/network/net-13-advanced-database/
+wordlist_id: net-54-advanced-database

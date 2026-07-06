@@ -1,0 +1,21 @@
+# Mass assignment advanced payloads
+admin=true
+is_admin=true
+isAdmin=true
+role=admin
+role=owner
+roles[]=admin
+permissions[]=*
+scope=admin
+plan=enterprise
+tier=enterprise
+verified=true
+email_verified=true
+active=true
+disabled=false
+user_id=1
+account_id=1
+tenant_id=1
+organization_id=1
+owner=true
+superuser=true

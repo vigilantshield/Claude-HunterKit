@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills: []
+ - skills/api/api-20-sse-security/
+wordlist_id: api-30-sse-security

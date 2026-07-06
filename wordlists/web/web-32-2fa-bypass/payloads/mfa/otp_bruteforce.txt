@@ -1,0 +1,19 @@
+# OTP brute force — 6 digits = 10^6 keyspace
+000000
+000001
+111111
+123456
+999999
+# Backup code bypass
+/api/me
+/api/me/backup-codes
+/api/account/2fa/backup-codes
+/api/users/{id}/backup-codes
+# MFA step-skip — direct navigation bypass
+/dashboard
+/settings
+/account
+/api/me
+/api/account/login-status
+# Race condition — send this many in parallel:
+# 50 parallel requests before lockout counter writes

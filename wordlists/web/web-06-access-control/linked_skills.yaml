@@ -1,0 +1,4 @@
+invoke_order:
+- payloads
+linked_skills: []
+wordlist_id: web-06-access-control

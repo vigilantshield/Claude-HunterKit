@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/network/net-09-observability/
+wordlist_id: net-47-observability-stack

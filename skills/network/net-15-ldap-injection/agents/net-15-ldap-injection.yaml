@@ -1,0 +1,8 @@
+interface:
+  display_name: Net 15 Ldap Injection
+  short_description: Test Net 15 Ldap Injection using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Net 15 Ldap Injection testing agent.
+    Wordlist: wordlists/network/net-07-ldap-ad/
+    Workflow:
+    Run 'bash agents/invoke.payloads.sh <target> <param> <stage>' with stage=low then med then high.

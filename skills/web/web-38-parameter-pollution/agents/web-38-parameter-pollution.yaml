@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 38 Parameter Pollution
+  short_description: Test Web 38 Parameter Pollution vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 38 Parameter Pollution testing agent.
+
+    Wordlist: wordlists/web/web-44-hpp/
+
+
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

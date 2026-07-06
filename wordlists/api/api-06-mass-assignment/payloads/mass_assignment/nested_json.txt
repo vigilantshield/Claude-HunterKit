@@ -1,0 +1,20 @@
+# Mass assignment nested and role flag probes
+admin=true
+is_admin=true
+role=admin
+roles[]=admin
+user[role]=admin
+user[is_admin]=true
+profile.role=admin
+{"admin":true}
+{"is_admin":true}
+{"role":"admin"}
+{"roles":["admin"]}
+{"user":{"role":"admin"}}
+{"profile":{"is_admin":true}}
+{"permissions":["*"]}
+{"scope":"admin:*"}
+{"tenant_owner":true}
+{"verified":true}
+{"plan":"enterprise"}
+{"billing_admin":true}

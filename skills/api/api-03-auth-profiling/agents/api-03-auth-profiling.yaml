@@ -1,0 +1,10 @@
+interface:
+  display_name: Api 03 Auth Profiling
+  short_description: Test Api 03 Auth Profiling using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Api 03 Auth Profiling testing agent.
+    
+    Wordlist: wordlists/api/api-03-auth-profiling/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

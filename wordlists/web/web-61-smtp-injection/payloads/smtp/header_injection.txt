@@ -1,0 +1,9 @@
+# SMTP header injection probes
+test@example.invalid%0d%0aBcc:%20audit@example.invalid
+test@example.invalid%0d%0aCc:%20audit@example.invalid
+test@example.invalid%0d%0aX-ZF-Canary:%20smtp
+test@example.invalid\r\nBcc: audit@example.invalid
+test@example.invalid\nX-ZF-Canary: smtp
+"test@example.invalid\r\nBcc: audit@example.invalid"
+<test@example.invalid>\r\nDATA\r\nZF_SMTP_CANARY
+=?utf-8?b?U01UUF9DQU5BUlk=?=

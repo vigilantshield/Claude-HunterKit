@@ -1,0 +1,11 @@
+# OAuth/SAML redirect URI probes
+https://example.invalid/callback
+https://example.invalid/oauth/callback
+https://trusted.example.invalid.evil.example.invalid/callback
+https://trusted.example.invalid@evil.example.invalid/callback
+https://trusted.example.invalid/callback%2f..%2f..%2fexample.invalid
+com.example.app:/oauth2redirect
+com.example.app://oauth2redirect
+http://localhost/callback
+http://127.0.0.1/callback
+urn:ietf:wg:oauth:2.0:oob

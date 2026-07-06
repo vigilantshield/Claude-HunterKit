@@ -1,0 +1,8 @@
+category_routing:
+  access-control: api-04 to api-09
+  auth-overlap: api-29 to api-35
+  injection: api-10 to api-15
+  misc: api-22 to api-28
+  protocol: api-16 to api-21
+  recon: api-01 to api-03
+domain: api

@@ -1,0 +1,10 @@
+interface:
+  display_name: Ai 06 Output Handling
+  short_description: Test Ai 06 Output Handling using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Ai 06 Output Handling testing agent.
+    
+    Wordlist: wordlists/ai/ai-06-output-handling/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

@@ -1,0 +1,46 @@
+{
+  "name": "claude-hunterkit",
+  "version": "1.0.0",
+  "gemini": {
+    "display_name": "claude-hunterKit",
+    "description": "170 offensive security skills for bug bounty, red team, and pentest. Web, API, AI/LLM, network, cloud, recon, auth — every vulnerability class with payloads.",
+    "categories": ["security", "pentest", "bug-bounty", "red-team", "penetration-testing"],
+    "capabilities": [
+      "web-vulnerability-hunting",
+      "api-security-testing",
+      "ai-llm-security-testing",
+      "cloud-security-auditing",
+      "network-pentesting",
+      "infrastructure-attack",
+      "recon-osint",
+      "bug-bounty-workflow",
+      "auth-bypass-testing"
+    ],
+    "tags": [
+      "sqli", "xss", "ssrf", "idor", "rce", "jwt", "oauth", "ssti", "xxe",
+      "prompt-injection", "jailbreaking", "rag-poisoning", "agentic-attacks",
+      "cloud-security", "k8s", "cicd", "bug-bounty"
+    ],
+    "prompt_templates": {
+      "hunt_web": "skills/web/",
+      "hunt_api": "skills/api/",
+      "hunt_ai": "skills/ai/",
+      "hunt_network": "skills/network/",
+      "hunt_cloud": "skills/cloud/",
+      "hunt_recon": "skills/recon/",
+      "hunt_auth": "skills/auth/",
+      "full_workflow": "bugbounty/bugbounty-master/SKILL.md"
+    }
+  },
+  "mcp": {
+    "server": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"],
+      "description": "Browser automation for XSS verification, SSRF confirmation, OAuth interception"
+    }
+  },
+  "install": {
+    "cli": "gemini extensions install https://github.com/your-org/claude-hunterKit",
+    "manual": "gemini mcp add claude-hunterkit npx -y chrome-devtools-mcp@latest"
+  }
+}

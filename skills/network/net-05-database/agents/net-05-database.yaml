@@ -1,0 +1,8 @@
+interface:
+  display_name: Net 05 Database
+  short_description: Test Net 05 Database using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Net 05 Database testing agent.
+    Wordlist: wordlists/network/net-21-database-services/
+    Workflow:
+    Run 'bash agents/invoke.payloads.sh <target> <param> <stage>' with stage=low then med then high.

@@ -1,0 +1,31 @@
+C:\Windows\System32\drivers\etc\hosts
+C:\Windows\System32\drivers\etc\networks
+C:\Windows\System32\drivers\etc\services
+C:\Windows\win.ini
+C:\Windows\system.ini
+C:\boot.ini
+C:\inetpub\wwwroot\web.config
+C:\inetpub\wwwroot\global.asa
+C:\inetpub\logs\logfiles\w3svc1\
+C:\Users\Administrator\.ssh\id_rsa
+C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Recent\
+C:\Users\Administrator\Desktop\
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\
+C:\Windows\system32\config\SAM
+C:\Windows\system32\config\SYSTEM
+C:\Windows\system32\config\SOFTWARE
+C:\Windows\System32\winevt\Logs\Security.evtx
+C:\Windows\System32\winevt\Logs\Application.evtx
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+C:\Program Files\Microsoft SQL Server\
+..\..\..\..\windows\win.ini
+..\..\..\windows\win.ini
+%SystemRoot%\system32\drivers\etc\hosts
+%WINDIR%\win.ini
+%HOMEPATH%\.ssh\id_rsa
+/windows/system32/drivers/etc/hosts
+/windows/win.ini
+/inetpub/wwwroot/web.config
+/boot.ini
+/winnt/win.ini
+../../../../windows/win.ini

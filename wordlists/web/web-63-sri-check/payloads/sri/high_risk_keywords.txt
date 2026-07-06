@@ -1,0 +1,8 @@
+stripe
+paypal
+auth0
+firebase
+analytics
+polyfill
+checkout
+clerk

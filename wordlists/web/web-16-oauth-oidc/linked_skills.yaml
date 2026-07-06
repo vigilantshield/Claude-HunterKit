@@ -1,0 +1,6 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-10-oauth-oidc/
+- skills/auth/auth-02-oauth-oidc/
+wordlist_id: web-16-oauth-oidc

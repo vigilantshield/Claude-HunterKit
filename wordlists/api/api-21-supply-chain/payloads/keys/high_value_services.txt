@@ -1,0 +1,9 @@
+stripe
+paypal
+twilio
+sendgrid
+openai
+anthropic
+algolia
+firebase
+github

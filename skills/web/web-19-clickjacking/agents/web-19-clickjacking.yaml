@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 19 Clickjacking
+  short_description: Test Web 19 Clickjacking vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 19 Clickjacking testing agent.
+    
+    Wordlist: wordlists/web/web-30-clickjacking/
+    
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

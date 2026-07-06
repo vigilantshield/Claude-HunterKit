@@ -1,0 +1,11 @@
+# CRLF encoding and header split probes
+%0d%0aX-ZF-Canary:%20crlf
+%0D%0AX-ZF-Canary:%20crlf
+%250d%250aX-ZF-Canary:%2520crlf
+\r\nX-ZF-Canary: crlf
+%E5%98%8A%E5%98%8DX-ZF-Canary:%20crlf
+%0aX-ZF-Canary:%20lf-only
+%0dX-ZF-Canary:%20cr-only
+%0d%0a%20X-ZF-Folded:%20crlf
+%0d%0aSet-Cookie:%20zf_crlf=1
+%0d%0aLocation:%20https://example.invalid/

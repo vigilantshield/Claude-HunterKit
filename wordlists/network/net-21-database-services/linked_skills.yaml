@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/network/net-05-database/
+wordlist_id: net-21-database-services

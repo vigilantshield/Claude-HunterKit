@@ -1,0 +1,7 @@
+invoke_order:
+- payloads
+linked_skills:
+ - skills/api/api-12-xxe/
+- skills/web/web-04-xxe/
+wordlist_id: web-15-xxe
+- skills/web/web-46-xxe/

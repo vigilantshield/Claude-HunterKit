@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-24-llm-ai/
+wordlist_id: api-24-llm-api-security

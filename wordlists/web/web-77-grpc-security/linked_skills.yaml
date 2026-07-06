@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/network/network-21-grpc/
+wordlist_id: web-77-grpc-security

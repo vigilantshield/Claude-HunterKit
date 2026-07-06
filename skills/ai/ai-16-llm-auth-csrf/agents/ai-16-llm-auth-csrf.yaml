@@ -1,0 +1,10 @@
+interface:
+  display_name: Ai 16 Llm Auth Csrf
+  short_description: Test Ai 16 Llm Auth Csrf using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Ai 16 Llm Auth Csrf testing agent.
+    
+    Wordlist: wordlists/ai/ai-39-llm-csrf/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

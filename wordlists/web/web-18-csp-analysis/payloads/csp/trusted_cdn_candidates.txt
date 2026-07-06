@@ -1,0 +1,5 @@
+https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js
+https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js
+https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.0.8/angular.min.js
+https://cdn.jsdelivr.net/npm/angular@1.8.3/angular.min.js
+https://unpkg.com/angular@1.8.3/angular.min.js

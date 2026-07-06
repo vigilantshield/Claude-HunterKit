@@ -1,0 +1,9 @@
+# gRPC endpoint and reflection path probes
+grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo
+grpc.reflection.v1.ServerReflection/ServerReflectionInfo
+grpc.health.v1.Health/Check
+grpc.health.v1.Health/Watch
+package.Service/Method
+api.v1.UserService/GetUser
+api.v1.AdminService/ListUsers
+api.v1.AuthService/Login

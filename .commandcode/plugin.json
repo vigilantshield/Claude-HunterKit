@@ -1,0 +1,42 @@
+{
+  "name": "claude-hunterkit",
+  "version": "1.0.0",
+  "description": "170 offensive security skills — web, API, AI, network, cloud, recon, auth. Bug bounty, red team, pentest.",
+  "author": "claude-hunterKit",
+  "display_name": "claude-hunterKit",
+  "short_description": "170 offensive security skills with 1,770+ wordlist payload files.",
+  "categories": ["security", "pentest", "bug-bounty", "red-team"],
+  "skills": [
+    {"name": "bugbounty-master", "path": "bugbounty/bugbounty-master/SKILL.md"},
+    {"name": "web-sqli", "path": "skills/web/web-01-sqli/SKILL.md"},
+    {"name": "web-xss", "path": "skills/web/web-16-xss/SKILL.md"},
+    {"name": "web-ssrf", "path": "skills/web/web-27-ssrf/SKILL.md"},
+    {"name": "web-idor", "path": "skills/web/web-23-idor/SKILL.md"},
+    {"name": "web-rce", "path": "skills/web/web-37-rce/SKILL.md"},
+    {"name": "api-bola", "path": "skills/api/api-04-bola/SKILL.md"},
+    {"name": "api-spec", "path": "skills/api/api-01-spec-ingestion/SKILL.md"},
+    {"name": "ai-prompt-injection", "path": "skills/ai/ai-01-prompt-injection/SKILL.md"},
+    {"name": "ai-rag-poisoning", "path": "skills/ai/ai-05-rag-poisoning/SKILL.md"},
+    {"name": "network-cloud", "path": "skills/network/net-01-cloud/SKILL.md"},
+    {"name": "network-k8s", "path": "skills/network/net-04-k8s/SKILL.md"},
+    {"name": "auth-jwt", "path": "skills/auth/auth-01-jwt/SKILL.md"},
+    {"name": "recon-osint", "path": "skills/recon/recon-01-osint/SKILL.md"},
+    {"name": "reporting", "path": "skills/reporting/report-01-human-reporting/SKILL.md"},
+    {"name": "devtools-mcp", "path": "skills/devtools/devtools-01-chrome-devtools-mcp/SKILL.md"}
+  ],
+  "mcp": {
+    "servers": [
+      {
+        "name": "chrome-devtools",
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "chrome-devtools-mcp@latest"],
+        "description": "Browser automation for XSS verification, SSRF confirmation, OAuth interception"
+      }
+    ]
+  },
+  "install_instructions": {
+    "cli": "cmd mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest",
+    "skills": "Copy ./commandcode/skills/ to ~/.commandcode/skills/ or use /skills"
+  }
+}

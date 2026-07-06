@@ -1,0 +1,10 @@
+'unsafe-inline'
+'unsafe-eval'
+data:
+blob:
+*
+https:
+http:
+*.amazonaws.com
+*.github.io
+*.googleapis.com

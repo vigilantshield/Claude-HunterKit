@@ -1,0 +1,7 @@
+application/json
+application/yaml
+application/x-yaml
+application/vnd.oai.openapi+json
+application/vnd.oai.openapi
+text/yaml
+text/plain

@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/api/api-29-jwt/
+wordlist_id: api-28-jwt-attacks

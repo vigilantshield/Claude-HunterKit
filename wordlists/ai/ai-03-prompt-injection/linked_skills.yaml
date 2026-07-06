@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-01-prompt-injection/
+wordlist_id: ai-03-prompt-injection

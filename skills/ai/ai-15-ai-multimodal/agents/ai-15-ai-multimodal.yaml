@@ -1,0 +1,10 @@
+interface:
+  display_name: Ai 15 Ai Multimodal
+  short_description: Test Ai 15 Ai Multimodal using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Ai 15 Ai Multimodal testing agent.
+    
+    Wordlist: wordlists/ai/ai-17-multimodal-injection/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

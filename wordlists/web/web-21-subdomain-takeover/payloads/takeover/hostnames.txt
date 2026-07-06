@@ -1,0 +1,10 @@
+blog
+cdn
+docs
+assets
+media
+files
+help
+status
+api-docs
+static

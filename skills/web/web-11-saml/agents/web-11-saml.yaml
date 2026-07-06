@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 11 Saml
+  short_description: Test Web 11 Saml vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 11 Saml testing agent.
+    
+    Wordlist: wordlists/web/web-68-oauth-saml-advanced/
+    
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

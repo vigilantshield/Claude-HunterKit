@@ -1,0 +1,6 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/network/net-04-k8s/
+wordlist_id: net-25-container-k8s
+- skills/network/network-16-k8s/

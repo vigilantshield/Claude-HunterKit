@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 18 Dom Clobbering
+  short_description: Test Web 18 Dom Clobbering vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 18 Dom Clobbering testing agent.
+    
+    Wordlist: wordlists/web/web-17-dom-clobbering/
+    
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

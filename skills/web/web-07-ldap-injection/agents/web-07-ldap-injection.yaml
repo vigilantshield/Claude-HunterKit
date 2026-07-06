@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 07 Ldap Injection
+  short_description: Test Web 07 Ldap Injection vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 07 Ldap Injection testing agent.
+    
+    Wordlist: wordlists/web/web-33-ldap-injection/
+    
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

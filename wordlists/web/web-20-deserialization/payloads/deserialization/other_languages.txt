@@ -1,0 +1,21 @@
+# Ruby Marshal.load() gadgets
+# Gem::Requirement, Gem::RequestSet, ActiveSupport::Deprecation::DeprecatedInstanceVariableProxy
+# YAML.load() unsafe: use safe_load instead
+# Detection: \x04\x08\x6F (Marshal header)
+# Test: marshal_dump/marshal_load with serialized params
+# Tools: Ruby Marshal RCE exploit scripts
+---
+# Node.js serialization gadgets
+# node-serialize: {"rce":"_$$ND_FUNC$$_function(){require('child_process').exec('id')}()"}
+# serialize-javascript: unsafe eval()
+# funcster: arbitrary function serialization
+# Detection: {"_$$ND_FUNC$$_ or serialized function strings in cookies/tokens
+---
+# Golang encoding/gob
+# Type confusion via interface{} — send serialized struct → decode into different type
+# Detection: gob binary format, MessagePack custom decoders
+---
+# Rust serde / bincode / ron
+# Custom Deserialize implementations with unexpected data
+# serde_yaml DoS via deeply nested structs
+# Detection: bincode binary, RON text format

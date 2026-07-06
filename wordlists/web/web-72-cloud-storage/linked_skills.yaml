@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/network/network-18-cloud-misconfig/
+wordlist_id: web-72-cloud-storage

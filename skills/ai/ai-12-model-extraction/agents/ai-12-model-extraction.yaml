@@ -1,0 +1,10 @@
+interface:
+  display_name: Ai 12 Model Extraction
+  short_description: Test Ai 12 Model Extraction using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Ai 12 Model Extraction testing agent.
+    
+    Wordlist: wordlists/ai/ai-12-model-extraction/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

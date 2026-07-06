@@ -1,0 +1,8 @@
+interface:
+  display_name: Net 08 Service Mesh
+  short_description: Test Net 08 Service Mesh using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Net 08 Service Mesh testing agent.
+    Wordlist: wordlists/network/net-46-service-mesh/
+    Workflow:
+    Run 'bash agents/invoke.payloads.sh <target> <param> <stage>' with stage=low then med then high.

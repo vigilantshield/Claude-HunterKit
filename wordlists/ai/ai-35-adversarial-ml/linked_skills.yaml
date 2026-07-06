@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-19-adversarial-ml/
+wordlist_id: ai-35-adversarial-ml

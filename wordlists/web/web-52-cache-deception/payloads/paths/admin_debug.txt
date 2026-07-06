@@ -1,0 +1,25 @@
+# Admin, debug, and internal path probes
+admin
+administrator
+admin/login
+admin/api
+internal
+internal/status
+debug
+debug/vars
+metrics
+health
+ready
+live
+status
+actuator
+actuator/env
+actuator/heapdump
+actuator/gateway/routes
+swagger-ui
+swagger.json
+openapi.json
+api-docs
+graphql
+graphiql
+grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo

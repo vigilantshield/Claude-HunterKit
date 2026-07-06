@@ -1,0 +1,11 @@
+interface:
+  display_name: Web 41 Sri Check
+  short_description: Test Web 41 Sri Check vulnerabilities using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Web 41 Sri Check testing agent.
+
+    Wordlist: wordlists/web/web-63-sri-check/
+
+
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

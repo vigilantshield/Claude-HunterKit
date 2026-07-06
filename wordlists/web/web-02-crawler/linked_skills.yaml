@@ -1,0 +1,44 @@
+invoke_order:
+- payloads
+linked_skills: []
+manifest:
+  agent_id: web-02-crawler
+  family: paths
+  packs:
+  - enabled_by_default: true
+    file: parameters/paths/routes.txt
+    name: route-discovery
+    risk: passive
+    stage: discovery
+    surfaces:
+    - query_param
+  - enabled_by_default: true
+    file: parameters/paths/api.txt
+    name: api-discovery
+    risk: passive
+    stage: discovery
+    surfaces:
+    - query_param
+  - enabled_by_default: true
+    file: parameters/paths/spa.txt
+    name: spa-discovery
+    risk: passive
+    stage: discovery
+    surfaces:
+    - query_param
+  - enabled_by_default: true
+    file: parameters/paths/upload.txt
+    name: upload-discovery
+    risk: passive
+    stage: discovery
+    surfaces:
+    - query_param
+  - enabled_by_default: true
+    file: parameters/paths/websocket.txt
+    name: websocket-discovery
+    risk: passive
+    stage: discovery
+    surfaces:
+    - query_param
+  version: 1
+wordlist_id: web-02-crawler

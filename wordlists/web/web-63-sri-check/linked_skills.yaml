@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-41-sri-check/
+wordlist_id: web-63-sri-check

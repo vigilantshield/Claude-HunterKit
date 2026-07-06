@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-14-rate-limit/
+wordlist_id: web-35-rate-limit-bypass

@@ -1,0 +1,6 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-32-graphql/
+wordlist_id: web-12-graphql
+- skills/web/web-50-graphql/

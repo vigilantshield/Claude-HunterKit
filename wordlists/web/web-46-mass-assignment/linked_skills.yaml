@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-15-mass-assignment/
+wordlist_id: web-46-mass-assignment

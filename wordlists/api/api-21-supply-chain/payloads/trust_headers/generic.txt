@@ -1,0 +1,6 @@
+X-Internal-Service: backend
+X-Api-Source: trusted
+X-Partner-Id: stripe
+X-Forwarded-Host: internal
+X-Environment: production
+X-Service-Role: admin

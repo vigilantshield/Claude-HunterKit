@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-02-nosql-injection/
+wordlist_id: web-45-nosql-injection

@@ -1,0 +1,10 @@
+interface:
+  display_name: Api 08 Advanced Bola
+  short_description: Test Api 08 Advanced Bola using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Api 08 Advanced Bola testing agent.
+    
+    Wordlist: wordlists/api/api-08-bfla/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

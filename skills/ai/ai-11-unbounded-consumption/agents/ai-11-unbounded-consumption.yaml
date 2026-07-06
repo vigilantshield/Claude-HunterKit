@@ -1,0 +1,10 @@
+interface:
+  display_name: Ai 11 Unbounded Consumption
+  short_description: Test Ai 11 Unbounded Consumption using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Ai 11 Unbounded Consumption testing agent.
+    
+    Wordlist: wordlists/ai/ai-10-unbounded-consumption/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

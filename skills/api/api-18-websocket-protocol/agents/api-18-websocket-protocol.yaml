@@ -1,0 +1,10 @@
+interface:
+  display_name: Api 18 Websocket Protocol
+  short_description: Test Api 18 Websocket Protocol using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Api 18 Websocket Protocol testing agent.
+    
+    Wordlist: wordlists/web/web-19-websocket/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

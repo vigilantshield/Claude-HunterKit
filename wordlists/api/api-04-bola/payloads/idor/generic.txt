@@ -1,0 +1,21 @@
+# IDOR/access-control advanced payloads
+1
+2
+0
+-1
+00000000-0000-0000-0000-000000000000
+11111111-1111-1111-1111-111111111111
+../../admin
+../admin
+admin
+administrator
+owner
+root
+me
+self
+current
+users/1
+accounts/1
+organizations/1
+tenants/1
+role=admin

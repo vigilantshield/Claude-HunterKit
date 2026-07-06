@@ -1,0 +1,12 @@
+# CORS origin parser probes
+Origin: null
+Origin: https://example.invalid
+Origin: http://localhost
+Origin: http://127.0.0.1
+Origin: https://trusted.example.invalid.evil.example.invalid
+Origin: https://trusted.example.invalid@evil.example.invalid
+Origin: https://evil.example.invalid%60.trusted.example.invalid
+Origin: chrome-extension://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Origin: file://
+Access-Control-Request-Method: PUT
+Access-Control-Request-Headers: authorization,x-api-key

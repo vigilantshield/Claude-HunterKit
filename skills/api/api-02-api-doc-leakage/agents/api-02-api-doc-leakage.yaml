@@ -1,0 +1,10 @@
+interface:
+  display_name: Api 02 Api Doc Leakage
+  short_description: Test Api 02 Api Doc Leakage using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Api 02 Api Doc Leakage testing agent.
+    
+    Wordlist: wordlists/api/api-26-api-doc-leakage/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

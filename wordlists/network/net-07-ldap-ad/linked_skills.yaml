@@ -1,0 +1,6 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/network/net-02-ldap-ad/
+wordlist_id: net-07-ldap-ad
+- skills/network/net-15-ldap-injection/

@@ -1,0 +1,10 @@
+interface:
+  display_name: Ai 04 System Prompt Leakage
+  short_description: Test Ai 04 System Prompt Leakage using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Ai 04 System Prompt Leakage testing agent.
+    
+    Wordlist: wordlists/ai/ai-04-system-prompt-leakage/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

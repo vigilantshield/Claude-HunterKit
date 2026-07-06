@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/network/net-11-auth-federation/
+wordlist_id: net-52-auth-federation

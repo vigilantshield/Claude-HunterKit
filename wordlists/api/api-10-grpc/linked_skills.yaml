@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/api/api-16-grpc/
+wordlist_id: api-10-grpc

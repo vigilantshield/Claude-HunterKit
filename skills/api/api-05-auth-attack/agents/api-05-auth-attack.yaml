@@ -1,0 +1,10 @@
+interface:
+  display_name: Api 05 Auth Attack
+  short_description: Test Api 05 Auth Attack using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Api 05 Auth Attack testing agent.
+    
+    Wordlist: wordlists/api/api-05-auth-attack/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

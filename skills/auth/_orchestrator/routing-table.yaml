@@ -1,0 +1,3 @@
+category_routing:
+  auth: auth-01 to auth-02
+domain: auth

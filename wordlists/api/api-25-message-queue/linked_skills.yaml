@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/api/api-19-message-queue/
+wordlist_id: api-25-message-queue

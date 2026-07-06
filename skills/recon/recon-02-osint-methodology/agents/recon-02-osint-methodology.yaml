@@ -1,0 +1,8 @@
+interface:
+  display_name: Recon 02 Osint Methodology
+  short_description: Test Recon 02 Osint Methodology using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Recon 02 Osint Methodology testing agent.
+    Wordlist: wordlists/recon/recon-17-js-analysis/
+    Workflow:
+    Run 'bash agents/invoke.payloads.sh <target> <param> <stage>' with stage=low then med then high.

@@ -1,0 +1,23 @@
+# IDOR identifier and tenant scope probes
+0
+1
+2
+-1
+000000
+999999
+2147483647
+9223372036854775807
+admin
+root
+me
+self
+current
+owner
+tenant-admin
+00000000-0000-0000-0000-000000000000
+11111111-1111-1111-1111-111111111111
+ffffffff-ffff-ffff-ffff-ffffffffffff
+../1
+..%2f1
+1%00
+1.json

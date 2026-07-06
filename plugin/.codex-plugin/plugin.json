@@ -1,0 +1,43 @@
+{
+  "name": "claude-hunterkit",
+  "version": "1.0.0",
+  "description": "170 offensive security skills with 1,770+ wordlist payload files — web, API, AI/LLM, network, cloud, recon, auth.",
+  "author": "claude-hunterKit",
+  "display_name": "claude-hunterKit",
+  "short_description": "Full offensive security toolkit for bug bounty, pentest, and red team operations.",
+  "categories": ["security", "bug-bounty", "pentest", "red-team"],
+  "marketplace": {
+    "sources": [
+      {"name": "GitHub Marketplace", "url": "https://github.com/marketplace"},
+      {"name": "npm", "package": "claude-hunterkit"}
+    ],
+    "install_commands": {
+      "claude_code": "claude mcp add claude-hunterkit --scope user npx -y chrome-devtools-mcp@latest",
+      "codex_cli": "codex mcp add claude-hunterkit -- npx -y chrome-devtools-mcp@latest",
+      "gemini_cli": "gemini mcp add claude-hunterkit npx -y chrome-devtools-mcp@latest",
+      "gemini_extension": "gemini extensions install https://github.com/your-org/claude-hunterKit",
+      "cursor": "Add MCP config: npx -y chrome-devtools-mcp@latest",
+      "copilot": "copilot mcp add --name claude-hunterkit -- npx -y chrome-devtools-mcp@latest"
+    }
+  },
+  "plugins": [
+    {"type": "skill", "name": "bugbounty-master", "path": "bugbounty/bugbounty-master/SKILL.md"},
+    {"type": "skill", "name": "web-sqli", "path": "skills/web/web-01-sqli/SKILL.md"},
+    {"type": "skill", "name": "web-xss", "path": "skills/web/web-16-xss/SKILL.md"},
+    {"type": "skill", "name": "web-ssrf", "path": "skills/web/web-27-ssrf/SKILL.md"},
+    {"type": "skill", "name": "web-idor", "path": "skills/web/web-23-idor/SKILL.md"},
+    {"type": "skill", "name": "web-rce", "path": "skills/web/web-37-rce/SKILL.md"},
+    {"type": "skill", "name": "api-bola", "path": "skills/api/api-04-bola/SKILL.md"},
+    {"type": "skill", "name": "api-spec", "path": "skills/api/api-01-spec-ingestion/SKILL.md"},
+    {"type": "skill", "name": "ai-prompt-injection", "path": "skills/ai/ai-01-prompt-injection/SKILL.md"},
+    {"type": "skill", "name": "ai-rag-poisoning", "path": "skills/ai/ai-05-rag-poisoning/SKILL.md"},
+    {"type": "skill", "name": "ai-agentic-attacks", "path": "skills/ai/ai-09-agentic-attacks/SKILL.md"},
+    {"type": "skill", "name": "network-cloud", "path": "skills/network/net-01-cloud/SKILL.md"},
+    {"type": "skill", "name": "network-k8s", "path": "skills/network/net-04-k8s/SKILL.md"},
+    {"type": "skill", "name": "auth-jwt", "path": "skills/auth/auth-01-jwt/SKILL.md"},
+    {"type": "skill", "name": "auth-oauth", "path": "skills/auth/auth-02-oauth-oidc/SKILL.md"},
+    {"type": "skill", "name": "recon-osint", "path": "skills/recon/recon-01-osint/SKILL.md"},
+    {"type": "skill", "name": "reporting", "path": "skills/reporting/report-01-human-reporting/SKILL.md"},
+    {"type": "skill", "name": "devtools-mcp", "path": "skills/devtools/devtools-01-chrome-devtools-mcp/SKILL.md"}
+  ]
+}

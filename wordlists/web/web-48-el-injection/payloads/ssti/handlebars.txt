@@ -1,0 +1,23 @@
+{{7*7}}
+{{{7*7}}}
+{{this}}
+{{this.constructor}}
+{{#with}}{{/with}}
+{{lookup . 'constructor'}}
+{{lookup (lookup . 'constructor') 'name'}}
+{{[7*7]}}
+{{#each this}}{{@key}}:{{this}}<br>{{/each}}
+{{#if true}}hello{{/if}}
+{{#unless false}}hello{{/unless}}
+{{#with this as |x|}}{{x}}{{/with}}
+{{log this}}
+{{this.constructor.prototype.constructor}}
+\{{7*7}}
+{{#each constructor.prototype}}{{@key}}{{/each}}
+{{#each (lookup . 'constructor')}}{{@key}}{{/each}}
+{{lookup (lookup this 'constructor') 'call'}}
+{{constructor.prototype}}
+{{_resolveCompat this}}
+{{__defineGetter__ 'foo' alert(1)}}
+{{constructor.constructor "alert(1)" this}}
+{{#with (hbs "{{constructor.constructor}}")}}{{this}}{{/with}}

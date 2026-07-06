@@ -1,0 +1,19 @@
+# Session token analysis
+abc123
+deadbeef
+0123456789abcdef
+token
+session
+test
+admin
+guest
+user
+# Session fixation — set cookie before login
+# Then authenticate — check if session reused
+# Session token entropy check — capture 10 tokens, look for patterns:
+# - timestamp prefix
+# - sequential counter
+# - weak hash (md5, sha1 pattern)
+# - base64 decode reveals user info
+# Cookie attribute checks:
+# Secure, HttpOnly, SameSite, Path, Domain, __Host-

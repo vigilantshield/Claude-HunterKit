@@ -1,0 +1,10 @@
+interface:
+  display_name: Api 13 Ssrf
+  short_description: Test Api 13 Ssrf using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Api 13 Ssrf testing agent.
+    
+    Wordlist: wordlists/web/web-07-ssrf/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

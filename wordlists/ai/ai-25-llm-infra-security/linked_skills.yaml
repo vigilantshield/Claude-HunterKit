@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/ai/ai-14-llm-infra-security/
+wordlist_id: ai-25-llm-infra-security

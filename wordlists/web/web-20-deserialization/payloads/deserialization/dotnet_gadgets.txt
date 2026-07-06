@@ -1,0 +1,13 @@
+AAEAAAD/////AQAAAAAAAAA=  # .NET BinaryFormatter Base64 prefix
+# ysoserial.net gadgets:
+TypeConfuseDelegate
+ObjectDataProvider
+PSObject
+WindowsIdentity
+SessionSecurityToken
+ActivitySurrogateSelector
+ActivitySurrogateSelectorFromFile
+TextFormattingRunProperties
+DataSet
+# Detection: AAEAAAD///// base64 prefix, or hex 00 01 00 00 00 FF FF FF FF
+# Test: send serialized object → observe error with class name or stack trace

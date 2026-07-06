@@ -1,0 +1,26 @@
+# Generic API path discovery payloads
+/api
+/api/
+/api/v1
+/api/v1/
+/api/v2
+/api/users
+/api/user
+/api/admin
+/api/auth
+/api/login
+/api/logout
+/api/token
+/api/graphql
+/graphql
+/graphiql
+/openapi.json
+/swagger.json
+/swagger/v1/swagger.json
+/v3/api-docs
+/docs
+/redoc
+/internal/api
+/private/api
+/admin/api
+/debug/api

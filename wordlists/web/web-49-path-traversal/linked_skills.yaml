@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/web/web-24-path-traversal/
+wordlist_id: web-49-path-traversal

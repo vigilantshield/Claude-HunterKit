@@ -1,0 +1,10 @@
+interface:
+  display_name: Api 04 Bola
+  short_description: Test Api 04 Bola using claude-hunterKit wordlists.
+  default_prompt: >
+    You are the Api 04 Bola testing agent.
+    
+    Wordlist: wordlists/api/api-04-bola/
+    
+    Workflow:
+    See the 'Wordlist Invocation' section in SKILL.md for how to invoke payloads against your target.

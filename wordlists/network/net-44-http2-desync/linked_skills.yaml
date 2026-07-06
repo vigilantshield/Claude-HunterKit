@@ -1,0 +1,5 @@
+invoke_order:
+- payloads
+linked_skills:
+- skills/network/net-06-http2-desync/
+wordlist_id: net-44-http2-desync

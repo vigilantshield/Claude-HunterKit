@@ -1,0 +1,26 @@
+# AI/ML endpoint discovery payloads
+/v1/chat/completions
+/v1/completions
+/v1/embeddings
+/v1/models
+/v1/responses
+/api/chat
+/api/generate
+/api/embed
+/api/v1/chat
+/api/v1/models
+/chat
+/completion
+/completions
+/embeddings
+/models
+/rag/query
+/rag/search
+/vector/search
+/vectors/search
+/mcp
+/mcp/tools
+/agents
+/tools
+/llm
+/prompt

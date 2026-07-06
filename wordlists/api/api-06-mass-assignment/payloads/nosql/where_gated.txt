@@ -1,0 +1,6 @@
+# Gated NoSQL server-side expression probes
+{"$where":"sleep(1000) || true"}
+{"$where":"function(){return true}"}
+{"$where":"function(){return this.username != null}"}
+{"$where":"function(){return /admin/.test(this.role)}"}
+{"$where":"function(){return Date.now()>0}"}

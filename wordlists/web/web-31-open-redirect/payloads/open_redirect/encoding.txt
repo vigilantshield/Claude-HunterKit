@@ -1,0 +1,18 @@
+# Open redirect parser and encoding probes
+//example.invalid
+///example.invalid
+\\example.invalid
+https://example.invalid
+https:example.invalid
+https:/example.invalid
+https:\\example.invalid
+%2f%2fexample.invalid
+%252f%252fexample.invalid
+https%3a%2f%2fexample.invalid
+https%253a%252f%252fexample.invalid
+//example.invalid/%2e%2e
+https://trusted.example@evil.example.invalid/
+/\example.invalid
+/%5cexample.invalid
+/%09/example.invalid
+/%0d%0aLocation:%20https://example.invalid/

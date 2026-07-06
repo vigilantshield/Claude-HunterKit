@@ -1,0 +1,16 @@
+# Host header attack advanced payloads
+evil.example
+example.com.evil.example
+evil.example:443
+127.0.0.1
+localhost
+[::1]
+169.254.169.254
+example.com@evil.example
+example.com:443@evil.example
+evil.example#example.com
+evil.example%00.example.com
+evil.example%0d%0aX-Forwarded-Host:%20evil.example
+sub.example.com.evil.example
+xn--e1awd7f.com
+0.0.0.0
