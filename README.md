@@ -67,7 +67,18 @@ bash install.sh --domain ai
 bash install.sh --domain bugbounty
 ```
 
-### Option 5: Manual
+### Option 5: Direct Plugin Installation
+
+If you prefer to install the plugins directly without using the installation script, you can copy the specific agent plugin directory from the `plugin/` folder to your agent's configuration directory. These plugins provide deep integration with the respective AI agents, offering auto-wiring of the MCP, custom skill menus, and domain-specific context directly inside the agent UI.
+
+| Agent | Direct Copy Command |
+|-------|--------------------|
+| **Claude Code** | `cp -r plugin/.claude-plugin ~/.claude/plugins/claude-hunterkit` |
+| **Codex CLI** | `cp -r plugin/.codex-plugin ~/.codex/plugins/claude-hunterkit` |
+| **Gemini CLI** | `cp -r plugin/.gemini ~/.gemini/plugins/claude-hunterkit` |
+| **Cursor** | `cp -r plugin/.cursor-plugin ~/.cursor/plugins/claude-hunterkit` |
+
+### Option 6: Manual
 
 ```bash
 # Clone and symlink or copy
