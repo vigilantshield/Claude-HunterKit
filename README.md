@@ -80,7 +80,15 @@ If you prefer to install the plugins directly without using the installation scr
 
 ### Option 6: Install via Marketplace
 
-You can also install the **claude-hunterKit** directly through the built-in extension marketplaces or plugin directories of supported AI agents. Simply search for `claude-hunterKit` in the marketplace browser of your agent (e.g., Codex CLI plugins or Gemini Extensions) and click install.
+You can also install the **claude-hunterKit** directly through the built-in extension marketplaces or plugin directories of supported AI agents. Simply search for `claude-hunterKit` in the marketplace browser of your agent, or use the following commands:
+
+```bash
+# For Gemini CLI
+gemini extensions install claude-hunterKit
+
+# For Codex CLI
+codex plugin install claude-hunterKit
+```
 
 ### Option 7: Manual
 
