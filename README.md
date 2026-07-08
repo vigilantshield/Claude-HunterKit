@@ -78,7 +78,11 @@ If you prefer to install the plugins directly without using the installation scr
 | **Gemini CLI** | `cp -r plugin/.gemini ~/.gemini/plugins/claude-hunterkit` |
 | **Cursor** | `cp -r plugin/.cursor-plugin ~/.cursor/plugins/claude-hunterkit` |
 
-### Option 6: Manual
+### Option 6: Install via Marketplace
+
+You can also install the **claude-hunterKit** directly through the built-in extension marketplaces or plugin directories of supported AI agents. Simply search for `claude-hunterKit` in the marketplace browser of your agent (e.g., Codex CLI plugins or Gemini Extensions) and click install.
+
+### Option 7: Manual
 
 ```bash
 # Clone and symlink or copy
