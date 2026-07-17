@@ -8,7 +8,7 @@
   [![Payloads](https://img.shields.io/badge/payloads-1,770%2B-orange)]()
   [![Web Vulns](https://img.shields.io/badge/web%20vulns-51-red)]()
   [![AI Skills](https://img.shields.io/badge/AI%20security-24-blueviolet)]()
-  [![Integrations](https://img.shields.io/badge/integrations-11-lightgrey)]()
+  [![Integrations](https://img.shields.io/badge/integrations-3-lightgrey)]()
 </div>
 
 ---
@@ -68,7 +68,7 @@ This installs:
 - **170 skills** → `~/.claude/skills/claude-hunterkit/`
 - **1,770+ wordlist payloads** → bundled alongside skills
 - **2 MCP servers** → Chrome DevTools + HunterKit Router
-- **11 agent plugins** → auto-detected for all agents
+- **3 agent plugins** → Claude Code, Codex CLI, Gemini CLI
 
 ### Option 2: Install Per Agent
 
@@ -77,14 +77,7 @@ This installs:
 | **Claude Code** | `bash install.sh --plugin claude` | Skills in `/skills` + MCP auto-wired |
 | **Codex CLI** | `bash install.sh --plugin codex` | Plugin in marketplace browser |
 | **Gemini CLI** | `bash install.sh --plugin gemini` | `gemini extensions install <path>` |
-| **Cursor** | `bash install.sh --plugin cursor` | MCP config added automatically |
 | **Command Code (cmd)** | `bash install.sh --plugin cmd` | Skills in `/skills` menu |
-| **GitHub Copilot** | `bash install.sh --plugin copilot` | MCP servers configured |
-| **Windsurf** | `bash install.sh --plugin windsurf` | MCP config for Cascade |
-| **Cline** | `bash install.sh --plugin cline` | MCP servers for Cline |
-| **Continue.dev** | `bash install.sh --plugin continue` | MCP + context providers |
-| **Aider** | `bash install.sh --plugin aider` | Skill references for `--read` |
-| **Open Interpreter** | `bash install.sh --plugin ointerpreter` | Python tool reference |
 
 ### Option 3: MCP Only
 
@@ -103,22 +96,7 @@ bash install.sh --domain ai        # AI/LLM skills + payloads only
 bash install.sh --domain bugbounty # Full bug bounty workflow
 ```
 
-### Option 5: Direct Plugin Copy
-
-| Agent | Command |
-|-------|---------|
-| **Claude Code** | `cp -r plugin/.claude-plugin ~/.claude/plugins/claude-hunterkit` |
-| **Codex CLI** | `cp -r plugin/.codex-plugin ~/.codex/plugins/claude-hunterkit` |
-| **Gemini CLI** | `cp -r plugin/.gemini ~/.gemini/plugins/claude-hunterkit` |
-| **Cursor** | `cp -r plugin/.cursor-plugin ~/.cursor/plugins/claude-hunterkit` |
-| **Copilot** | `cp -r plugin/.copilot-plugin ~/.config/github-copilot/plugins/` |
-| **Windsurf** | `cp -r plugin/.windsurf-plugin ~/.windsurf/plugins/` |
-| **Cline** | `cp -r plugin/.cline-plugin ~/.config/cline/plugins/` |
-| **Continue.dev** | `cp -r plugin/.continue-plugin ~/.continue/plugins/` |
-| **Aider** | `cp -r plugin/.aider-plugin ~/.aider/plugins/` |
-| **Open Interpreter** | `cp -r plugin/.ointerpreter-plugin ~/.ointerpreter/plugins/` |
-
-### Option 6: Marketplace Install
+### Option 5: Marketplace Install
 
 ```bash
 gemini extensions install claude-hunterKit
@@ -184,7 +162,7 @@ skills/recon/recon-03-tech-fingerprinting/SKILL.md
 | **21** | Network skills | Cloud, K8s, CI/CD, Kerberos, LDAP, serverless... |
 | **11** | Recon skills | OSINT, tech fingerprint, JS analysis, OpenAPI, crawl, WAF, auth, headers, CORS, API surface |
 | **42,000+** | Lines of methodology | Deep analysis — not shallow checklists |
-| **11** | Agent integrations | Claude, Codex, Cursor, Gemini, Copilot, Windsurf, Cline, Continue, Aider, Open Interpreter, cmd |
+| **3** | Agent plugins | Claude Code, Codex CLI, Gemini CLI |
 | **2** | MCP Servers | Chrome DevTools + HunterKit Router |
 | **40+** | Signal rules | Decision matrix entries mapping recon findings → vuln agents |
 
@@ -199,7 +177,7 @@ skills/recon/recon-03-tech-fingerprinting/SKILL.md
 | Generic scanning tools | **Domain-specific** — web vs API vs AI vs network all separated |
 | One-off scripts | **Structured skills** — 6 sections, consistent, reusable |
 | No chain guidance | **Built-in chaining** — every skill shows the pivot paths |
-| Single agent support | **11 agent integrations** — Claude, Codex, Gemini, Copilot, Cursor, Windsurf, Cline, Continue, Aider, Open Interpreter, cmd |
+| Agent plugin support | **4 integrations** — Claude Code, Codex CLI, Gemini CLI, cmd |
 
 ---
 
@@ -289,17 +267,10 @@ claude-hunterKit/
 │   ├── devtools/               # Chrome DevTools MCP
 │   └── reporting/              # Human-voice report writing
 │
-├── plugin/                     # 11 agent integration plugins
+├── plugin/                     # Agent integration plugins
 │   ├── .claude-plugin/         # Claude Code
 │   ├── .codex-plugin/          # Codex CLI
-│   ├── .cursor-plugin/         # Cursor
-│   ├── .gemini/                # Gemini CLI
-│   ├── .copilot-plugin/        # GitHub Copilot
-│   ├── .windsurf-plugin/       # Windsurf
-│   ├── .cline-plugin/          # Cline
-│   ├── .continue-plugin/       # Continue.dev
-│   ├── .aider-plugin/          # Aider
-│   └── .ointerpreter-plugin/   # Open Interpreter
+│   └── .gemini/                # Gemini CLI
 │
 ├── .commandcode/               # Command Code (cmd) plugin
 │
@@ -401,8 +372,8 @@ ls skills/recon/ | wc -l
 # → 11
 
 # Count all plugins
-find plugin/ -name "plugin.json" | wc -l
-# → 10
+ls plugin/ | grep plugin
+# → 3
 
 # Test decision matrix is valid
 grep -c "signals:" skills/_hunter/recon-decision-matrix.yaml
@@ -420,7 +391,7 @@ Apache 2.0 — free for commercial and personal use.
 <div align="center">
   <p>
     <strong>⭐ Star this repo if you use it — it helps others find it.</strong><br>
-    <sub>170 skills · 1,770+ payloads · 11 integrations · Recon-first · Built for hunters, by hunters</sub>
+    <sub>170 skills · 1,770+ payloads · 3 agent plugins · Recon-first · Built for hunters, by hunters</sub>
   </p>
   <p>
     <a href="bugbounty/bugbounty-master/SKILL.md">Start Hunting →</a>
