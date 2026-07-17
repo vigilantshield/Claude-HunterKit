@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # claude-hunterKit installer — 170 offensive security skills · 1,770+ payloads
-# Installs skills, wordlists, MCP server, and agent plugins.
+# Recon-first pipeline with conditional agent launch via decision matrix.
 #
 # Usage:
 #   bash install.sh                          # interactive (asks for target)
@@ -8,7 +8,7 @@
 #   bash install.sh --domain web              # one domain only
 #   bash install.sh --plugin claude           # plugin manifest only
 #   bash install.sh --mcp                     # MCP server only
-#   bash install.sh --list                    # list domains
+#   bash install.sh --list                    # list domains and plugins
 #   bash install.sh --dry-run                 # preview only
 #   bash install.sh --help                    # this help
 
@@ -28,7 +28,7 @@ LIST_ONLY=0
 INSTALL_MCP=0
 PLUGIN_ONLY=""
 
-usage() { sed -n '2,12p' "$0" | sed 's/^# //'; exit 0; }
+usage() { sed -n '2,14p' "$0" | sed 's/^# //'; exit 0; }
 
 list_domains() {
   echo "Available domains:"
@@ -44,19 +44,34 @@ list_domains() {
   printf "  %-15s %3d workflows\n" "bugbounty" "$bc"
 }
 
+list_plugins() {
+  echo "Available integration plugins:"
+  for p in "$PLUGIN_DIR"/*/; do
+    [ -d "$p" ] || continue
+    name=$(basename "$p")
+    printf "  %-20s %s\n" "$name" "$(head -5 "$p/plugin.json" 2>/dev/null | grep -o '"description": *"[^"]*"' | head -1 | sed 's/"description": "*//;s/"$//')"
+  done
+  echo ""
+  echo "  Total: $(find "$PLUGIN_DIR" -name "plugin.json" | wc -l) plugin manifests"
+}
+
 install_mcp() {
   echo ""
   echo "<<< MCP: Chrome DevTools >>>"
   echo "  npx -y chrome-devtools-mcp@latest"
   echo "  GitHub: https://github.com/ChromeDevTools/chrome-devtools-mcp"
   echo ""
+  echo "<<< MCP: HunterKit Router >>>"
+  echo "  npx -y claude-hunterkit@latest"
+  echo ""
 
   if command -v cmd &>/dev/null; then
-    cmd mcp add claude-hunterkit -- npx -y chrome-devtools-mcp@latest 2>/dev/null && echo "  ✓ cmd" || echo "  Add MCP manually for cmd"
+    cmd mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest 2>/dev/null && echo "  ✓ cmd (chrome-devtools)" || echo "  Add MCP manually for cmd"
+    cmd mcp add hunterkit-router -- npx -y claude-hunterkit@latest --env HUNTERKIT_PATH="$SCRIPT_DIR" 2>/dev/null && echo "  ✓ cmd (hunterkit-router)" || true
   fi
 
   for cli in claude codex gemini; do
-    command -v "$cli" &>/dev/null && echo "  ✓ $cli detected — use its MCP add command"
+    command -v "$cli" &>/dev/null && echo "  ✓ $cli detected — run its MCP add command"
   done
 }
 
@@ -64,16 +79,25 @@ install_plugin_all() {
   echo ""
   echo "<<< Plugins >>>"
   mkdir -p "$TARGET"
-  for src in .claude-plugin .codex-plugin .cursor-plugin; do
+
+  # Copy all plugin manifests
+  for src in .claude-plugin .codex-plugin; do
     [ -d "$PLUGIN_DIR/$src" ] && cp -r "$PLUGIN_DIR/$src" "$TARGET/" 2>/dev/null && echo "  ✓ $src"
   done
+
+  # Gemini uses a different dir pattern
   [ -d "$PLUGIN_DIR/.gemini" ] && cp -r "$PLUGIN_DIR/.gemini" "$TARGET/.gemini" 2>/dev/null && echo "  ✓ .gemini"
+
+  # Command code
   if [ -d "$SCRIPT_DIR/.commandcode" ]; then
     mkdir -p "$TARGET/.commandcode/skills"
     cp "$SCRIPT_DIR/.commandcode/plugin.json" "$TARGET/.commandcode/" 2>/dev/null
     cp -r "$SCRIPT_DIR/.commandcode/skills/"* "$TARGET/.commandcode/skills/" 2>/dev/null
     echo "  ✓ .commandcode"
   fi
+
+  # Copy .mcp.json reference
+  cp "$SCRIPT_DIR/.mcp.json" "$TARGET/../mcp.json" 2>/dev/null && echo "  ✓ MCP config reference"
 }
 
 copy_skills() {
@@ -107,7 +131,7 @@ while [ $# -gt 0 ]; do
     --plugin)    PLUGIN_ONLY="$2"; shift 2 ;;
     --mcp)       INSTALL_MCP=1; shift ;;
     --dry-run)   DRY_RUN=1; shift ;;
-    --list)      list_domains; exit 0 ;;
+    --list)      list_domains; echo ""; list_plugins; exit 0 ;;
     -h|--help)   usage ;;
     *)           echo "Unknown: $1"; usage ;;
   esac
@@ -143,7 +167,6 @@ if [ -n "$DOMAIN" ]; then
   fi
 else
   SOURCE="$SKILLS_DIR"; DEST="$TARGET"
-  # Copy all wordlists for full install
   WL_ALL=1
 fi
 
@@ -159,8 +182,9 @@ if [ "$DRY_RUN" -eq 1 ]; then
   echo "[dry-run] Would copy:"
   find "$SOURCE" -name SKILL.md | head -20 | sed "s|^$SOURCE|  $DEST|"
   echo "  ..."
+  find "$SOURCE" -name SKILL.md 2>/dev/null | wc -l | xargs echo "  Total:"
   echo ""
-  echo "  Would install: MCP server + 5 agent plugins"
+  echo "  Would install: 2 MCP servers + 11 agent plugins"
   exit 0
 fi
 
@@ -185,6 +209,7 @@ echo ""
 echo "╔═══════════════════════════════════════════╗"
 echo "║  ✅  Done!                               ║"
 echo "║  Skills:  $TARGET           ║"
-echo "║  MCP:     chrome-devtools-mcp             ║"
-echo "║  Plugins: Claude · Codex · Gemini · Cursor · cmd ║"
+echo "║  MCP:     chrome-devtools + hunterkit-router ║"
+echo "║  Plugins: Claude · Codex · Cursor · Gemini · Copilot · Windsurf · Cline · Continue · Aider · OpenInterpreter · cmd ║"
+echo "║  Pipeline: recon-first with decision matrix ║"
 echo "╚═══════════════════════════════════════════╝"

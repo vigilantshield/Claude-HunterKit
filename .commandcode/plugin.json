@@ -1,10 +1,10 @@
 {
   "name": "claude-hunterkit",
-  "version": "1.0.0",
-  "description": "170 offensive security skills — web, API, AI, network, cloud, recon, auth. Bug bounty, red team, pentest.",
+  "version": "1.1.0",
+  "description": "170 offensive security skills — web, API, AI, network, cloud, recon, auth. Bug bounty, red team, pentest. Recon-first conditional agent launch pipeline.",
   "author": "claude-hunterKit",
   "display_name": "claude-hunterKit",
-  "short_description": "170 offensive security skills with 1,770+ wordlist payload files.",
+  "short_description": "170 offensive security skills with 1,770+ wordlist payload files. Recon-first pipeline with decision-matrix agent selection.",
   "categories": ["security", "pentest", "bug-bounty", "red-team"],
   "skills": [
     {"name": "bugbounty-master", "path": "bugbounty/bugbounty-master/SKILL.md"},
@@ -13,14 +13,33 @@
     {"name": "web-ssrf", "path": "skills/web/web-27-ssrf/SKILL.md"},
     {"name": "web-idor", "path": "skills/web/web-23-idor/SKILL.md"},
     {"name": "web-rce", "path": "skills/web/web-37-rce/SKILL.md"},
+    {"name": "web-ssti", "path": "skills/web/web-03-ssti/SKILL.md"},
+    {"name": "web-xxe", "path": "skills/web/web-04-xxe/SKILL.md"},
+    {"name": "web-graphql", "path": "skills/web/web-32-graphql/SKILL.md"},
+    {"name": "web-csrf", "path": "skills/web/web-39-csrf/SKILL.md"},
     {"name": "api-bola", "path": "skills/api/api-04-bola/SKILL.md"},
     {"name": "api-spec", "path": "skills/api/api-01-spec-ingestion/SKILL.md"},
+    {"name": "api-sqli", "path": "skills/api/api-10-sqli/SKILL.md"},
+    {"name": "api-ssrf", "path": "skills/api/api-13-ssrf/SKILL.md"},
     {"name": "ai-prompt-injection", "path": "skills/ai/ai-01-prompt-injection/SKILL.md"},
     {"name": "ai-rag-poisoning", "path": "skills/ai/ai-05-rag-poisoning/SKILL.md"},
+    {"name": "ai-agentic-attacks", "path": "skills/ai/ai-09-agentic-attacks/SKILL.md"},
     {"name": "network-cloud", "path": "skills/network/net-01-cloud/SKILL.md"},
     {"name": "network-k8s", "path": "skills/network/net-04-k8s/SKILL.md"},
+    {"name": "network-cicd", "path": "skills/network/net-12-cicd/SKILL.md"},
+    {"name": "cloud-advanced", "path": "skills/cloud/cloud-02-cloud-advanced/SKILL.md"},
     {"name": "auth-jwt", "path": "skills/auth/auth-01-jwt/SKILL.md"},
+    {"name": "auth-oauth", "path": "skills/auth/auth-02-oauth-oidc/SKILL.md"},
     {"name": "recon-osint", "path": "skills/recon/recon-01-osint/SKILL.md"},
+    {"name": "recon-tech-fingerprinting", "path": "skills/recon/recon-03-tech-fingerprinting/SKILL.md"},
+    {"name": "recon-js-analysis", "path": "skills/recon/recon-04-js-analysis/SKILL.md"},
+    {"name": "recon-openapi-enum", "path": "skills/recon/recon-05-openapi-enum/SKILL.md"},
+    {"name": "recon-crawl-deep", "path": "skills/recon/recon-06-crawl-deep/SKILL.md"},
+    {"name": "recon-waf-detection", "path": "skills/recon/recon-07-waf-detection/SKILL.md"},
+    {"name": "recon-auth-mapping", "path": "skills/recon/recon-08-auth-mapping/SKILL.md"},
+    {"name": "recon-security-headers", "path": "skills/recon/recon-09-security-headers/SKILL.md"},
+    {"name": "recon-cors-scan", "path": "skills/recon/recon-10-cors-scan/SKILL.md"},
+    {"name": "recon-api-surface", "path": "skills/recon/recon-11-api-surface/SKILL.md"},
     {"name": "reporting", "path": "skills/reporting/report-01-human-reporting/SKILL.md"},
     {"name": "devtools-mcp", "path": "skills/devtools/devtools-01-chrome-devtools-mcp/SKILL.md"}
   ],
@@ -32,8 +51,21 @@
         "command": "npx",
         "args": ["-y", "chrome-devtools-mcp@latest"],
         "description": "Browser automation for XSS verification, SSRF confirmation, OAuth interception"
+      },
+      {
+        "name": "hunterkit-router",
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "claude-hunterkit@latest"],
+        "env": {"HUNTERKIT_PATH": "${workspaceFolder}"},
+        "description": "Routes hunting tasks to the correct claude-hunterKit skill"
       }
     ]
+  },
+  "orchestrator": {
+    "path": "skills/_hunter/",
+    "pipeline": ["recon-phase-1a-1c", "decision-matrix", "targeted-exploit", "chain-escalate", "report"],
+    "decision_matrix": "skills/_hunter/recon-decision-matrix.yaml"
   },
   "install_instructions": {
     "cli": "cmd mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest",

@@ -1,26 +1,89 @@
 interface:
   display_name: Api Orchestrator
-  short_description: Phase-based api hunting orchestrator for claude-hunterKit.
+  short_description: Updated API orchestrator - deep recon first, then conditional agent launch based on API recon signals
   default_prompt: >
-    
-    Wordlist Invocation: See SKILL.md 'Wordlist Invocation' section.
     You are the api hunting orchestrator. Given a target, run through these phases:
 
-    PHASE: SPEC INGEST
-    Run api-01-spec-ingestion to discover OpenAPI/Swagger/GQL schemas.
+    ╔═══════════════════════════════════════════════════════════╗
+    ║  PHASE 1: DEEP API RECON                                 ║
+    ╚═══════════════════════════════════════════════════════════╝
+    Run ALL recon before deciding which API vuln agents to launch:
 
-    PHASE: AUTH PROFILE
-    Run api-03-auth-profiling to map auth schemes per endpoint.
+    1a API SURFACE:
+      - recon-05 (OpenAPI enum) — spec files, API docs
+      - recon-11 (API surface) — all endpoints, methods, params, shadow APIs
+      - api-01-spec-ingestion — full spec parsing
 
-    PHASE: ACCESS CONTROL
-    Sweep api-04-bola + api-31-idor for IDOR/BOLA across all IDs.
+    1b API AUTH RECON:
+      - recon-08 (auth mapping) — JWT? OAuth? API keys? mTLS? No auth?
+      - api-03-auth-profiling — auth scheme per endpoint
 
-    PHASE: INJECTION SWEEP
-    Test api-10-sqli + api-11-nosql + api-12-xxe + api-13-ssrf on all inputs.
+    1c TRANSPORT RECON:
+      - recon-07 (WAF detection)
+      - recon-09 (security headers)
+      - recon-10 (CORS scan)
 
-    PHASE: ADVANCED
-    Test gRPC, WebSocket, message queues, supply chain, stateful fuzzing.
+    ╔═══════════════════════════════════════════════════════════╗
+    ║  PHASE 2: CONSULT RECON DECISION MATRIX                  ║
+    ╚═══════════════════════════════════════════════════════════╝
+    Open skills/_hunter/recon-decision-matrix.yaml.
+    Map detected signals to matching vuln categories. Launch only:
 
-    After each phase, report findings and decide whether to proceed to the next phase.
-    If confirm probes return positive, escalate to parameter discovery → payload exploitation.
-    Chain findings where possible for higher impact.
+    API ACCESS CONTROL:
+    Launch ONLY if signal matches:
+    - api-04-bola: sequential IDs, user/object CRUD endpoints
+    - api-06-mass-assignment: JSON create/update, extra fields
+    - api-07-bfla: admin/higher-privilege endpoints
+    - api-08-advanced-bola: complex object relationships
+    - api-09-tenancy-isolation: multi-tenant data separation
+    - api-31-idor: specific object ID enumeration
+
+    API INJECTION:
+    Launch ONLY if signal matches:
+    - api-10-sqli: SQL DB detected + param injection point
+    - api-11-nosql-injection: NoSQL or JSON body endpoints
+    - api-12-xxe: XML input accepted
+    - api-13-ssrf: URL param, webhook, remote fetch
+    - api-14-deserialization: serialized data in request
+    - api-15-spec-injection: spec file parsing on server
+
+    API PROTOCOL:
+    Launch ONLY if signal matches:
+    - api-16-grpc: gRPC detected
+    - api-17-websocket: WebSocket endpoint found
+    - api-18-websocket-protocol: WS with protocol-level auth
+    - api-19-message-queue: async queue detected
+    - api-20-sse-security: SSE endpoint found
+    - api-21-mtls: mTLS certs detected
+
+    API AUTH OVERLAP:
+    Launch ONLY if signal matches:
+    - api-28-jwt-attacks: JWT token detected
+    - api-29-jwt: JWT token detected
+    - api-30-oauth: OAuth flow detected
+    - api-33-parameter-pollution: multiple param handling
+    - api-34-open-redirect: redirect params
+    - api-35-request-smuggling: proxy/LB detected
+
+    API MISC:
+    Launch ONLY if signal matches:
+    - api-22-business-logic: checkout/coupon/money endpoints
+    - api-23-resource-limits: large uploads, batch operations
+    - api-24-cost-resource: expensive operations
+    - api-25-distributed-race: concurrent ops on shared resource
+    - api-26-supply-chain: third-party API integrations
+    - api-27-versioning: multiple API versions
+    - api-28-stateful-fuzzing: multi-step workflows
+
+    ╔═══════════════════════════════════════════════════════════╗
+    ║  PHASE 3: TARGETED EXPLOIT                               ║
+    ╚═══════════════════════════════════════════════════════════╝
+    Launch matched agents. Fire confirm/ payloads, escalate on signal.
+
+    ╔═══════════════════════════════════════════════════════════╗
+    ║  PHASE 4: CHAIN                                          ║
+    ╚═══════════════════════════════════════════════════════════╝
+    Example: BOLA confirmed → api-09-tenancy-isolation (cross-tenant)
+    Example: SSRF confirmed → cloud-01-cloud (metadata extraction)
+
+    CARDINAL RULE: Do NOT launch agents for vuln classes with NO signal.

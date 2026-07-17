@@ -1,3 +1,27 @@
-category_routing:
-  auth: auth-01 to auth-02
 domain: auth
+
+recon_prerequisites:
+  description: "Auth recon must complete before any auth agent is launched"
+  - recon-08-auth-mapping
+  - recon-09-security-headers
+  - recon-03-tech-fingerprinting
+
+category_routing:
+  jwt: auth-01
+  oauth-oidc: auth-02
+
+signal_to_agent_mapping:
+  jwt_token:
+    agents: [auth-01-jwt, api-28-jwt-attacks]
+  oauth_flow:
+    agents: [auth-02-oauth-oidc, web-10-oauth-oidc]
+  saml_endpoint:
+    agents: [web-11-saml, web-79-saml]
+  session_cookie:
+    agents: [web-12-session-management, web-74-session]
+  twofa_detected:
+    agents: [web-13-2fa-bypass, web-78-mfa-bypass]
+  login_page:
+    agents: [web-14-rate-limit, web-75-brute-force, web-76-ato, web-77-auth-bypass]
+  federation:
+    agents: [net-11-auth-federation]

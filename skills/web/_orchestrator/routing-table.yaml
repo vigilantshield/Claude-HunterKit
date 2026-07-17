@@ -1,8 +1,91 @@
-category_routing:
-  access-control: web-23 to web-26
-  auth: web-09 to web-15
-  injection: web-01 to web-08
-  protocol/misc: web-32 to web-41
-  ssrf: web-27 to web-31
-  xss: web-16 to web-22
 domain: web
+
+recon_prerequisites:
+  description: "ALL recon must complete before any vuln agent is launched"
+  network_stack:
+    - recon-01-osint
+    - recon-02-osint-methodology
+    - recon-03-tech-fingerprinting
+  surface_mapping:
+    - recon-04-js-analysis
+    - recon-05-openapi-enum
+    - recon-06-crawl-deep
+  defense_analysis:
+    - recon-07-waf-detection
+    - recon-08-auth-mapping
+    - recon-09-security-headers
+    - recon-10-cors-scan
+    - recon-11-api-surface
+
+category_routing:
+  injection: web-01 to web-08
+  xss: web-16 to web-22
+  access-control: web-23 to web-26
+  ssrf: web-27 to web-31
+  protocol-misc: web-32 to web-41
+  auth: web-09 to web-15
+
+signal_to_category_mapping:
+  db_error:
+    categories: [injection]
+    agents: [web-01-sqli, web-02-nosql-injection]
+  param_reflection:
+    categories: [injection, xss]
+    agents: [web-16-xss, web-03-ssti, web-01-sqli]
+  url_param:
+    categories: [ssrf]
+    agents: [web-27-ssrf, web-28-open-redirect]
+  jwt_token:
+    categories: [auth]
+    agents: [web-09-jwt]
+  oauth_flow:
+    categories: [auth]
+    agents: [web-10-oauth-oidc]
+  graphql_endpoint:
+    categories: [protocol-misc]
+    agents: [web-32-graphql]
+  websocket_endpoint:
+    categories: [protocol-misc]
+    agents: [web-33-websocket]
+  xml_input:
+    categories: [injection]
+    agents: [web-04-xxe]
+  file_upload:
+    categories: [access-control]
+    agents: [web-25-file-upload, web-24-path-traversal]
+  serialized_cookie:
+    categories: [injection]
+    agents: [web-05-deserialization]
+  template_engine:
+    categories: [injection]
+    agents: [web-03-ssti]
+  sequential_ids:
+    categories: [access-control]
+    agents: [web-23-idor]
+  js_framework:
+    categories: [xss]
+    agents: [web-08-prototype-pollution, web-18-dom-clobbering]
+  no_xframe:
+    categories: [xss]
+    agents: [web-19-clickjacking]
+  cors_header:
+    categories: [xss]
+    agents: [web-20-cors]
+  login_page:
+    categories: [auth]
+    agents: [web-12-session, web-14-rate-limit, web-13-2fa-bypass]
+  waf_detected:
+    categories: [protocol-misc]
+    agents: [web-36-waf-bypass]
+  proxy_detected:
+    categories: [ssrf]
+    agents: [web-29-request-smuggling, web-30-host-header, web-31-http-smuggling]
+  checkout_flow:
+    categories: [protocol-misc]
+    agents: [web-34-business-logic, web-35-race-condition]
+  sp_script:
+    categories: [protocol-misc]
+    agents: [web-41-sri-check]
+  subdomain_takeover:
+    categories: [protocol-misc]
+    agents: [web-40-subdomain-takeover]

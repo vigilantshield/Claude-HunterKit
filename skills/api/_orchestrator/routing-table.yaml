@@ -1,8 +1,69 @@
+domain: api
+
+recon_prerequisites:
+  description: "API recon must complete before any vuln agent is launched"
+  surface:
+    - recon-05-openapi-enum
+    - recon-11-api-surface
+    - api-01-spec-ingestion
+  auth_recon:
+    - recon-08-auth-mapping
+    - api-03-auth-profiling
+  transport_recon:
+    - recon-07-waf-detection
+    - recon-09-security-headers
+    - recon-10-cors-scan
+
 category_routing:
   access-control: api-04 to api-09
-  auth-overlap: api-29 to api-35
   injection: api-10 to api-15
-  misc: api-22 to api-28
   protocol: api-16 to api-21
+  misc: api-22 to api-28
+  auth-overlap: api-29 to api-35
   recon: api-01 to api-03
-domain: api
+
+signal_to_agent_mapping:
+  sequential_ids:
+    agents: [api-04-bola, api-31-idor, api-08-advanced-bola]
+  sql_db:
+    agents: [api-10-sqli]
+  nosql:
+    agents: [api-11-nosql-injection]
+  xml_input:
+    agents: [api-12-xxe]
+  url_param:
+    agents: [api-13-ssrf]
+  serialized:
+    agents: [api-14-deserialization]
+  jwt:
+    agents: [api-28-jwt-attacks, api-29-jwt]
+  oauth:
+    agents: [api-30-oauth]
+  grpc:
+    agents: [api-16-grpc]
+  websocket:
+    agents: [api-17-websocket, api-18-websocket-protocol]
+  sse:
+    agents: [api-20-sse-security]
+  message_queue:
+    agents: [api-19-message-queue]
+  mtls:
+    agents: [api-21-mtls]
+  checkout:
+    agents: [api-22-business-logic, api-25-distributed-race]
+  multiple_versions:
+    agents: [api-27-versioning]
+  multi_step:
+    agents: [api-28-stateful-fuzzing]
+  third_party_integration:
+    agents: [api-26-supply-chain]
+  admin_endpoints:
+    agents: [api-07-bfla]
+  create_update_endpoints:
+    agents: [api-06-mass-assignment]
+  multi_tenant:
+    agents: [api-09-tenancy-isolation]
+  proxy_lb:
+    agents: [api-35-request-smuggling]
+  redirect_param:
+    agents: [api-34-open-redirect]

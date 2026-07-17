@@ -1,27 +1,35 @@
-cross_domain_chains:
-- "SSRF (web-27) \u2192 cloud metadata (cloud-01) \u2192 IAM keys"
-- "XSS (web-16) \u2192 OAuth token theft (auth-02) \u2192 ATO"
-- "SQLi (web-01) \u2192 OS shell (web-37) \u2192 full compromise"
-- "IDOR (web-23) + API BOLA (api-04) \u2192 mass data exposure"
-- "Open Redirect (web-28) \u2192 OAuth redirect_uri bypass (auth-02) \u2192 token\
-  \ theft"
-- "Prototype Pollution (web-08) \u2192 XSS (web-16) \u2192 session hijack"
-domain_routing:
-  ai: "Chatbot, LLM endpoint, RAG, prompt injection surface \u2192 skills/ai/"
-  api: "REST/JSON/GraphQL/gRPC, structured responses, auth headers \u2192 skills/api/_orchestrator/"
-  auth: "OAuth flow, JWT tokens, SSO, login page \u2192 skills/auth/"
-  cloud: "Cloud provider metadata, IAM, storage buckets \u2192 skills/cloud/"
-  devtools: "Browser devtools, network analysis, Playwright \u2192 skills/devtools/"
-  mcp: "MCP server, tool routing, agentic abuse \u2192 skills/mcp-devtools/"
-  network: "Infrastructure, cloud metadata, K8s, DNS \u2192 skills/network/"
-  recon: "Unknown target, need tech fingerprinting, subdomain discovery \u2192 skills/recon/"
-  reporting: "Document findings, generate reports \u2192 skills/reporting/"
-  web: "URL has HTML, browser context, form-based, session cookies \u2192 skills/web/_orchestrator/"
-invocation_flow:
-- "recon \u2192 fingerprint target \u2192 identify domain"
-- "domain orchestrator \u2192 phase 1 (recon/confirm)"
-- "domain orchestrator \u2192 phase 2 (parameters/discovery)"
-- "domain orchestrator \u2192 phase 3 (payloads/exploit)"
-- "domain orchestrator \u2192 phase 4 (escalate/chain)"
-- "reporting \u2192 document all findings"
 master_orchestrator: skills/_hunter/
+
+domain_routing:
+  ai: "Chatbot, LLM endpoint, RAG, prompt injection surface → skills/ai/"
+  api: "REST/JSON/GraphQL/gRPC, structured responses, auth headers → skills/api/_orchestrator/"
+  auth: "OAuth flow, JWT tokens, SSO, login page → skills/auth/_orchestrator/"
+  cloud: "Cloud provider metadata, IAM, storage buckets → skills/cloud/"
+  devtools: "Browser devtools, network analysis, Playwright → skills/devtools/"
+  mcp: "MCP server, tool routing, agentic abuse → skills/mcp-devtools/"
+  network: "Infrastructure, cloud metadata, K8s, DNS → skills/network/"
+  recon: "Unknown target, need tech fingerprinting, subdomain discovery → skills/recon/"
+  reporting: "Document findings, generate reports → skills/reporting/"
+  web: "URL has HTML, browser context, form-based, session cookies → skills/web/_orchestrator/"
+
+invocation_flow:
+- "phase-0: categorize target → route to domain orchestrator"
+- "phase-1a: recon network/stack (recon-01, recon-02, recon-03)"
+- "phase-1b: recon surface mapping (recon-04, recon-05, recon-06)"
+- "phase-1c: recon defense analysis (recon-07, recon-08, recon-09, recon-10, recon-11)"
+- "phase-2: consult recon-decision-matrix.yaml → select agents by signal match"
+- "phase-3: targeted exploit per agent (confirm → parameters → payloads)"
+- "phase-4: chain & escalate via matrix escalation_paths"
+- "phase-5: report findings"
+
+cross_domain_chains:
+- "SSRF (web-27) → cloud metadata (cloud-01) → IAM keys"
+- "XSS (web-16) → OAuth token theft (auth-02) → ATO"
+- "SQLi (web-01) → OS shell (web-37) → full compromise"
+- "IDOR (web-23) + API BOLA (api-04) → mass data exposure"
+- "Open Redirect (web-28) → OAuth redirect_uri bypass (auth-02) → token theft"
+- "Prototype Pollution (web-08) → XSS (web-16) → session hijack"
+- "CORS misconfig (recon-10) + XSS (web-16) → data exfiltration"
+- "Weak CSP (recon-09) → XSS (web-16) → session hijack"
+- "No WAF on endpoint (recon-07) → all injection attacks"
+- "Shadow API (recon-11) → auth bypass (web-77) → admin access"

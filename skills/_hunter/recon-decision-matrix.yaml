@@ -1,0 +1,623 @@
+# Recon Decision Matrix
+# Maps recon signals → vuln probability → which agents to launch
+# Core intelligence for conditional agent launch pipeline
+#
+# USAGE:
+#   Phase 1: Run ALL recon-06 through recon-11 + existing recon-01 to recon-05
+#   Phase 2: Check this matrix for matched signals
+#   Phase 3: Launch only matched skill agents (not all 170)
+
+recon_phases:
+  phase_1_network_recon:
+    description: "Subdomains, IPs, ports, CDN, WAF, tech stack"
+    skills:
+      - recon-01-osint
+      - recon-02-osint-methodology
+      - recon-03-tech-fingerprinting
+    output: "network_profile"
+
+  phase_2_surface_mapping:
+    description: "Crawl, JS analysis, API docs, endpoints, forms"
+    skills:
+      - recon-04-js-analysis
+      - recon-05-openapi-enum
+      - recon-06-crawl-deep
+    output: "surface_map"
+
+  phase_3_defense_analysis:
+    description: "WAF, security headers, CORS, CSP, auth schemes"
+    skills:
+      - recon-07-waf-detection
+      - recon-08-auth-mapping
+      - recon-09-security-headers
+      - recon-10-cors-scan
+    output: "defense_profile"
+
+decision_rules:
+  # ── INJECTION FAMILY ──────────────────────────────────────
+  - signals:
+      - tech: "php"
+      - db_error: true
+      - param_reflected: true
+    targets:
+      - web-01-sqli
+      - web-02-nosql-injection
+      - api-10-sqli
+      - api-11-nosql-injection
+    probability: 0.95
+    category: injection
+    priority: critical
+
+  - signals:
+      - param_reflected: true
+      - js_framework: true
+      - html_input: true
+    targets:
+      - web-16-xss
+    probability: 0.90
+    category: xss
+    priority: critical
+
+  - signals:
+      - template_engine: true
+      - tech: "java|python|ruby|node"
+      - param_reflected: true
+    targets:
+      - web-03-ssti
+    probability: 0.70
+    category: injection
+    priority: high
+
+  - signals:
+      - xml_input: true
+      - upload_feature: true
+      - soap: true
+    targets:
+      - web-04-xxe
+      - api-12-xxe
+    probability: 0.65
+    category: injection
+    priority: high
+
+  - signals:
+      - deserialization_hint: true
+      - tech: "java|php|python|ruby|dotnet"
+      - cookie_serialized: true
+    targets:
+      - web-05-deserialization
+      - api-14-deserialization
+    probability: 0.60
+    category: injection
+    priority: high
+
+  - signals:
+      - cmd_exec_param: true
+      - tech: "php|java|node|python"
+      - file_ops_endpoint: true
+    targets:
+      - web-06-command-injection
+      - web-37-rce
+    probability: 0.75
+    category: injection
+    priority: critical
+
+  - signals:
+      - ldap_auth: true
+      - ldap_header: true
+      - tech: "java|dotnet"
+    targets:
+      - web-07-ldap-injection
+      - net-15-ldap-injection
+    probability: 0.50
+    category: injection
+    priority: medium
+
+  # ── PROTO / PROTOTYPE POLLUTION ──────────────────────────
+  - signals:
+      - js_framework: true
+      - json_body_accepted: true
+      - merge_operations: true
+    targets:
+      - web-08-prototype-pollution
+    probability: 0.55
+    category: protocol
+    priority: high
+
+  # ── SSRF ──────────────────────────────────────────────────
+  - signals:
+      - url_param: true
+      - webhook_integration: true
+      - fetch_remote: true
+      - file_upload_url: true
+    targets:
+      - web-27-ssrf
+      - api-13-ssrf
+    probability: 0.80
+    category: ssrf
+    priority: critical
+
+  # ── ACCESS CONTROL ────────────────────────────────────────
+  - signals:
+      - sequential_ids: true
+      - uuid_endpoint: true
+      - user_profile_endpoint: true
+    targets:
+      - web-23-idor
+      - api-04-bola
+      - api-31-idor
+    probability: 0.85
+    category: access-control
+    priority: critical
+
+  - signals:
+      - admin_endpoints: true
+      - role_header: true
+      - priviledged_ops: true
+    targets:
+      - api-07-bfla
+      - web-15-mass-assignment
+      - api-06-mass-assignment
+    probability: 0.70
+    category: access-control
+    priority: high
+
+  # ── AUTH ────────────────────────────────────────────────────
+  - signals:
+      - jwt_token: true
+    targets:
+      - web-09-jwt
+      - auth-01-jwt
+      - api-28-jwt-attacks
+    probability: 0.90
+    category: auth
+    priority: critical
+
+  - signals:
+      - oauth_flow: true
+      - sso_detected: true
+      - social_login: true
+    targets:
+      - web-10-oauth-oidc
+      - auth-02-oauth-oidc
+      - web-80-oauth
+    probability: 0.85
+    category: auth
+    priority: critical
+
+  - signals:
+      - saml_response: true
+      - saml_endpoint: true
+    targets:
+      - web-11-saml
+      - web-79-saml
+    probability: 0.60
+    category: auth
+    priority: high
+
+  - signals:
+      - login_page: true
+      - session_cookie: true
+      - sso_detected: true
+    targets:
+      - web-12-session-management
+      - web-13-2fa-bypass
+      - web-77-auth-bypass
+      - web-78-mfa-bypass
+    probability: 0.80
+    category: auth
+    priority: critical
+
+  - signals:
+      - login_page: true
+      - rate_limit_missing: true
+    targets:
+      - web-14-rate-limit
+      - web-75-brute-force
+      - web-76-ato
+    probability: 0.75
+    category: auth
+    priority: high
+
+  # ── BROWSER / CLIENT-SIDE ──────────────────────────────────
+  - signals:
+      - csp_header: true
+    targets:
+      - web-17-csp-analysis
+    probability: 1.0  # always test CSP when present
+    category: xss
+    priority: medium
+
+  - signals:
+      - dom_sinks: true
+      - js_framework: true
+      - postmessage_listener: true
+    targets:
+      - web-18-dom-clobbering
+      - web-21-postmessage
+      - web-22-csti
+    probability: 0.60
+    category: xss
+    priority: medium
+
+  - signals:
+      - no_xframe_header: true
+      - iframe_visible: true
+    targets:
+      - web-19-clickjacking
+    probability: 0.90
+    category: protocol
+    priority: medium
+
+  - signals:
+      - cors_header: true
+      - api_endpoints: true
+    targets:
+      - web-20-cors
+    probability: 0.80
+    category: protocol
+    priority: high
+
+  # ── FILE / PATH ────────────────────────────────────────────
+  - signals:
+      - file_param: true
+      - path_param: true
+      - upload_feature: true
+    targets:
+      - web-24-path-traversal
+      - web-25-file-upload
+    probability: 0.80
+    category: access-control
+    priority: high
+
+  # ── SSRF-ADJACENT ──────────────────────────────────────────
+  - signals:
+      - redirect_param: true
+      - redirect_history: true
+    targets:
+      - web-28-open-redirect
+      - api-34-open-redirect
+    probability: 0.85
+    category: ssrf
+    priority: high
+
+  # ── PROTOCOL SMUGGLING ─────────────────────────────────────
+  - signals:
+      - proxy_detected: true
+      - load_balancer: true
+      - cdn: true
+    targets:
+      - web-29-request-smuggling
+      - web-30-host-header
+      - web-31-http-smuggling
+      - net-06-http2-desync
+    probability: 0.65
+    category: protocol
+    priority: high
+
+  # ── GRAPHQL ─────────────────────────────────────────────────
+  - signals:
+      - graphql_endpoint: true
+      - introspection_enabled: true
+    targets:
+      - web-32-graphql
+      - api-32-graphql
+    probability: 0.90
+    category: injection
+    priority: critical
+
+  # ── WEBSOCKET ───────────────────────────────────────────────
+  - signals:
+      - websocket_endpoint: true
+    targets:
+      - web-33-websocket
+      - api-17-websocket
+      - api-18-websocket-protocol
+    probability: 0.70
+    category: protocol
+    priority: medium
+
+  # ── BUSINESS LOGIC ──────────────────────────────────────────
+  - signals:
+      - checkout_flow: true
+      - coupon_feature: true
+      - transaction_history: true
+      - money_endpoint: true
+    targets:
+      - web-34-business-logic
+      - api-22-business-logic
+    probability: 0.80
+    category: misc
+    priority: critical
+
+  # ── RACE CONDITIONS ─────────────────────────────────────────
+  - signals:
+      - concurrent_ops: true
+      - async_endpoints: true
+      - coupon_feature: true
+    targets:
+      - web-35-race-condition
+      - api-25-distributed-race
+    probability: 0.65
+    category: misc
+    priority: high
+
+  # ── AI/LLM ──────────────────────────────────────────────────
+  - signals:
+      - chatbot_endpoint: true
+      - ai_detected: true
+      - llm_api: true
+    targets:
+      - ai-01-prompt-injection
+      - ai-02-llm-enum-recon
+      - ai-04-system-prompt-leakage
+      - ai-05-rag-poisoning
+    probability: 0.95
+    category: ai
+    priority: critical
+
+  - signals:
+      - mcp_server: true
+      - agent_framework: true
+    targets:
+      - ai-08-excessive-agency
+      - ai-09-agentic-attacks
+      - ai-10-mcp-security
+      - ai-17-memory-chain
+    probability: 0.85
+    category: ai
+    priority: high
+
+  # ── CLOUD ──────────────────────────────────────────────────
+  - signals:
+      - cloud_provider: true
+      - storage_url: true
+      - meta_data_endpoint: true
+    targets:
+      - cloud-01-cloud
+      - cloud-02-cloud-advanced
+    probability: 0.85
+    category: cloud
+    priority: high
+
+  # ── SUBDOMAIN / INFRA ──────────────────────────────────────
+  - signals:
+      - dead_dns: true
+      - cname_unused: true
+    targets:
+      - web-40-subdomain-takeover
+    probability: 0.70
+    category: protocol
+    priority: high
+
+  - signals:
+      - third_party_script: true
+      - cdn_script: true
+    targets:
+      - web-41-sri-check
+    probability: 0.75
+    category: protocol
+    priority: medium
+
+  # ── API PROTOCOL ────────────────────────────────────────────
+  - signals:
+      - grpc_detected: true
+    targets:
+      - api-16-grpc
+    probability: 0.70
+    category: protocol
+    priority: medium
+
+  - signals:
+      - sse_endpoint: true
+    targets:
+      - api-20-sse-security
+    probability: 0.50
+    category: protocol
+    priority: low
+
+  - signals:
+      - message_queue: true
+      - async_events: true
+    targets:
+      - api-19-message-queue
+    probability: 0.40
+    category: protocol
+    priority: low
+
+  - signals:
+      - mTLs_cert: true
+    targets:
+      - api-21-mtls
+    probability: 0.40
+    category: protocol
+    priority: low
+
+  # ── NETWORK / INFRASTRUCTURE ────────────────────────────────
+  - signals:
+      - k8s_detected: true
+    targets:
+      - net-04-k8s
+      - net-16-k8s
+    probability: 0.75
+    category: network
+    priority: high
+
+  - signals:
+      - cicd_pipeline: true
+    targets:
+      - net-12-cicd
+      - net-17-cicd
+    probability: 0.65
+    category: network
+    priority: high
+
+  - signals:
+      - serverless_detected: true
+    targets:
+      - net-07-serverless
+    probability: 0.60
+    category: network
+    priority: medium
+
+  - signals:
+      - database_exposed: true
+    targets:
+      - net-05-database
+      - net-13-advanced-database
+    probability: 0.80
+    category: network
+    priority: critical
+
+  - signals:
+      - ldap_exposed: true
+    targets:
+      - net-02-ldap-ad
+    probability: 0.70
+    category: network
+    priority: high
+
+  - signals:
+      - kerberos_detected: true
+    targets:
+      - net-03-kerberos
+    probability: 0.60
+    category: network
+    priority: medium
+
+  - signals:
+      - ntlm_detected: true
+    targets:
+      - net-20-ntlm-info
+    probability: 0.80
+    category: network
+    priority: medium
+
+  - signals:
+      - secrets_exposed: true
+    targets:
+      - net-10-secrets-config
+    probability: 0.85
+    category: network
+    priority: critical
+
+  - signals:
+      - service_mesh: true
+    targets:
+      - net-08-service-mesh
+    probability: 0.50
+    category: network
+    priority: low
+
+  - signals:
+      - observability: true
+      - metrics_endpoint: true
+    targets:
+      - net-09-observability
+    probability: 0.70
+    category: network
+    priority: medium
+
+  - signals:
+      - federation: true
+      - idp_detected: true
+    targets:
+      - net-11-auth-federation
+    probability: 0.60
+    category: auth
+    priority: medium
+
+  # ── TARGETED EXPLOIT ────────────────────────────────────────
+  - signals:
+      - waf_detected: true
+    targets:
+      - web-36-waf-bypass
+    probability: 1.0  # always probe WAF if present
+    category: protocol
+    priority: high
+
+  - signals:
+      - tech: "wordpress"
+    targets:
+      - web-73-misc  # wordpress-specific
+    probability: 0.70
+    category: framework
+    priority: medium
+
+  - signals:
+      - tech: "nextjs|react"
+      - ssr_enabled: true
+    targets:
+      - web-68-nextjs
+    probability: 0.60
+    category: framework
+    priority: medium
+
+  - signals:
+      - tech: "laravel"
+    targets:
+      - web-69-laravel
+    probability: 0.65
+    category: framework
+    priority: medium
+
+  - signals:
+      - tech: "asp.net|dotnet"
+    targets:
+      - web-70-aspnet
+    probability: 0.60
+    category: framework
+    priority: medium
+
+  - signals:
+      - tech: "node.js|express"
+    targets:
+      - web-66-nodejs
+    probability: 0.65
+    category: framework
+    priority: medium
+
+  - signals:
+      - tech: "sharepoint"
+    targets:
+      - web-71-sharepoint
+    probability: 0.60
+    category: framework
+    priority: medium
+
+  - signals:
+      - config_exposed: true
+      - source_map: true
+    targets:
+      - web-67-source-leak
+    probability: 0.85
+    category: recon
+    priority: high
+
+# Priority ordering for agent launch
+launch_strategy:
+  critical_first: true
+  parallel_same_category: true
+  max_concurrent_agents: 8
+  stop_on_first_critical: false  # keep testing even after finding critical
+
+  escalation_paths:
+    - from: web-23-idor
+      escalate_to: [api-04-bola, api-08-advanced-bola]
+    - from: web-27-ssrf
+      escalate_to: [cloud-01-cloud, net-10-secrets-config]
+    - from: web-16-xss
+      escalate_to: [web-12-session-management, auth-02-oauth-oidc]
+    - from: web-01-sqli
+      escalate_to: [web-37-rce, net-05-database]
+    - from: web-28-open-redirect
+      escalate_to: [auth-02-oauth-oidc, web-10-oauth-oidc]
+    - from: web-08-prototype-pollution
+      escalate_to: [web-16-xss, web-18-dom-clobbering]
+    - from: ai-01-prompt-injection
+      escalate_to: [ai-04-system-prompt-leakage, ai-08-excessive-agency]
+
+  stop_conditions:
+    - full_account_takeover_confirmed
+    - pii_breach_>_1000_records
+    - rce_confirmed_on_production
+    - cloud_iam_keys_extracted

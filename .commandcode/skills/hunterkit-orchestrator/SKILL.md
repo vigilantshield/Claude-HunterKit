@@ -1,31 +1,43 @@
 ---
 name: claude-hunterkit-orchestrator
-description: "Master orchestrator for claude-hunterKit — 170 offensive security skills. Routes hunting tasks to the correct skill based on target type. Use when starting a security assessment, bug bounty session, or pentest."
+description: "Master orchestrator for claude-hunterKit — 170 offensive security skills. Recon-first pipeline: deep recon → decision matrix → targeted exploit. Routes hunting tasks to the correct skill based on target type."
 ---
 
 # claude-hunterKit Orchestrator
 
-You have access to the claude-hunterKit repository with 170 offensive security skills.
+Recon-first conditional agent launch pipeline for 170 offensive security skills.
 
-## How to use
+## Pipeline
 
-1. **Identify the target type** — web app, API, AI/LLM, network, cloud, or auth
-2. **Open the matching skill** from the repository's skills/ directory
-3. **Follow the skill's methodology** — each has Hacker Mindset, Detection, Payloads, Bypass, Chaining, OOB
-4. **Report findings** using human-voice reporting
+```
+PHASE 0: Categorize target → route to domain orchestrator
+PHASE 1a: Network/Stack recon (recon-01,02,03)
+PHASE 1b: Surface mapping (recon-04,05,06)
+PHASE 1c: Defense analysis (recon-07,08,09,10,11)
+PHASE 2: Consult recon-decision-matrix.yaml → match signals → select agents
+PHASE 3: Targeted exploit on matched skills only
+PHASE 4: Chain & escalate via matrix escalation paths
+PHASE 5: Report findings
+```
+
+**Cardinal rule:** Complete ALL of Phase 1 before launching ANY vuln agent.
 
 ## Domain Routing
 
-| Target Type | Directory | How to Start |
-|-------------|-----------|-------------|
-| Web app | skills/web/ | Pick web-XX matching the vuln class. Follow Detection → Payloads → Bypass → Chain |
-| API | skills/api/ | Start with api-01-spec-ingestion for endpoint discovery |
+| Target Type | Directory | Launch Strategy |
+|-------------|-----------|----------------|
+| Web app | skills/web/_orchestrator/ | Phase 1 recon → decision matrix → conditional launch |
+| API | skills/api/_orchestrator/ | Phase 1 recon → signal-to-agent mapping → conditional launch |
 | AI/LLM | skills/ai/ | Start with ai-02-llm-enum-recon for endpoint discovery |
-| Network/Infra | skills/network/ | Start with net-01-cloud for cloud or net-04-k8s for Kubernetes |
-| Cloud | skills/cloud/ | Use cloud-02-cloud-advanced for full AWS/Azure/GCP depth |
-| Auth | skills/auth/ | Use auth-01-jwt or auth-02-oauth-oidc |
-| Recon | skills/recon/ | Start with recon-01-osint for target discovery |
+| Network/Infra | skills/network/ | Start with net-01-cloud or net-04-k8s |
+| Cloud | skills/cloud/ | Use cloud-02-cloud-advanced for full depth |
+| Auth | skills/auth/_orchestrator/ | Phase 1 auth recon → launch only matched scheme |
+| Recon | skills/recon/ | 11 recon skills — run all before deciding |
 | Bug Bounty | bugbounty/bugbounty-master/ | Full workflow from recon to report |
+
+## Decision Matrix
+
+`skills/_hunter/recon-decision-matrix.yaml` contains 40+ signal rules mapping recon findings to specific vuln agents. Launch ONLY agents whose signals match.
 
 ## Quick Reference
 
@@ -33,6 +45,9 @@ You have access to the claude-hunterKit repository with 170 offensive security s
 # List all skills in a domain
 ls skills/web/
 ls skills/api/
+
+# Read recon decision matrix
+cat skills/_hunter/recon-decision-matrix.yaml
 
 # Search for a vuln class
 grep -rl "ssrf" skills/*/SKILL.md

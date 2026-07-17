@@ -1,9 +1,9 @@
 {
   "name": "claude-hunterkit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "gemini": {
     "display_name": "claude-hunterKit",
-    "description": "170 offensive security skills for bug bounty, red team, and pentest. Web, API, AI/LLM, network, cloud, recon, auth — every vulnerability class with payloads.",
+    "description": "170 offensive security skills for bug bounty, red team, and pentest. Web, API, AI/LLM, network, cloud, recon, auth — every vulnerability class with payloads. Recon-first pipeline with conditional agent launch via decision matrix.",
     "categories": ["security", "pentest", "bug-bounty", "red-team", "penetration-testing"],
     "capabilities": [
       "web-vulnerability-hunting",
@@ -14,12 +14,17 @@
       "infrastructure-attack",
       "recon-osint",
       "bug-bounty-workflow",
-      "auth-bypass-testing"
+      "auth-bypass-testing",
+      "deep-recon-and-fingerprinting",
+      "waf-detection-and-bypass",
+      "api-surface-mapping"
     ],
     "tags": [
       "sqli", "xss", "ssrf", "idor", "rce", "jwt", "oauth", "ssti", "xxe",
       "prompt-injection", "jailbreaking", "rag-poisoning", "agentic-attacks",
-      "cloud-security", "k8s", "cicd", "bug-bounty"
+      "cloud-security", "k8s", "cicd", "bug-bounty",
+      "recon-first", "deep-recon", "crawl", "waf", "cors", "auth-mapping",
+      "security-headers", "api-surface", "decision-matrix"
     ],
     "prompt_templates": {
       "hunt_web": "skills/web/",
@@ -37,6 +42,12 @@
       "command": "npx",
       "args": ["-y", "chrome-devtools-mcp@latest"],
       "description": "Browser automation for XSS verification, SSRF confirmation, OAuth interception"
+    },
+    "router": {
+      "command": "npx",
+      "args": ["-y", "claude-hunterkit@latest"],
+      "env": {"HUNTERKIT_PATH": "${workspaceFolder}"},
+      "description": "Routes hunting tasks to the correct claude-hunterKit skill"
     }
   },
   "install": {

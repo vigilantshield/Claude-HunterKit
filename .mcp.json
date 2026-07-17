@@ -1,7 +1,7 @@
 {
   "mcpServers": {
-    "claude-hunterkit": {
-      "description": "170 offensive security skills with 1,770+ wordlist payload files",
+    "chrome-devtools": {
+      "description": "Browser automation for XSS verification, SSRF confirmation, OAuth interception",
       "command": "npx",
       "args": [
         "-y",
@@ -9,7 +9,7 @@
       ]
     },
     "hunterkit-router": {
-      "description": "Routes hunting tasks to the correct claude-hunterKit skill",
+      "description": "Routes hunting tasks to the correct claude-hunterKit skill based on target type",
       "command": "npx",
       "args": [
         "-y",
