@@ -7,7 +7,7 @@ cd claude-hunterKit
 bash install.sh
 ```
 
-Auto-detects all installed agents and copies the right plugin manifests.
+Detects all installed agents and, for each, symlinks skills + wordlists as siblings (so `wordlist_ref` paths resolve) and wires the `chrome-devtools` MCP server. Non-destructive and idempotent.
 
 ---
 
@@ -20,14 +20,15 @@ Auto-detects all installed agents and copies the right plugin manifests.
 bash install.sh --plugin claude
 
 # Manual
-cp -r plugin/.claude-plugin ~/.claude/plugins/claude-hunterkit
-claude mcp add chrome-devtools npx -y chrome-devtools-mcp@latest
-claude mcp add hunterkit-router npx -y claude-hunterkit@latest
+ln -s "$(pwd)/Claude-HunterKit/skills"     ~/.claude/skills/claude-hunterkit
+ln -s "$(pwd)/Claude-HunterKit/wordlists"  ~/.claude/skills/wordlists
+ln -s "$(pwd)/Claude-HunterKit/bugbounty"  ~/.claude/skills/bugbounty
+claude mcp add --scope user chrome-devtools -- npx -y chrome-devtools-mcp@latest
 ```
 
-Skills appear in the `/skills` command. MCP auto-wired via `.mcp.json` in the repo root.
+Skills appear in the `/skills` command. MCP auto-loads via `.mcp.json` in the repo root when cwd is the repo; the user-scope `claude mcp add` above makes it available everywhere.
 
-**Config:** `.claude/settings.local.json` enables `chrome-devtools` and `hunterkit-router` MCP servers.
+**Config:** `.claude/settings.local.json` enables the `chrome-devtools` MCP server.
 
 ---
 
@@ -36,34 +37,31 @@ Skills appear in the `/skills` command. MCP auto-wired via `.mcp.json` in the re
 **Plugin:** `plugin/.codex-plugin/plugin.json`
 
 ```bash
-# Auto-install
+# Auto-install (wires MCP)
 bash install.sh --plugin codex
 
 # Manual
-cp -r plugin/.codex-plugin ~/.codex/plugins/claude-hunterkit
-codex mcp add claude-hunterkit -- npx -y chrome-devtools-mcp@latest
+codex mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest
 ```
 
-Available in the `/plugins` marketplace browser. 45 skills listed with full paths.
+Codex loads plugins from a marketplace snapshot, not local skill folders. Use skills by referencing `skills/<domain>/<skill>/SKILL.md` from the repo. Publish to a marketplace via `plugin/.codex-plugin/plugin.json`.
 
 ---
 
 ## 3. Gemini CLI
 
-**Plugin:** `plugin/.gemini/gemini-extension.json`
+**Plugin:** `gemini-extension.json` (repo root) + `plugin/.gemini/gemini-extension.json`
 
 ```bash
 # Auto-install
 bash install.sh --plugin gemini
 
 # Manual
-cp -r plugin/.gemini ~/.gemini/plugins/claude-hunterkit
-gemini extensions install claude-hunterKit
-gemini mcp add claude-hunterkit npx -y chrome-devtools-mcp@latest
+gemini extensions link "$(pwd)/Claude-HunterKit" --consent
+gemini mcp add -s user chrome-devtools npx -y chrome-devtools-mcp@latest
 ```
 
-9 capabilities registered (web, API, AI, cloud, network, recon, auth, bug bounty, deep recon).
-Prompt templates map each domain to the correct skill path.
+The repo-root `gemini-extension.json` declares the extension and the `chrome-devtools` MCP server. `gemini extensions link` reflects repo updates immediately.
 
 ---
 
@@ -72,25 +70,28 @@ Prompt templates map each domain to the correct skill path.
 **Plugin:** `.commandcode/plugin.json`
 
 ```bash
-# Auto-install
+# Install the skill set from GitHub
+cmd skills add vigilantshield/Claude-HunterKit -g
+
+# Auto-install (links wordlists next to skills + wires MCP)
 bash install.sh --plugin cmd
 
-# Manual
-cp .commandcode/plugin.json ~/.commandcode/
-cp -r .commandcode/skills/ ~/.commandcode/skills/
+# Manual wordlist link (so wordlist_ref resolves from the skills root)
+ln -s "$(pwd)/Claude-HunterKit/wordlists" ~/.commandcode/skills/wordlists
 cmd mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest
 ```
 
-Skills appear in `/skills` menu. Both MCP servers pre-configured.
+Skills appear in `/skills`. The wordlist symlink makes each skill's `wordlist_ref: "wordlists/<domain>/..."` resolve from `~/.commandcode/skills/`.
 
 ---
 
-## MCP Servers (All Integrations)
+## MCP Server (All Integrations)
 
 | Server | Purpose | Command |
 |--------|---------|---------|
 | **chrome-devtools** | Browser automation — XSS, SSRF, OAuth verification | `npx -y chrome-devtools-mcp@latest` |
-| **hunterkit-router** | Routes hunting tasks to correct skill by target type | `npx -y claude-hunterkit@latest` |
+
+Only one MCP server is wired. Skill routing is handled by the `_hunter` orchestrator and the `CLAUDE.md` pipeline — no separate router server is needed.
 
 ---
 

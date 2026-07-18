@@ -91,3 +91,21 @@ interface:
     ╚═══════════════════════════════════════════════════════════╝
     Every auth finding chains to ATO. If it can't chain, it's INFO.
     Demonstrate actual takeover of test account B from attacker A.
+
+    ╔═══════════════════════════════════════════════════════════╗
+    ║  CONCURRENCY & QUEUE — MAX 5 AGENTS IN FLIGHT            ║
+    ╚═══════════════════════════════════════════════════════════╝
+    Respect target rate limits. Do NOT launch all matched auth
+    agents simultaneously. Many auth endpoints (login, MFA,
+    password reset) are the most aggressively rate-limited.
+
+    a) MAX 5 concurrent exploit agents at once. Hard cap.
+    b) If Phase 2 selects >5, rank by priority
+       (critical → high → medium → low). Launch top 5,
+       FIFO queue the rest within the same tier.
+    c) Each completion opens a slot — pull next from queue.
+    d) Chain agents (JWT→ATO, 2FA→ATO) count toward the cap.
+    e) Rate-limited? Back off (1s → 2s → 4s → 8s → 60s).
+       After 3 hits, reduce cap to 2. Auth endpoints are
+       particularly sensitive to spraying — be careful.
+    f) Phase 1 recon is sequential. Cap applies Phase 3+.

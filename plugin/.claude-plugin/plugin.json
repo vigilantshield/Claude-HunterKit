@@ -1,14 +1,14 @@
 {
   "name": "claude-hunterkit",
   "version": "1.1.0",
-  "description": "170 offensive security skills — web, API, AI, network, cloud, recon, auth. Bug bounty, red team, pentest. Recon-first conditional agent launch pipeline.",
+  "description": "148 offensive security skills — web, API, AI, network, cloud, recon, auth. Bug bounty, red team, pentest. Recon-first conditional agent launch pipeline.",
   "author": "claude-hunterKit",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-org/claude-hunterKit"
+    "url": "https://github.com/vigilantshield/Claude-HunterKit"
   },
   "display_name": "claude-hunterKit",
-  "short_description": "The largest open-source offensive security skill library. 170 skills, 1,770+ payload files, recon-first pipeline with conditional agent launch.",
+  "short_description": "The largest open-source offensive security skill library. 148 skills, 1,569 payload files, recon-first pipeline with conditional agent launch.",
   "categories": ["security", "pentest", "bug-bounty", "red-team", "penetration-testing"],
   "tags": [
     "sqli", "xss", "ssrf", "idor", "xxe", "ssti", "rce", "jwt", "oauth", "saml",
@@ -110,14 +110,6 @@
       "command": "npx",
       "args": ["-y", "chrome-devtools-mcp@latest"],
       "description": "Browser automation for XSS verification, SSRF confirmation, OAuth interception"
-    },
-    "router": {
-      "command": "npx",
-      "args": ["-y", "claude-hunterkit@latest"],
-      "env": {
-        "HUNTERKIT_PATH": "${workspaceFolder}"
-      },
-      "description": "Routes hunting tasks to the correct claude-hunterKit skill"
     }
   },
   "orchestrator": {
@@ -126,9 +118,9 @@
     "decision_matrix": "skills/_hunter/recon-decision-matrix.yaml"
   },
   "install_instructions": {
-    "claude_code": "claude mcp add claude-hunterkit npx -y chrome-devtools-mcp@latest",
-    "codex_cli": "codex mcp add claude-hunterkit -- npx -y chrome-devtools-mcp@latest",
-    "gemini_cli": "gemini mcp add claude-hunterkit npx -y chrome-devtools-mcp@latest",
-    "cmd": "cmd mcp add claude-hunterkit -- npx -y chrome-devtools-mcp@latest"
+    "claude_code": "claude mcp add --scope user chrome-devtools -- npx -y chrome-devtools-mcp@latest",
+    "codex_cli": "codex mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest",
+    "gemini_cli": "gemini mcp add -s user chrome-devtools npx -y chrome-devtools-mcp@latest",
+    "cmd": "cmd mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest"
   }
 }

@@ -30,5 +30,11 @@ interface:
     PHASE 5: REPORT
     Report findings using skills/reporting/report-01-human-reporting/ in human voice.
 
+    CONCURRENCY RULE: MAX 5 concurrent exploit agents.
+    When Phase 2 selects >5 agents, launch top 5 (critical first),
+    FIFO queue the rest. Pull from queue as each slot opens.
+    Chain agents count toward the 5. Rate-limited? Back off
+    exponentially (1s → 2s → 4s → 8s → 60s cap).
+
     CARDINAL RULE: Complete ALL recon before launching ANY vuln agent.
     Launch agents ONLY for vuln classes where recon found matching signals.

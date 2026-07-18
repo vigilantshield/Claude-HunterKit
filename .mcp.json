@@ -1,23 +1,13 @@
 {
   "mcpServers": {
     "chrome-devtools": {
-      "description": "Browser automation for XSS verification, SSRF confirmation, OAuth interception",
+      "transport": "stdio",
+      "enabled": true,
       "command": "npx",
       "args": [
         "-y",
         "chrome-devtools-mcp@latest"
       ]
-    },
-    "hunterkit-router": {
-      "description": "Routes hunting tasks to the correct claude-hunterKit skill based on target type",
-      "command": "npx",
-      "args": [
-        "-y",
-        "claude-hunterkit@latest"
-      ],
-      "env": {
-        "HUNTERKIT_PATH": "${workspaceFolder}"
-      }
     }
   }
 }

@@ -1,10 +1,10 @@
 {
   "name": "claude-hunterkit",
   "version": "1.1.0",
-  "description": "170 offensive security skills — web, API, AI, network, cloud, recon, auth. Bug bounty, red team, pentest. Recon-first conditional agent launch pipeline.",
+  "description": "148 offensive security skills — web, API, AI, network, cloud, recon, auth. Bug bounty, red team, pentest. RED TEAM red-team pipeline with 31 escalation paths and 8 stop conditions.",
   "author": "claude-hunterKit",
   "display_name": "claude-hunterKit",
-  "short_description": "170 offensive security skills with 1,770+ wordlist payload files. Recon-first pipeline with decision-matrix agent selection.",
+  "short_description": "148 offensive security skills with 1,569 wordlist payload files. RED TEAM recon-first pipeline with 31 escalation paths and 8 stop conditions.",
   "categories": ["security", "pentest", "bug-bounty", "red-team"],
   "skills": [
     {"name": "bugbounty-master", "path": "bugbounty/bugbounty-master/SKILL.md"},
@@ -51,14 +51,6 @@
         "command": "npx",
         "args": ["-y", "chrome-devtools-mcp@latest"],
         "description": "Browser automation for XSS verification, SSRF confirmation, OAuth interception"
-      },
-      {
-        "name": "hunterkit-router",
-        "transport": "stdio",
-        "command": "npx",
-        "args": ["-y", "claude-hunterkit@latest"],
-        "env": {"HUNTERKIT_PATH": "${workspaceFolder}"},
-        "description": "Routes hunting tasks to the correct claude-hunterKit skill"
       }
     ]
   },

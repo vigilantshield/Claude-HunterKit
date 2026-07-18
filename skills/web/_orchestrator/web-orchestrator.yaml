@@ -109,3 +109,23 @@ interface:
     ║  PHASE 5: REPORT                                         ║
     ╚═══════════════════════════════════════════════════════════╝
     Report findings per phase. Chain low bugs into critical.
+
+    ╔═══════════════════════════════════════════════════════════╗
+    ║  CONCURRENCY & QUEUE — MAX 5 AGENTS IN FLIGHT            ║
+    ╚═══════════════════════════════════════════════════════════╝
+    You MUST respect target rate limits. Do NOT launch all
+    matched agents simultaneously.
+
+    a) MAX 5 concurrent exploit agents at once. Never exceed.
+    b) If Phase 2 selects >5 agents, rank by priority
+       (critical → high → medium → low). Launch top 5,
+       FIFO queue the rest within the same priority tier.
+    c) Each time an agent completes, pull the next from queue.
+       Never start a new agent until a slot opens.
+    d) Chain agents count toward the cap. A web SSRF finding
+       that triggers a cloud agent = that cloud agent consumes
+       a slot.
+    e) If target rate-limits you: exponential backoff
+       (1s → 2s → 4s → 8s → 60s cap). After 3 rate-limit
+       hits, reduce concurrent cap to 2 for this target.
+    f) Phase 1 recon is sequential. Cap applies to Phase 3+.

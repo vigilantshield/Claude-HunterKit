@@ -157,3 +157,29 @@ interface:
     6. STOP: Hit a condition? Stop and deliver the chain.
     7. 5-MINUTE RULE: If target shows nothing after 5 min of probes, move on
     8. 1-HOUR RULE: Stuck on one target for an hour? Switch targets
+
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  CONCURRENCY & QUEUE — MAX 5 AGENTS IN FLIGHT               ║
+    ╚══════════════════════════════════════════════════════════════╝
+    You MUST respect target rate limits. Do NOT fire all matched
+    agents at once.
+
+    RULES:
+    a) MAX 5 concurrent exploit agents. Never exceed this cap.
+    b) When Phase 2 selects >5 agents, rank by priority
+       (critical → high → medium → low). Launch the top 5,
+       queue the rest in FIFO order within the same tier.
+    c) Each time an agent completes (returns ✅ Confirmed,
+       🔍 Signal, or ❌ Not found), pull the next from queue.
+       Do NOT start a new agent before a slot opens.
+    d) Chain/escalation agents (Phase 4) count toward the 5.
+       E.g., SSRF confirmed → you launch cloud metadata agent
+       → that agent consumes one of the 5 slots.
+    e) If the target rate-limits you: back off, wait, retry
+       with exponential backoff (1s → 2s → 4s → 8s → cap at
+       60s). If rate-limited 3+ times, REDUCE concurrent cap
+       to 2 for this target.
+    f) Phase 1 (recon) is sequential — no parallelism needed.
+       The 5-agent cap and queue apply to Phase 3+ (exploit)
+       and Phase 4 (chain). Phase 2 (decision matrix) is
+       just reading a file — no concurrency concern.

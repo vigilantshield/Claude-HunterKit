@@ -119,6 +119,18 @@ Path: `wordlists/` — organized by domain: web/, api/, ai/, network/, auth/, re
 Each skill uses: confirm/ (safe probes) → parameters/ (discovery) → payloads/ (exploitation).
 Always start confirm → escalate on positive signal.
 
+## CONCURRENCY & RATE LIMITING
+
+MAX 5 concurrent exploit agents. Respect target rate limits — do NOT launch all matched agents at once.
+
+When Phase 2 selects more than 5 agents, rank by priority tier (critical → high → medium → low), launch the top 5, and add the rest to a FIFO queue (within the same priority tier). Each time an agent completes (any outcome), pull the next from the queue. Never start a new agent before a slot opens.
+
+Chain/escalation agents (Phase 4) count toward the 5 concurrent cap. SSRF finding that triggers a cloud metadata agent = that cloud agent uses a slot.
+
+If the target rate-limits you: back off with exponential backoff (1s → 2s → 4s → 8s → 60s cap). After 3 rate-limit hits, reduce the concurrent cap to 2 for this target. Auth endpoints (login, MFA, password reset) are the most aggressively rate-limited — be particularly careful with them.
+
+Phase 1 recon is sequential — no parallelism needed. The 5-agent cap applies only to Phase 3+ (exploit + chain).
+
 ## TOOLS AVAILABLE
 
 - curl, httpx, dig, nmap, openssl — standard CLI

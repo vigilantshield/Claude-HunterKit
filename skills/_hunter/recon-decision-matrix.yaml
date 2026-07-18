@@ -594,8 +594,19 @@ decision_rules:
 launch_strategy:
   critical_first: true
   parallel_same_category: true
-  max_concurrent_agents: 8
+  max_concurrent_agents: 5
   stop_on_first_critical: false  # keep testing even after finding critical
+
+  # When more agents match signals than max_concurrent_agents,
+  # rank by priority and queue the rest, draining (FIFO within
+  # priority tier) as each slot opens.
+  queue_strategy:
+    enabled: true
+    max_concurrent: 5
+    ranking: [critical, high, medium, low]
+    fifo_within_tier: true
+    pull_on_complete: true
+    chain_agents_count: true
 
   escalation_paths:
     # ── ACCESS CONTROL CHAINS ──────────────────────────────────

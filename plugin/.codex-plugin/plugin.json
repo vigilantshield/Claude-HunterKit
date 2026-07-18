@@ -1,21 +1,20 @@
 {
   "name": "claude-hunterkit",
   "version": "1.1.0",
-  "description": "170 offensive security skills with 1,770+ wordlist payload files — web, API, AI/LLM, network, cloud, recon, auth. Recon-first conditional agent launch pipeline.",
+  "description": "148 offensive security skills with 1,569 wordlist payload files — web, API, AI/LLM, network, cloud, recon, auth. Recon-first conditional agent launch pipeline.",
   "author": "claude-hunterKit",
   "display_name": "claude-hunterKit",
   "short_description": "Full offensive security toolkit for bug bounty, pentest, and red team operations. Recon-first pipeline with decision-matrix-driven agent selection.",
   "categories": ["security", "bug-bounty", "pentest", "red-team"],
   "marketplace": {
     "sources": [
-      {"name": "GitHub Marketplace", "url": "https://github.com/marketplace"},
-      {"name": "npm", "package": "claude-hunterkit"}
+      {"name": "GitHub", "url": "https://github.com/vigilantshield/Claude-HunterKit"}
     ],
     "install_commands": {
-      "claude_code": "claude mcp add claude-hunterkit --scope user npx -y chrome-devtools-mcp@latest",
-      "codex_cli": "codex mcp add claude-hunterkit -- npx -y chrome-devtools-mcp@latest",
-      "gemini_cli": "gemini mcp add claude-hunterkit npx -y chrome-devtools-mcp@latest",
-      "gemini_extension": "gemini extensions install https://github.com/your-org/claude-hunterKit",
+      "claude_code": "claude mcp add --scope user chrome-devtools -- npx -y chrome-devtools-mcp@latest",
+      "codex_cli": "codex mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest",
+      "gemini_cli": "gemini mcp add -s user chrome-devtools npx -y chrome-devtools-mcp@latest",
+      "gemini_extension": "gemini extensions install https://github.com/vigilantshield/Claude-HunterKit",
       "cmd": "cmd mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest"
     }
   },

@@ -100,3 +100,21 @@ interface:
     Deserialization → RCE (web-37) → Internal pivot (Critical)
     GraphQL introspection → Schema dump → Auth bypass (High)
     JWT → alg:none → Admin access → User enum (High)
+
+    ╔═══════════════════════════════════════════════════════════╗
+    ║  CONCURRENCY & QUEUE — MAX 5 AGENTS IN FLIGHT            ║
+    ╚═══════════════════════════════════════════════════════════╝
+    Respect target rate limits. Do NOT launch all matched API
+    agents simultaneously.
+
+    a) MAX 5 concurrent exploit agents at once. Hard cap.
+    b) If Phase 2 selects >5, rank by priority
+       (critical → high → medium → low). Launch top 5,
+       FIFO queue the rest within the same tier.
+    c) Each time an agent completes, pull from queue. Never
+       start a new agent until a slot is free.
+    d) Chain agents count toward the cap. SSRF → cloud
+       agent = that cloud agent consumes a slot.
+    e) Rate-limited? Exponential backoff (1s → 2s → 4s →
+       8s → 60s cap). After 3 hits, cap reduces to 2.
+    f) Phase 1 recon is sequential. Cap applies Phase 3+.

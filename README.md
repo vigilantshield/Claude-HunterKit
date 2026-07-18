@@ -1,11 +1,11 @@
 <div align="center">
   <h1>⚔️ claude-hunterKit</h1>
-  <p><strong>148 offensive security skills · 1,770+ payload files · 4 agent integrations · Recon-first RED TEAM pipeline</strong></p>
+  <p><strong>148 offensive security skills · 1,569 payload files · 4 agent integrations · Recon-first RED TEAM pipeline</strong></p>
   <p>Red-team offensive security engine — deep recon first, signal-gated exploitation, aggressive chaining to critical impact.</p>
 
   [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
   [![Skills](https://img.shields.io/badge/skills-148-brightgreen)]()
-  [![Payloads](https://img.shields.io/badge/payloads-1,770%2B-orange)]()
+  [![Payloads](https://img.shields.io/badge/payloads-1,569-orange)]()
   [![Web Vulns](https://img.shields.io/badge/web%20vulns-51-red)]()
   [![AI Skills](https://img.shields.io/badge/AI%20security-24-blueviolet)]()
   [![Integrations](https://img.shields.io/badge/integrations-4-lightgrey)]()
@@ -15,7 +15,7 @@
 
 # 🔥 Stop Hunting Blind. RED TEAM MODE.
 
-**claude-hunterKit** is an open-source red-team offensive security engine — 148 structured skill files, 1,770+ payloads, and a **recon-first conditional launch pipeline** with 31 escalation paths and 8 stop conditions. Every finding is a primitive to chain into critical impact.
+**claude-hunterKit** is an open-source red-team offensive security engine — 148 structured skill files, 1,569 payloads, and a **recon-first conditional launch pipeline** with 31 escalation paths and 8 stop conditions. Every finding is a primitive to chain into critical impact.
 
 > **Phase 1:** Deep recon (11 skills) → **Phase 2:** Decision matrix matches 40+ signals → **Phase 3:** Targeted exploit → **Phase 4:** Chain & escalate → **Phase 5:** Report
 
@@ -67,76 +67,56 @@ Target → PHASE 0: Categorize (web/api/auth/ai/network/cloud)
 
 ## 📦 Installation
 
-### Option 1: One-Click Install
+Skills reference wordlists via repo-root-relative paths (`wordlists/web/...`). The only working layout is **skills + wordlists as siblings** — either via symlink or the installer.
+
+### Quick (Symlink) — Works With Every CLI
+
+Clone once, symlink into each CLI's skills directory. The repo stays in place; updates are `git pull`.
 
 ```bash
-git clone https://github.com/vigilantshield/Claude-HunterKit.git.git
+git clone https://github.com/vigilantshield/Claude-HunterKit.git
+cd Claude-HunterKit
+
+# Claude Code — symlink skills + wordlists + chrome-devtools MCP
+ln -s "$PWD/skills"     ~/.claude/skills/claude-hunterkit
+ln -s "$PWD/wordlists"  ~/.claude/skills/wordlists
+ln -s "$PWD/bugbounty"  ~/.claude/skills/bugbounty
+claude mcp add --scope user chrome-devtools -- npx -y chrome-devtools-mcp@latest
+
+# Gemini CLI — link repo as extension + MCP
+gemini extensions link "$PWD" --consent
+gemini mcp add -s user chrome-devtools npx -y chrome-devtools-mcp@latest
+
+# Command Code (cmd) — install skill set from GitHub + link wordlists + MCP
+cmd skills add vigilantshield/Claude-HunterKit -g
+ln -s "$PWD/wordlists"  ~/.commandcode/skills/wordlists
+cmd mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest
+
+# Codex CLI — chrome-devtools MCP only (skills referenced from repo)
+codex mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest
+```
+
+### One-Click (Installer) — Detects + Integrates All Installed CLIs
+
+```bash
+git clone https://github.com/vigilantshield/Claude-HunterKit.git
 cd Claude-HunterKit
 bash install.sh
 ```
 
-This installs:
-- **148 skills** → `~/.claude/skills/claude-hunterkit/`
-- **1,770+ wordlist payloads** → bundled alongside skills
-- **2 MCP servers** → Chrome DevTools + HunterKit Router
-- **4 agent plugins** → Claude Code, Codex CLI, Gemini CLI, Command Code (cmd)
+Does the same as above but auto-detects which CLIs are on your PATH and runs the right commands for each. Idempotent — re-running is safe.
 
-### Option 2: Install Per Agent
-
-| Agent | Install Command | Integration |
-|-------|----------------|-------------|
-| **Claude Code** | `bash install.sh --plugin claude` | Skills in `/skills` + MCP auto-wired |
-| **Codex CLI** | `bash install.sh --plugin codex` | Plugin in marketplace browser |
-| **Gemini CLI** | `bash install.sh --plugin gemini` | `gemini extensions install <path>` |
-| **Command Code (cmd)** | `bash install.sh --plugin cmd` | Skills in `/skills` menu |
-
-### Option 3: MCP Only
-
-```bash
-bash install.sh --mcp
-```
-
-Adds Chrome DevTools MCP + HunterKit Router for browser automation and skill routing.
-
-### Option 4: Domain-Specific
-
-```bash
-bash install.sh --domain web       # Web skills + payloads only
-bash install.sh --domain api       # API skills + payloads only
-bash install.sh --domain ai        # AI/LLM skills + payloads only
-bash install.sh --domain bugbounty # Full bug bounty workflow
-```
-
-### Option 5: Marketplace Install
-
-```bash
-gemini extensions install claude-hunterKit
-codex plugin install claude-hunterKit
-```
-
-### Option 6: Manual
-
-```bash
-git clone https://github.com/vigilantshield/Claude-HunterKit
-ln -s $(pwd)/Claude-HunterKit ~/.claude/skills/claude-hunterkit
-
-# In .mcp.json or agent config:
-{
-  "mcpServers": {
-    "chrome-devtools": { "command": "npx", "args": ["-y", "chrome-devtools-mcp@latest"] },
-    "hunterkit-router": { "command": "npx", "args": ["-y", "claude-hunterkit@latest"], "env": {"HUNTERKIT_PATH": "${workspaceFolder}"} }
-  }
-}
-```
-
-### Verify Installation
-
-```bash
-bash install.sh --list       # See all domains, skills, wordlists, and plugins
-bash install.sh --dry-run    # Preview what would be installed
-ls skills/recon/             # List all 11 recon skills
-ls skills/web/               # List all 51 web skills
-```
+| Flag | What It Installs |
+|------|-----------------|
+| _(none)_ | All detected CLIs: Claude Code → symlinks, cmd → wordlist link, gemini → extension link, codex → MCP |
+| `--plugin claude` | Claude Code only |
+| `--plugin cmd` | Command Code only |
+| `--plugin gemini` | Gemini CLI only |
+| `--plugin codex` | Codex CLI only |
+| `--mcp` | Chrome DevTools MCP only (all CLIs) |
+| `--domain <name> --target <dir>` | Copy one domain's skills + wordlists as siblings to `<dir>` |
+| `--dry-run` | Preview what would happen (no changes) |
+| `--list` | Show available domains and plugins |
 
 ---
 
@@ -169,7 +149,7 @@ skills/_hunter/_hunter-orchestrator.yaml
 | Metric | Value | What It Means |
 |--------|-------|---------------|
 | **148** | Skills | Every vulnerability class, framework, and technique — deduplicated and clean |
-| **1,770+** | Payload files | Ready-to-fire wordlists — no external tools needed |
+| **1,569** | Payload files | Ready-to-fire wordlists — no external tools needed |
 | **51** | Web vuln types | SQLi, XSS, SSRF, IDOR, XXE, SSTI, RCE, GraphQL, JWT... |
 | **35** | API skills | BOLA, BFLA, gRPC, WebSocket, mTLS, supply chain... |
 | **24** | AI/LLM skills | Prompt injection, jailbreaking, RAG poisoning, MCP... |
@@ -179,7 +159,7 @@ skills/_hunter/_hunter-orchestrator.yaml
 | **31** | Escalation paths | Chain primitives into critical impact (was 7) |
 | **8** | Stop conditions | Know when you own the target (ATO, RCE, PII, IAM keys, pivot) |
 | **4** | Agent plugins | Claude Code, Codex CLI, Gemini CLI, cmd |
-| **2** | MCP Servers | Chrome DevTools + HunterKit Router |
+| **1** | MCP Server | Chrome DevTools (browser automation) |
 | **40+** | Signal rules | Decision matrix entries mapping recon findings → vuln agents |
 
 ---
@@ -222,7 +202,7 @@ claude-hunterKit/
 │   ├── CLAUDE.md               # RED TEAM pipeline instructions
 │   └── settings.local.json     # MCP server enablement
 │
-├── .mcp.json                   # MCP server definitions (2 servers)
+├── .mcp.json                   # MCP server definition (chrome-devtools)
 │
 ├── bugbounty/
 │   └── bugbounty-master/       # Full bug bounty pipeline
@@ -279,7 +259,7 @@ claude-hunterKit/
 │   │
 │   ├── network/                # 21 network/infra skills
 │   ├── cloud/                  # 2 cloud security skills
-│   ├── auth/                   # 3 auth skills
+│   ├── auth/                   # 2 auth skills
 │   │   └── _orchestrator/            # Offensive auth orchestrator
 │   ├── devtools/               # Chrome DevTools MCP
 │   └── reporting/              # Human-voice report writing
@@ -291,15 +271,16 @@ claude-hunterKit/
 │
 ├── .commandcode/               # Command Code (cmd) plugin
 │
-├── wordlists/                  # 1,770+ payload files
-│   ├── web/           (661 files)
-│   ├── api/           (446 files)
-│   ├── ai/            (424 files)
-│   ├── network/       (87 files)
-│   ├── auth/          (129 files)
-│   ├── recon/         (21 files)
+├── wordlists/                  # 1,569 payload files
+│   ├── web/           (583 files)
+│   ├── api/           (410 files)
+│   ├── ai/            (387 files)
+│   ├── network/       (71 files)
+│   ├── auth/          (100 files)
+│   ├── recon/         (18 files)
 │   └── shared/        (2 files — index + invocation matrix)
 │
+├── gemini-extension.json        # Gemini CLI extension manifest
 ├── install.sh                  # Universal installer
 └── README.md
 ```
@@ -323,7 +304,9 @@ claude-hunterKit/
 
 ---
 
-## ⚡ MCP Integration (2 Servers)
+## ⚡ MCP Integration (1 Server)
+
+Only one MCP server is wired — `chrome-devtools` (a real, published npm package). Skill routing is handled by the `_hunter` orchestrator and the `CLAUDE.md` pipeline, so no separate router server is needed.
 
 ```json
 {
@@ -332,12 +315,6 @@ claude-hunterKit/
       "command": "npx",
       "args": ["-y", "chrome-devtools-mcp@latest"],
       "description": "Browser automation for XSS, SSRF, OAuth verification"
-    },
-    "hunterkit-router": {
-      "command": "npx",
-      "args": ["-y", "claude-hunterkit@latest"],
-      "env": { "HUNTERKIT_PATH": "${workspaceFolder}" },
-      "description": "Routes hunting tasks to the correct skill"
     }
   }
 }
@@ -367,40 +344,72 @@ claude-hunterKit/
 4. Chain findings:              →  SSRF→Cloud, XSS→ATO, SQLi→RCE, JWT→Admin
 5. Check stop conditions:       →  Hit one? Deliver the chain.
 6. skills/reporting/            →  Write human-voice report → Get paid
-```
+```---
 
----
+## 🧪 Verify Installation
 
-## 🧪 Quick Test
+### Claude Code
 
 ```bash
-# Verify a skill has all sections
-grep -c "Hacker Mindset" skills/web/web-01-sqli/SKILL.md
-# → 1
+# Skills and wordlists in place?
+ls ~/.claude/skills/claude-hunterkit/web && echo "✓ skills"
+ls ~/.claude/skills/wordlists/web/web-03-sqli && echo "✓ wordlists resolve"
 
-# Count all skills
-find skills/ -name "SKILL.md" ! -path "*/_*" | wc -l
-# → 148
+# MCP server connected?
+claude mcp list | grep chrome-devtools
+# → chrome-devtools: npx -y chrome-devtools-mcp@latest - ✔ Connected
 
-# Count all recon skills
-ls skills/recon/ | wc -l
-# → 11
+# Count installed
+ls ~/.claude/skills/claude-hunterkit/ | wc -l            # → should show domain dirs
+find ~/.claude/skills/claude-hunterkit -name SKILL.md | wc -l  # → 148
+```
 
-# Count all web skills
-ls skills/web/web-*/ | wc -l
-# → 51
+### Command Code (cmd)
 
-# Count escalation paths
-grep -c "from:" skills/_hunter/recon-decision-matrix.yaml
-# → 31
+```bash
+# Wordlists resolve from installed skills?
+ls ~/.commandcode/skills/wordlists/web/web-03-sqli && echo "✓ wordlists resolve"
 
-# Count stop conditions
-grep -c "_confirmed\|_completed\|_extracted\|_accessed" skills/_hunter/recon-decision-matrix.yaml
-# → 8
+# Skills installed?
+cmd skills list | head -5
 
-# Test decision matrix is valid
-grep -c "signals:" skills/_hunter/recon-decision-matrix.yaml
-# → 40+
+# MCP server enabled?
+cmd mcp list | grep chrome-devtools
+```
+
+### Gemini CLI
+
+```bash
+# Extension linked?
+gemini extensions list | grep claude-hunterkit
+
+# MCP server connected?
+gemini mcp list | grep chrome-devtools
+```
+
+### Codex CLI
+
+```bash
+# MCP server enabled?
+codex mcp list | grep chrome-devtools
+```
+
+### Repo (Works With All CLIs)
+
+```bash
+bash install.sh --list          # 10 domains, plugins, counts
+bash install.sh --dry-run       # preview (no changes)
+
+find skills/ -name SKILL.md ! -path "*/_*" | wc -l   # → 148
+find wordlists/ -name "*.txt" | wc -l                 # → 1,569
+find skills/web -name SKILL.md | wc -l                # → 51
+find skills/recon -name SKILL.md | wc -l              # → 11
+ls skills/ai/ | wc -l                                 # → 24
+ls skills/api/ | wc -l                                # → 35
+
+# Red team pipeline: verify decision matrix
+grep -c "from:" skills/_hunter/recon-decision-matrix.yaml    # → 31 escalation paths
+grep -c "signals:" skills/_hunter/recon-decision-matrix.yaml  # → 40+ signal rules
 ```
 
 ---
@@ -414,7 +423,7 @@ Apache 2.0 — free for commercial and personal use.
 <div align="center">
   <p>
     <strong>⭐ Star this repo if you use it — it helps others find it.</strong><br>
-    <sub>148 skills · 1,770+ payloads · 4 agent plugins · 31 escalation paths · RED TEAM MODE</sub>
+    <sub>148 skills · 1,569 payloads · 4 agent plugins · 31 escalation paths · RED TEAM MODE</sub>
   </p>
   <p>
     <a href="bugbounty/bugbounty-master/SKILL.md">Start Hunting →</a>
