@@ -180,7 +180,6 @@ decision_rules:
     targets:
       - web-10-oauth-oidc
       - auth-02-oauth-oidc
-      - web-80-oauth
     probability: 0.85
     category: auth
     priority: critical
@@ -190,7 +189,6 @@ decision_rules:
       - saml_endpoint: true
     targets:
       - web-11-saml
-      - web-79-saml
     probability: 0.60
     category: auth
     priority: high
@@ -203,7 +201,6 @@ decision_rules:
       - web-12-session-management
       - web-13-2fa-bypass
       - web-77-auth-bypass
-      - web-78-mfa-bypass
     probability: 0.80
     category: auth
     priority: critical
@@ -213,7 +210,6 @@ decision_rules:
       - rate_limit_missing: true
     targets:
       - web-14-rate-limit
-      - web-75-brute-force
       - web-76-ato
     probability: 0.75
     category: auth
@@ -638,7 +634,7 @@ launch_strategy:
     - from: web-13-2fa-bypass
       escalate_to: [web-76-ato, web-77-auth-bypass]
     - from: web-14-rate-limit
-      escalate_to: [web-75-brute-force, web-76-ato, web-77-auth-bypass]
+      escalate_to: [web-76-ato, web-77-auth-bypass]
 
     # ── DATA EXFIL CHAINS ──────────────────────────────────────
     - from: web-01-sqli
