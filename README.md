@@ -1,10 +1,10 @@
 <div align="center">
   <h1>⚔️ claude-hunterKit</h1>
-  <p><strong>170 offensive security skills · 1,770+ payload files · 4 agent integrations · Recon-first conditional launch</strong></p>
-  <p>The largest open-source offensive security skill library — deep recon first, then fire payloads only where it matters.</p>
+  <p><strong>148 offensive security skills · 1,770+ payload files · 4 agent integrations · Recon-first RED TEAM pipeline</strong></p>
+  <p>Red-team offensive security engine — deep recon first, signal-gated exploitation, aggressive chaining to critical impact.</p>
 
   [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
-  [![Skills](https://img.shields.io/badge/skills-170-brightgreen)]()
+  [![Skills](https://img.shields.io/badge/skills-148-brightgreen)]()
   [![Payloads](https://img.shields.io/badge/payloads-1,770%2B-orange)]()
   [![Web Vulns](https://img.shields.io/badge/web%20vulns-51-red)]()
   [![AI Skills](https://img.shields.io/badge/AI%20security-24-blueviolet)]()
@@ -13,15 +13,26 @@
 
 ---
 
-# 🔥 Stop Hunting Blind. Recon First, Then Strike.
+# 🔥 Stop Hunting Blind. RED TEAM MODE.
 
-**claude-hunterKit** is the largest open-source offensive security toolkit — 170 structured skill files, 1,770+ payloads, and a **recon-first pipeline** that runs deep reconnaissance before deciding which vulnerability agents to launch. No more firing every payload at every target.
+**claude-hunterKit** is an open-source red-team offensive security engine — 148 structured skill files, 1,770+ payloads, and a **recon-first conditional launch pipeline** with 31 escalation paths and 8 stop conditions. Every finding is a primitive to chain into critical impact.
 
-> **Phase 1:** Deep recon (11 skills) → **Phase 2:** Decision matrix matches signals → **Phase 3:** Targeted exploit only on matched vulns
+> **Phase 1:** Deep recon (11 skills) → **Phase 2:** Decision matrix matches 40+ signals → **Phase 3:** Targeted exploit → **Phase 4:** Chain & escalate → **Phase 5:** Report
 
 ---
 
-## 🧠 The Recon-First Pipeline
+## 🎯 RED TEAM MINDSET
+
+Every finding is a PRIMITIVE, not a report entry.
+- XSS is not "reflected XSS confirmed" — it's a **session hijack vector**
+- SQLi is not "error-based injection" — it's a **database exfil pipeline**
+- SSRF is not "blind SSRF detected" — it's a **cloud metadata extraction tunnel**
+
+Chain LOW/MEDIUM primitives into CRITICAL impact. A finding without a chain path is an incomplete finding.
+
+---
+
+## 🧠 The Offensive Pipeline
 
 ```
 Target → PHASE 0: Categorize (web/api/auth/ai/network/cloud)
@@ -30,13 +41,13 @@ Target → PHASE 0: Categorize (web/api/auth/ai/network/cloud)
          PHASE 1b: Surface Mapping      (recon-04,05,06)
          PHASE 1c: Defense Analysis     (recon-07,08,09,10,11)
          ↓
-         PHASE 2: Decision Matrix       (40+ signal rules → launch decisions)
+         PHASE 2: Decision Matrix       (40+ signal rules → select agents)
          ↓
-         PHASE 3: Targeted Exploit      (only matched vuln agents)
+         PHASE 3: Targeted Exploit      (confirm → escalate → exfil)
          ↓
-         PHASE 4: Chain & Escalate      (escalation paths for multi-bug chains)
+         PHASE 4: Chain & Escalate      (31 escalation paths)
          ↓
-         PHASE 5: Report                (human-voice findings)
+         PHASE 5: Report                (human-voice, impact-first)
 ```
 
 | Phase | What Happens | Skills Used |
@@ -44,11 +55,11 @@ Target → PHASE 0: Categorize (web/api/auth/ai/network/cloud)
 | **0. Categorize** | Classify target (web, API, AI, network, cloud, auth) | domain orchestrator |
 | **1a. Network/Stack** | Subdomains, IPs, WAF, tech stack, CDN, server fingerprint | `recon-01` `recon-02` `recon-03` |
 | **1b. Surface Mapping** | Crawl, JS endpoints, OpenAPI specs, hidden routes, forms | `recon-04` `recon-05` `recon-06` |
-| **1c. Defense Analysis** | WAF type, auth schemes, security headers, CORS misconfig, shadow APIs | `recon-07` `recon-08` `recon-09` `recon-10` `recon-11` |
-| **2. Decision Matrix** | Map 40+ signals to matched agents — launch selectively | `_hunter/recon-decision-matrix.yaml` |
-| **3. Targeted Exploit** | confirm/ → parameters/ → payloads/ on matched skills | matched vuln skills |
-| **4. Chain** | Escalate via chain paths (SQLi→RCE, SSRF→Cloud, XSS→ATO) | escalation_paths in matrix |
-| **5. Report** | ✅ Confirmed / 🔍 Signal / ❌ Not found | reporting skill |
+| **1c. Defense Analysis** | WAF type, auth schemes, security headers, CORS, shadow APIs | `recon-07` `recon-08` `recon-09` `recon-10` `recon-11` |
+| **2. Decision Matrix** | Map 40+ signals → launch matched agents only | `_hunter/recon-decision-matrix.yaml` |
+| **3. Exploit** | confirm/ → parameters/ → payloads/ → post-exploit extraction | matched vuln skills |
+| **4. Chain** | 31 escalation paths: SQLi→RCE, SSRF→Cloud, XSS→ATO, JWT→Admin | escalation_paths in matrix |
+| **5. Report** | ✅ Confirmed / 🔍 Signal / ❌ Not found — impact-first | reporting skill |
 
 **Cardinal rule:** Complete ALL of Phase 1 before launching ANY vulnerability agent. Launch agents ONLY for vuln classes where recon found matching signals.
 
@@ -59,13 +70,13 @@ Target → PHASE 0: Categorize (web/api/auth/ai/network/cloud)
 ### Option 1: One-Click Install
 
 ```bash
-git clone https://github.com/your-org/claude-hunterKit
-cd claude-hunterKit
+git clone https://github.com/vigilantshield/Claude-HunterKit
+cd Claude-HunterKit
 bash install.sh
 ```
 
 This installs:
-- **170 skills** → `~/.claude/skills/claude-hunterkit/`
+- **148 skills** → `~/.claude/skills/claude-hunterkit/`
 - **1,770+ wordlist payloads** → bundled alongside skills
 - **2 MCP servers** → Chrome DevTools + HunterKit Router
 - **4 agent plugins** → Claude Code, Codex CLI, Gemini CLI, Command Code (cmd)
@@ -103,11 +114,11 @@ gemini extensions install claude-hunterKit
 codex plugin install claude-hunterKit
 ```
 
-### Option 7: Manual
+### Option 6: Manual
 
 ```bash
-git clone https://github.com/your-org/claude-hunterKit
-ln -s $(pwd)/claude-hunterKit ~/.claude/skills/claude-hunterkit
+git clone https://github.com/vigilantshield/Claude-HunterKit
+ln -s $(pwd)/Claude-HunterKit ~/.claude/skills/claude-hunterkit
 
 # In .mcp.json or agent config:
 {
@@ -124,7 +135,7 @@ ln -s $(pwd)/claude-hunterKit ~/.claude/skills/claude-hunterkit
 bash install.sh --list       # See all domains, skills, wordlists, and plugins
 bash install.sh --dry-run    # Preview what would be installed
 ls skills/recon/             # List all 11 recon skills
-ls skills/web/               # List all 79 web skills
+ls skills/web/               # List all 51 web skills
 ```
 
 ---
@@ -146,6 +157,9 @@ skills/ai/ai-01-prompt-injection/SKILL.md
 
 # Need to map the target first?
 skills/recon/recon-03-tech-fingerprinting/SKILL.md
+
+# Want the RED TEAM workflow?
+skills/_hunter/_hunter-orchestrator.yaml
 ```
 
 ---
@@ -154,7 +168,7 @@ skills/recon/recon-03-tech-fingerprinting/SKILL.md
 
 | Metric | Value | What It Means |
 |--------|-------|---------------|
-| **170** | Skills | Every vulnerability class, framework, and technique |
+| **148** | Skills | Every vulnerability class, framework, and technique — deduplicated and clean |
 | **1,770+** | Payload files | Ready-to-fire wordlists — no external tools needed |
 | **51** | Web vuln types | SQLi, XSS, SSRF, IDOR, XXE, SSTI, RCE, GraphQL, JWT... |
 | **35** | API skills | BOLA, BFLA, gRPC, WebSocket, mTLS, supply chain... |
@@ -162,6 +176,8 @@ skills/recon/recon-03-tech-fingerprinting/SKILL.md
 | **21** | Network skills | Cloud, K8s, CI/CD, Kerberos, LDAP, serverless... |
 | **11** | Recon skills | OSINT, tech fingerprint, JS analysis, OpenAPI, crawl, WAF, auth, headers, CORS, API surface |
 | **42,000+** | Lines of methodology | Deep analysis — not shallow checklists |
+| **31** | Escalation paths | Chain primitives into critical impact (was 7) |
+| **8** | Stop conditions | Know when you own the target (ATO, RCE, PII, IAM keys, pivot) |
 | **4** | Agent plugins | Claude Code, Codex CLI, Gemini CLI, cmd |
 | **2** | MCP Servers | Chrome DevTools + HunterKit Router |
 | **40+** | Signal rules | Decision matrix entries mapping recon findings → vuln agents |
@@ -173,10 +189,11 @@ skills/recon/recon-03-tech-fingerprinting/SKILL.md
 | Other Toolkits | claude-hunterKit |
 |---------------|------------------|
 | Fire all payloads at every target | **Recon-first** — deep recon decides which agents to launch |
-| Payload dumps with no context | **Full methodology** — what, why, how, and next steps |
+| Payload dumps with no context | **Full methodology** — 6 sections per skill, consistent, reusable |
 | Generic scanning tools | **Domain-specific** — web vs API vs AI vs network all separated |
-| One-off scripts | **Structured skills** — 6 sections, consistent, reusable |
-| No chain guidance | **Built-in chaining** — every skill shows the pivot paths |
+| Report findings, not impact | **RED TEAM MINDSET** — every finding is a chain primitive, not a report entry |
+| No chain guidance | **31 escalation paths** — built-in attack trees (SQLi→RCE, SSRF→Cloud, XSS→ATO, JWT→Admin) |
+| No kill discipline | **8 stop conditions** — know when you own the target |
 | Agent plugin support | **4 integrations** — Claude Code, Codex CLI, Gemini CLI, cmd |
 
 ---
@@ -202,7 +219,7 @@ skills/recon/recon-03-tech-fingerprinting/SKILL.md
 claude-hunterKit/
 │
 ├── .claude/                    # Claude Code config
-│   ├── CLAUDE.md               # Pipeline instructions (recon-first)
+│   ├── CLAUDE.md               # RED TEAM pipeline instructions
 │   └── settings.local.json     # MCP server enablement
 │
 ├── .mcp.json                   # MCP server definitions (2 servers)
@@ -212,24 +229,24 @@ claude-hunterKit/
 │
 ├── skills/
 │   ├── _hunter/                # Master orchestrator + routing
-│   │   ├── _hunter-orchestrator.yaml
+│   │   ├── _hunter-orchestrator.yaml     # ← RED TEAM entry point
 │   │   ├── routing-table.yaml
-│   │   └── recon-decision-matrix.yaml   # ← 40+ signal rules
+│   │   └── recon-decision-matrix.yaml    # ← 40+ signal rules, 31 escalation paths
 │   │
-│   ├── recon/                  # 11 recon skills (NEW: recon-06 to 11)
-│   │   ├── recon-01-osint              # OSINT methodology
+│   ├── recon/                  # 11 recon skills
+│   │   ├── recon-01-osint              # OSINT, subdomains, emails, leaks
 │   │   ├── recon-02-osint-methodology  # Structured OSINT
 │   │   ├── recon-03-tech-fingerprinting # Server, framework, WAF
 │   │   ├── recon-04-js-analysis        # JS endpoints, source maps
 │   │   ├── recon-05-openapi-enum       # API spec discovery
 │   │   ├── recon-06-crawl-deep         # Hidden routes, SPA crawling
 │   │   ├── recon-07-waf-detection      # WAF type, block pages, gaps
-│   │   ├── recon-08-auth-mapping       # JWT/OAuth/SAML/Session detection
-│   │   ├── recon-09-security-headers   # CSP, HSTS, XFO, CORS, cache
+│   │   ├── recon-08-auth-mapping       # JWT/OAuth/SAML/Session
+│   │   ├── recon-09-security-headers   # CSP, HSTS, XFO, CORS
 │   │   ├── recon-10-cors-scan          # Origin reflection, credentialed
 │   │   └── recon-11-api-surface        # Shadow APIs, all endpoints
 │   │
-│   ├── web/                   # 79 web skills
+│   ├── web/                   # 51 web skills (deduplicated)
 │   │   ├── web-01-sqli                # SQL injection
 │   │   ├── web-16-xss                 # Cross-site scripting
 │   │   ├── web-27-ssrf                # SSRF
@@ -239,8 +256,8 @@ claude-hunterKit/
 │   │   ├── web-34-business-logic      # Business logic flaws
 │   │   ├── web-68-nextjs              # Next.js specific
 │   │   ├── web-69-laravel             # Laravel specific
-│   │   └── ... up to 79
-│   │   └── _orchestrator/            # Conditional launch routing
+│   │   └── ... up to 51
+│   │   └── _orchestrator/            # Offensive web orchestrator
 │   │
 │   ├── api/                    # 35 API skills
 │   │   ├── api-01-spec-ingestion     # OpenAPI/Swagger
@@ -250,7 +267,7 @@ claude-hunterKit/
 │   │   ├── api-29-jwt                # JWT attacks
 │   │   ├── api-32-graphql            # GraphQL
 │   │   └── ... up to 35
-│   │   └── _orchestrator/            # Conditional launch routing
+│   │   └── _orchestrator/            # Offensive API orchestrator
 │   │
 │   ├── ai/                     # 24 AI/LLM security skills
 │   │   ├── ai-01-prompt-injection    # Direct/indirect injection
@@ -263,7 +280,7 @@ claude-hunterKit/
 │   ├── network/                # 21 network/infra skills
 │   ├── cloud/                  # 2 cloud security skills
 │   ├── auth/                   # 3 auth skills
-│   │   └── _orchestrator/            # Conditional launch routing
+│   │   └── _orchestrator/            # Offensive auth orchestrator
 │   ├── devtools/               # Chrome DevTools MCP
 │   └── reporting/              # Human-voice report writing
 │
@@ -326,18 +343,16 @@ claude-hunterKit/
 }
 ```
 
-GitHub: [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp) (46k ⭐)
-
 ---
 
 ## 🏆 Who This Is For
 
 | Role | Why You Need This |
 |------|-------------------|
-| **Bug bounty hunters** | Full workflow from recon to payout-optimized reporting |
-| **Red teamers** | Infrastructure, cloud, K8s, CI/CD attack paths |
-| **Pentesters** | 51 web vuln types + 35 API skills + comprehensive methodology |
-| **AI security researchers** | 24 LLM-specific skills (the most in any open-source repo) |
+| **Bug bounty hunters** | Full pipeline: recon → signal match → exploit → chain → report |
+| **Red teamers** | RED TEAM MINDSET, 31 escalation paths, 8 stop conditions |
+| **Pentesters** | 51 web vulns + 35 API skills + comprehensive kill chains |
+| **AI security researchers** | 24 LLM-specific skills (most in any open-source repo) |
 | **SOC / Blue team** | Know your enemy — offensive depth for defensive understanding |
 
 ---
@@ -348,9 +363,9 @@ GitHub: [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/c
 0. bugbounty/bugbounty-master/  →  Define scope, understand target
 1. skills/recon/                →  Deep recon (11 skills, 3 phases)
 2. _hunter/recon-decision-matrix.yaml  →  Match signals → select agents
-3. skills/web/ or api/ or ai/   →  Targeted exploit (matched skills only)
-4. Each skill:                  →  Detect → Payload → Bypass → Chain → OOB
-5. Chain findings:              →  SSRF→Cloud, XSS→ATO, SQLi→RCE
+3. Each matched agent:          →  confirm → escalate → post-exploit
+4. Chain findings:              →  SSRF→Cloud, XSS→ATO, SQLi→RCE, JWT→Admin
+5. Check stop conditions:       →  Hit one? Deliver the chain.
 6. skills/reporting/            →  Write human-voice report → Get paid
 ```
 
@@ -365,15 +380,23 @@ grep -c "Hacker Mindset" skills/web/web-01-sqli/SKILL.md
 
 # Count all skills
 find skills/ -name "SKILL.md" ! -path "*/_*" | wc -l
-# → 170
+# → 148
 
 # Count all recon skills
 ls skills/recon/ | wc -l
 # → 11
 
-# Count all plugins
-ls plugin/ | grep plugin
-# → 3
+# Count all web skills
+ls skills/web/web-*/ | wc -l
+# → 51
+
+# Count escalation paths
+grep -c "from:" skills/_hunter/recon-decision-matrix.yaml
+# → 31
+
+# Count stop conditions
+grep -c "_confirmed\|_completed\|_extracted\|_accessed" skills/_hunter/recon-decision-matrix.yaml
+# → 8
 
 # Test decision matrix is valid
 grep -c "signals:" skills/_hunter/recon-decision-matrix.yaml
@@ -391,7 +414,7 @@ Apache 2.0 — free for commercial and personal use.
 <div align="center">
   <p>
     <strong>⭐ Star this repo if you use it — it helps others find it.</strong><br>
-    <sub>170 skills · 1,770+ payloads · 4 agent plugins · Recon-first · Built for hunters, by hunters</sub>
+    <sub>148 skills · 1,770+ payloads · 4 agent plugins · 31 escalation paths · RED TEAM MODE</sub>
   </p>
   <p>
     <a href="bugbounty/bugbounty-master/SKILL.md">Start Hunting →</a>
