@@ -1,6 +1,6 @@
 invoke_order:
 - payloads
 linked_skills:
- - skills/api/api-28-stateful-fuzzing/
+- skills/api/api-28-stateful-fuzzing/
 - skills/api/api-11-nosql-injection/
 wordlist_id: api-11-stateful-fuzzing

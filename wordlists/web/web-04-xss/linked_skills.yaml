@@ -28,4 +28,3 @@ manifest:
     - json_body
   version: 1
 wordlist_id: web-04-xss
-- skills/web/web-43-xss/

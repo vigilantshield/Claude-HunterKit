@@ -1,7 +1,7 @@
 invoke_order:
 - payloads
 linked_skills:
- - skills/api/api-10-sqli/
+- skills/api/api-10-sqli/
 - skills/web/web-01-sqli/
 manifest:
   agent_id: web-03-sqli
@@ -29,4 +29,3 @@ manifest:
     - json_body
   version: 1
 wordlist_id: web-03-sqli
-- skills/web/web-42-sqli/

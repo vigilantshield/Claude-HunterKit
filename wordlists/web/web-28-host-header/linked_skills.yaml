@@ -3,4 +3,3 @@ invoke_order:
 linked_skills:
 - skills/web/web-30-host-header/
 wordlist_id: web-28-host-header
-- skills/web/web-52-host-header/

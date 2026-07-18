@@ -1,6 +1,6 @@
 invoke_order:
 - payloads
 linked_skills:
- - skills/api/api-31-idor/
+- skills/api/api-31-idor/
 - skills/api/api-09-tenancy-isolation/
 wordlist_id: api-31-tenancy-isolation

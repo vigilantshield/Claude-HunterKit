@@ -16,10 +16,7 @@
       "codex_cli": "codex mcp add claude-hunterkit -- npx -y chrome-devtools-mcp@latest",
       "gemini_cli": "gemini mcp add claude-hunterkit npx -y chrome-devtools-mcp@latest",
       "gemini_extension": "gemini extensions install https://github.com/your-org/claude-hunterKit",
-      "cursor": "Add MCP config: npx -y chrome-devtools-mcp@latest",
-      "copilot": "copilot mcp add --name claude-hunterkit -- npx -y chrome-devtools-mcp@latest",
-      "windsurf": "windsurf mcp add --name claude-hunterkit -- npx -y chrome-devtools-mcp@latest",
-      "cline": "Add MCP server config in cline_mcp_settings.json"
+      "cmd": "cmd mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest"
     }
   },
   "plugins": [
@@ -41,7 +38,7 @@
     {"type": "skill", "name": "api-nosql", "path": "skills/api/api-11-nosql-injection/SKILL.md"},
     {"type": "skill", "name": "api-ssrf", "path": "skills/api/api-13-ssrf/SKILL.md"},
     {"type": "skill", "name": "api-grpc", "path": "skills/api/api-16-grpc/SKILL.md"},
-    {"type": "skill", "name": "api-jwt", "path": "skills/api/api-28-jwt-attacks/SKILL.md"},
+    {"type": "skill", "name": "api-jwt", "path": "skills/api/api-29-jwt/SKILL.md"},
     {"type": "skill", "name": "api-graphql", "path": "skills/api/api-32-graphql/SKILL.md"},
     {"type": "skill", "name": "ai-prompt-injection", "path": "skills/ai/ai-01-prompt-injection/SKILL.md"},
     {"type": "skill", "name": "ai-llm-enum-recon", "path": "skills/ai/ai-02-llm-enum-recon/SKILL.md"},

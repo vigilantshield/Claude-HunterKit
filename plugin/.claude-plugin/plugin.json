@@ -129,7 +129,6 @@
     "claude_code": "claude mcp add claude-hunterkit npx -y chrome-devtools-mcp@latest",
     "codex_cli": "codex mcp add claude-hunterkit -- npx -y chrome-devtools-mcp@latest",
     "gemini_cli": "gemini mcp add claude-hunterkit npx -y chrome-devtools-mcp@latest",
-    "cursor": "Add to cursor MCP config: npx -y chrome-devtools-mcp@latest",
-    "copilot": "copilot mcp add --name claude-hunterkit -- npx -y chrome-devtools-mcp@latest"
+    "cmd": "cmd mcp add claude-hunterkit -- npx -y chrome-devtools-mcp@latest"
   }
 }

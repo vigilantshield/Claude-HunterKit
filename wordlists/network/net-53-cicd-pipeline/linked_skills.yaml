@@ -2,5 +2,5 @@ invoke_order:
 - payloads
 linked_skills:
 - skills/network/net-12-cicd/
+- skills/network/net-17-cicd/
 wordlist_id: net-53-cicd-pipeline
-- skills/network/network-17-cicd/

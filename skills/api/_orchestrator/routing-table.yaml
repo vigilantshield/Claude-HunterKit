@@ -36,7 +36,7 @@ signal_to_agent_mapping:
   serialized:
     agents: [api-14-deserialization]
   jwt:
-    agents: [api-28-jwt-attacks, api-29-jwt]
+    agents: [api-29-jwt]
   oauth:
     agents: [api-30-oauth]
   grpc:

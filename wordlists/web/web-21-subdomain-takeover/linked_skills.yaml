@@ -3,4 +3,3 @@ invoke_order:
 linked_skills:
 - skills/web/web-40-subdomain-takeover/
 wordlist_id: web-21-subdomain-takeover
-- skills/web/web-60-subdomain/

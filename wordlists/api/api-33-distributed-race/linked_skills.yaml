@@ -1,5 +1,5 @@
 invoke_order:
 - payloads
-linked_skills: []
- - skills/api/api-25-distributed-race/
+linked_skills:
+- skills/api/api-25-distributed-race/
 wordlist_id: api-33-distributed-race

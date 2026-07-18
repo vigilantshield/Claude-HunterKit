@@ -1,5 +1,5 @@
 invoke_order:
 - payloads
-linked_skills: []
- - skills/api/api-34-open-redirect/
+linked_skills:
+- skills/api/api-34-open-redirect/
 wordlist_id: api-34-gateway-mismatch

@@ -1,6 +1,6 @@
 invoke_order:
 - payloads
 linked_skills:
- - skills/api/api-32-graphql/
+- skills/api/api-32-graphql/
 - skills/api/api-15-spec-injection/
 wordlist_id: api-32-spec-injection

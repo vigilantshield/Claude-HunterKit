@@ -3,4 +3,3 @@ invoke_order:
 linked_skills:
 - skills/recon/recon-01-osint/
 wordlist_id: recon-16-tech-fingerprint
-- skills/recon/recon-03-tech-fingerprinting/

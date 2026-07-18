@@ -3,4 +3,3 @@ invoke_order:
 linked_skills:
 - skills/api/api-21-mtls/
 wordlist_id: api-23-mtls
-- skills/network/network-19-tls-network/

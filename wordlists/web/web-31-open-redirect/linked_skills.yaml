@@ -3,4 +3,3 @@ invoke_order:
 linked_skills:
 - skills/web/web-28-open-redirect/
 wordlist_id: web-31-open-redirect
-- skills/web/web-54-open-redirect/

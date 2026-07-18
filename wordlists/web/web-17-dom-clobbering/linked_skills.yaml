@@ -3,4 +3,3 @@ invoke_order:
 linked_skills:
 - skills/web/web-18-dom-clobbering/
 wordlist_id: web-17-dom-clobbering
-- skills/web/web-58-dom/

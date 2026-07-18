@@ -12,15 +12,15 @@ Fast entry points into the vendored payload sets.
 - LLM infra and model endpoint discovery: `../ai/ai-25-llm-infra-security/`, `../ai/ai-43-model-api-enumeration/`
 - Secret leakage and output sink abuse: `../ai/ai-47-agent-secret-leakage/`, `../ai/ai-46-output-sink-injection/`
 
-## MCP and Devtools
+## AI and Devtools
 
-- MCP exposure and tool scope: `../mcp-devtools/ai-16-mcp-security/`
-- Agent overreach and tool misuse: `../mcp-devtools/ai-19-agentic-attacks/`, `../mcp-devtools/ai-08-excessive-agency/`
-- LLM infra and model/tool endpoints: `../mcp-devtools/ai-25-llm-infra-security/`, `../mcp-devtools/ai-43-model-api-enumeration/`
-- Tool identity and auth confusion: `../mcp-devtools/ai-26-llm-auth-ac/`, `../mcp-devtools/ai-45-agent-identity-scope/`
-- Output sink and secret leakage: `../mcp-devtools/ai-46-output-sink-injection/`, `../mcp-devtools/ai-47-agent-secret-leakage/`
-- API-side tool abuse: `../mcp-devtools/api-24-llm-api-security/`
-- Infra-side AI/MCP paths: `../mcp-devtools/net-56-ai-infra/`
+- MCP exposure and tool scope: `../ai/ai-16-mcp-security/`
+- Agent overreach and tool misuse: `../ai/ai-19-agentic-attacks/`, `../ai/ai-08-excessive-agency/`
+- LLM infra and model/tool endpoints: `../ai/ai-25-llm-infra-security/`, `../ai/ai-43-model-api-enumeration/`
+- Tool identity and auth confusion: `../ai/ai-26-llm-auth-ac/`, `../ai/ai-45-agent-identity-scope/`
+- Output sink and secret leakage: `../ai/ai-46-output-sink-injection/`, `../ai/ai-47-agent-secret-leakage/`
+- API-side tool abuse: `../ai/api-24-llm-api-security/`
+- Infra-side AI/MCP paths: `../ai/net-56-ai-infra/`
 
 ## Discovery
 
@@ -33,7 +33,7 @@ Fast entry points into the vendored payload sets.
 ## Auth
 
 - Login and auth abuse: `../auth/web-05-auth/`, `../auth/api-05-auth-attack/`
-- JWT and JWE: `../auth/web-66-jwt-attacks/`, `../auth/web-67-jwe-attacks/`, `../auth/api-28-jwt-attacks/`
+- JWT and JWE: `../auth/web-66-jwt-attacks/`, `../auth/web-67-jwe-attacks/`, `../auth/api-29-jwt/`
 - OAuth, OIDC, SAML: `../auth/web-16-oauth-oidc/`, `../auth/web-68-oauth-saml-advanced/`, `../auth/api-14-oauth-saml/`
 - Session, 2FA, rate limits: `../auth/web-32-2fa-bypass/`, `../auth/web-34-session-management/`, `../auth/web-35-rate-limit-bypass/`
 

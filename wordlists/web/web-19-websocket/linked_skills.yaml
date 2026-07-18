@@ -1,8 +1,7 @@
 invoke_order:
 - payloads
 linked_skills:
- - skills/api/api-18-websocket-protocol/
- - skills/api/api-17-websocket/
+- skills/api/api-18-websocket-protocol/
+- skills/api/api-17-websocket/
 - skills/web/web-33-websocket/
 wordlist_id: web-19-websocket
-- skills/web/web-61-websocket/

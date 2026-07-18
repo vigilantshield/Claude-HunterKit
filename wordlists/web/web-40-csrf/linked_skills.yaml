@@ -3,4 +3,3 @@ invoke_order:
 linked_skills:
 - skills/web/web-39-csrf/
 wordlist_id: web-40-csrf
-- skills/web/web-51-csrf/

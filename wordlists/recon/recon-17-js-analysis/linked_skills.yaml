@@ -3,4 +3,3 @@ invoke_order:
 linked_skills:
 - skills/recon/recon-02-osint-methodology/
 wordlist_id: recon-17-js-analysis
-- skills/recon/recon-04-js-analysis/

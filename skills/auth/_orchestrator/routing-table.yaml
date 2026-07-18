@@ -12,7 +12,7 @@ category_routing:
 
 signal_to_agent_mapping:
   jwt_token:
-    agents: [auth-01-jwt, api-28-jwt-attacks]
+    agents: [auth-01-jwt, api-29-jwt]
   oauth_flow:
     agents: [auth-02-oauth-oidc, web-10-oauth-oidc]
   saml_endpoint:

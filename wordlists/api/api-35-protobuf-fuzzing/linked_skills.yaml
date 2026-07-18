@@ -1,5 +1,5 @@
 invoke_order:
 - payloads
-linked_skills: []
- - skills/api/api-35-request-smuggling/
+linked_skills:
+- skills/api/api-35-request-smuggling/
 wordlist_id: api-35-protobuf-fuzzing

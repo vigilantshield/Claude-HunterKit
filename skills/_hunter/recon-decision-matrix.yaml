@@ -31,6 +31,7 @@ recon_phases:
       - recon-08-auth-mapping
       - recon-09-security-headers
       - recon-10-cors-scan
+      - recon-11-api-surface
     output: "defense_profile"
 
 decision_rules:
@@ -152,7 +153,7 @@ decision_rules:
   - signals:
       - admin_endpoints: true
       - role_header: true
-      - priviledged_ops: true
+      - privileged_ops: true
     targets:
       - api-07-bfla
       - web-15-mass-assignment
@@ -167,7 +168,7 @@ decision_rules:
     targets:
       - web-09-jwt
       - auth-01-jwt
-      - api-28-jwt-attacks
+      - api-29-jwt
     probability: 0.90
     category: auth
     priority: critical
@@ -601,22 +602,87 @@ launch_strategy:
   stop_on_first_critical: false  # keep testing even after finding critical
 
   escalation_paths:
+    # ── ACCESS CONTROL CHAINS ──────────────────────────────────
     - from: web-23-idor
-      escalate_to: [api-04-bola, api-08-advanced-bola]
+      escalate_to: [api-04-bola, api-08-advanced-bola, api-31-idor]
+    - from: web-24-path-traversal
+      escalate_to: [web-37-rce, web-25-file-upload]
+    - from: web-25-file-upload
+      escalate_to: [web-37-rce, web-24-path-traversal]
+    - from: web-15-mass-assignment
+      escalate_to: [web-23-idor, web-77-auth-bypass, api-06-mass-assignment]
+    - from: api-04-bola
+      escalate_to: [api-07-bfla, api-08-advanced-bola]
+
+    # ── INFILTRATION CHAINS ────────────────────────────────────
     - from: web-27-ssrf
-      escalate_to: [cloud-01-cloud, net-10-secrets-config]
-    - from: web-16-xss
-      escalate_to: [web-12-session-management, auth-02-oauth-oidc]
-    - from: web-01-sqli
+      escalate_to: [cloud-01-cloud, net-10-secrets-config, net-04-k8s]
+    - from: web-37-rce
+      escalate_to: [net-05-database, net-10-secrets-config, net-04-k8s]
+    - from: web-06-command-injection
       escalate_to: [web-37-rce, net-05-database]
+    - from: web-29-request-smuggling
+      escalate_to: [web-27-ssrf, web-30-host-header]
+    - from: web-36-waf-bypass
+      escalate_to: [web-01-sqli, web-16-xss, web-27-ssrf]
+
+    # ── AUTH TAKEOVER CHAINS ───────────────────────────────────
+    - from: web-16-xss
+      escalate_to: [web-12-session-management, auth-02-oauth-oidc, web-76-ato]
     - from: web-28-open-redirect
-      escalate_to: [auth-02-oauth-oidc, web-10-oauth-oidc]
+      escalate_to: [auth-02-oauth-oidc, web-10-oauth-oidc, web-76-ato]
+    - from: web-09-jwt
+      escalate_to: [web-77-auth-bypass, api-29-jwt, web-76-ato]
+    - from: auth-01-jwt
+      escalate_to: [web-77-auth-bypass, api-29-jwt]
+    - from: web-13-2fa-bypass
+      escalate_to: [web-76-ato, web-77-auth-bypass]
+    - from: web-14-rate-limit
+      escalate_to: [web-75-brute-force, web-76-ato, web-77-auth-bypass]
+
+    # ── DATA EXFIL CHAINS ──────────────────────────────────────
+    - from: web-01-sqli
+      escalate_to: [web-37-rce, net-05-database, net-13-advanced-database]
+    - from: web-32-graphql
+      escalate_to: [web-23-idor, web-77-auth-bypass, api-32-graphql]
+    - from: web-33-websocket
+      escalate_to: [web-27-ssrf, web-23-idor]
+    - from: web-34-business-logic
+      escalate_to: [web-23-idor, web-35-race-condition]
+
+    # ── PROTOCOL CHAINS ────────────────────────────────────────
     - from: web-08-prototype-pollution
-      escalate_to: [web-16-xss, web-18-dom-clobbering]
+      escalate_to: [web-16-xss, web-18-dom-clobbering, web-22-csti]
+    - from: web-20-cors
+      escalate_to: [web-16-xss, web-67-source-leak]
+    - from: web-40-subdomain-takeover
+      escalate_to: [web-16-xss, web-76-ato, auth-02-oauth-oidc]
+    - from: web-41-sri-check
+      escalate_to: [web-16-xss, web-67-source-leak]
+
+    # ── AI / LLM CHAINS ────────────────────────────────────────
     - from: ai-01-prompt-injection
-      escalate_to: [ai-04-system-prompt-leakage, ai-08-excessive-agency]
+      escalate_to: [ai-04-system-prompt-leakage, ai-08-excessive-agency, ai-05-rag-poisoning]
+    - from: ai-04-system-prompt-leakage
+      escalate_to: [ai-01-prompt-injection, ai-10-mcp-security]
+    - from: ai-08-excessive-agency
+      escalate_to: [ai-09-agentic-attacks, ai-10-mcp-security]
+    - from: ai-10-mcp-security
+      escalate_to: [ai-09-agentic-attacks, net-10-secrets-config]
+
+    # ── CLOUD / INFRA CHAINS ───────────────────────────────────
+    - from: cloud-01-cloud
+      escalate_to: [net-10-secrets-config, net-04-k8s, net-05-database]
+    - from: net-04-k8s
+      escalate_to: [net-10-secrets-config, net-05-database]
+    - from: net-12-cicd
+      escalate_to: [net-10-secrets-config, web-67-source-leak]
 
   stop_conditions:
+    - internal_network_pivot_confirmed
+    - database_dump_completed
+    - admin_privilege_escalation_confirmed
+    - source_code_repository_accessed
     - full_account_takeover_confirmed
     - pii_breach_>_1000_records
     - rce_confirmed_on_production

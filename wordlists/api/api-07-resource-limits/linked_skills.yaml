@@ -1,8 +1,7 @@
 invoke_order:
 - payloads
 linked_skills:
- - skills/api/api-07-bfla/
+- skills/api/api-07-bfla/
 - skills/api/api-23-resource-limits/
-wordlist_id: api-07-resource-limits
-- skills/web/web-56-rce/
 - skills/web/web-67-source-leak/
+wordlist_id: api-07-resource-limits

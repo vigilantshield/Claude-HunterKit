@@ -1,7 +1,6 @@
 invoke_order:
 - payloads
 linked_skills:
- - skills/api/api-14-deserialization/
+- skills/api/api-14-deserialization/
 - skills/web/web-05-deserialization/
 wordlist_id: web-20-deserialization
-- skills/web/web-63-deserialization/

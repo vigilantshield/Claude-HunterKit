@@ -3,4 +3,3 @@ invoke_order:
 linked_skills:
 - skills/web/web-07-ldap-injection/
 wordlist_id: web-33-ldap-injection
-- skills/web/web-64-ldap/

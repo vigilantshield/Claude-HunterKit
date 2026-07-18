@@ -2,6 +2,7 @@ invoke_order:
 - payloads
 linked_skills:
 - skills/web/web-77-auth-bypass/
+- skills/auth/auth-02-oauth-oidc/
 manifest:
   agent_id: web-05-auth
   family: auth

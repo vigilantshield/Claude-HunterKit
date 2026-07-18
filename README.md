@@ -1,6 +1,6 @@
 <div align="center">
   <h1>⚔️ claude-hunterKit</h1>
-  <p><strong>170 offensive security skills · 1,770+ payload files · 11 agent integrations · Recon-first conditional launch</strong></p>
+  <p><strong>170 offensive security skills · 1,770+ payload files · 4 agent integrations · Recon-first conditional launch</strong></p>
   <p>The largest open-source offensive security skill library — deep recon first, then fire payloads only where it matters.</p>
 
   [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
@@ -8,7 +8,7 @@
   [![Payloads](https://img.shields.io/badge/payloads-1,770%2B-orange)]()
   [![Web Vulns](https://img.shields.io/badge/web%20vulns-51-red)]()
   [![AI Skills](https://img.shields.io/badge/AI%20security-24-blueviolet)]()
-  [![Integrations](https://img.shields.io/badge/integrations-3-lightgrey)]()
+  [![Integrations](https://img.shields.io/badge/integrations-4-lightgrey)]()
 </div>
 
 ---
@@ -68,7 +68,7 @@ This installs:
 - **170 skills** → `~/.claude/skills/claude-hunterkit/`
 - **1,770+ wordlist payloads** → bundled alongside skills
 - **2 MCP servers** → Chrome DevTools + HunterKit Router
-- **3 agent plugins** → Claude Code, Codex CLI, Gemini CLI
+- **4 agent plugins** → Claude Code, Codex CLI, Gemini CLI, Command Code (cmd)
 
 ### Option 2: Install Per Agent
 
@@ -162,7 +162,7 @@ skills/recon/recon-03-tech-fingerprinting/SKILL.md
 | **21** | Network skills | Cloud, K8s, CI/CD, Kerberos, LDAP, serverless... |
 | **11** | Recon skills | OSINT, tech fingerprint, JS analysis, OpenAPI, crawl, WAF, auth, headers, CORS, API surface |
 | **42,000+** | Lines of methodology | Deep analysis — not shallow checklists |
-| **3** | Agent plugins | Claude Code, Codex CLI, Gemini CLI |
+| **4** | Agent plugins | Claude Code, Codex CLI, Gemini CLI, cmd |
 | **2** | MCP Servers | Chrome DevTools + HunterKit Router |
 | **40+** | Signal rules | Decision matrix entries mapping recon findings → vuln agents |
 
@@ -247,7 +247,7 @@ claude-hunterKit/
 │   │   ├── api-04-bola               # Broken Object Level Auth
 │   │   ├── api-10-sqli               # API SQL injection
 │   │   ├── api-16-grpc               # gRPC security
-│   │   ├── api-28-jwt-attacks        # JWT attacks
+│   │   ├── api-29-jwt                # JWT attacks
 │   │   ├── api-32-graphql            # GraphQL
 │   │   └── ... up to 35
 │   │   └── _orchestrator/            # Conditional launch routing
@@ -391,7 +391,7 @@ Apache 2.0 — free for commercial and personal use.
 <div align="center">
   <p>
     <strong>⭐ Star this repo if you use it — it helps others find it.</strong><br>
-    <sub>170 skills · 1,770+ payloads · 3 agent plugins · Recon-first · Built for hunters, by hunters</sub>
+    <sub>170 skills · 1,770+ payloads · 4 agent plugins · Recon-first · Built for hunters, by hunters</sub>
   </p>
   <p>
     <a href="bugbounty/bugbounty-master/SKILL.md">Start Hunting →</a>

@@ -3,14 +3,14 @@
 # Recon-first pipeline with conditional agent launch via decision matrix.
 #
 # Usage:
-#   bash install.sh                          # interactive (asks for target)
-#   bash install.sh --target ~/.claude/skills # explicit target
-#   bash install.sh --domain web              # one domain only
-#   bash install.sh --plugin claude           # plugin manifest only
-#   bash install.sh --mcp                     # MCP server only
-#   bash install.sh --list                    # list domains and plugins
-#   bash install.sh --dry-run                 # preview only
-#   bash install.sh --help                    # this help
+#   bash install.sh                              # interactive (asks for target)
+#   bash install.sh --target ~/.claude/skills     # explicit target
+#   bash install.sh --domain web                  # one domain only
+#   bash install.sh --plugin claude|codex|gemini|cmd  # plugin manifest only
+#   bash install.sh --mcp                         # MCP server only
+#   bash install.sh --list                        # list domains and plugins
+#   bash install.sh --dry-run                     # preview only
+#   bash install.sh --help                        # this help
 
 set -euo pipefail
 
@@ -46,13 +46,12 @@ list_domains() {
 
 list_plugins() {
   echo "Available integration plugins:"
-  for p in "$PLUGIN_DIR"/*/; do
-    [ -d "$p" ] || continue
-    name=$(basename "$p")
-    printf "  %-20s %s\n" "$name" "$(head -5 "$p/plugin.json" 2>/dev/null | grep -o '"description": *"[^"]*"' | head -1 | sed 's/"description": "*//;s/"$//')"
-  done
+  echo "  claude-plugin          Claude Code — 77 skills, 2 MCP servers"
+  echo "  codex-plugin           Codex CLI — 45 skills, marketplace ready"
+  echo "  gemini                 Gemini CLI — 9 capabilities, prompt templates"
+  echo "  commandcode            Command Code (cmd) — 36 skills, /skills menu"
   echo ""
-  echo "  Total: $(find "$PLUGIN_DIR" -name "plugin.json" | wc -l) plugin manifests"
+  echo "  Total: 4 integration plugins (claude, codex, gemini, cmd)"
 }
 
 install_mcp() {
@@ -76,28 +75,33 @@ install_mcp() {
 }
 
 install_plugin_all() {
+  local filter="${1:-}"  # optional: claude|codex|gemini|cmd — if set, install only that plugin
   echo ""
-  echo "<<< Plugins >>>"
+  [ -n "$filter" ] && echo "<<< Plugin: $filter >>>" || echo "<<< Plugins (claude, codex, gemini, cmd) >>>"
   mkdir -p "$TARGET"
 
-  # Copy all plugin manifests
-  for src in .claude-plugin .codex-plugin; do
-    [ -d "$PLUGIN_DIR/$src" ] && cp -r "$PLUGIN_DIR/$src" "$TARGET/" 2>/dev/null && echo "  ✓ $src"
-  done
+  install_one_plugin() {
+    local name="$1" path="$2"
+    [ -n "$filter" ] && [ "$filter" != "$name" ] && return 0
+    mkdir -p "$(dirname "$TARGET/$path")"
+    local src=""
+    case "$name" in
+      claude) src="$PLUGIN_DIR/.claude-plugin" ; cp -r "$src"/* "$TARGET/" 2>/dev/null && echo "  ✓ .claude-plugin" ;;
+      codex)  src="$PLUGIN_DIR/.codex-plugin"  ; cp -r "$src"/* "$TARGET/" 2>/dev/null && echo "  ✓ .codex-plugin"  ;;
+      gemini) src="$PLUGIN_DIR/.gemini"        ; cp -r "$src" "$TARGET/.gemini" 2>/dev/null && echo "  ✓ .gemini"       ;;
+      cmd)    src="$SCRIPT_DIR/.commandcode"   ; mkdir -p "$TARGET/.commandcode/skills" ; cp "$src/plugin.json" "$TARGET/.commandcode/" 2>/dev/null ; cp -r "$src/skills/"* "$TARGET/.commandcode/skills/" 2>/dev/null ; echo "  ✓ .commandcode" ;;
+    esac
+  }
 
-  # Gemini uses a different dir pattern
-  [ -d "$PLUGIN_DIR/.gemini" ] && cp -r "$PLUGIN_DIR/.gemini" "$TARGET/.gemini" 2>/dev/null && echo "  ✓ .gemini"
+  install_one_plugin claude
+  install_one_plugin codex
+  install_one_plugin gemini
+  install_one_plugin cmd
 
-  # Command code
-  if [ -d "$SCRIPT_DIR/.commandcode" ]; then
-    mkdir -p "$TARGET/.commandcode/skills"
-    cp "$SCRIPT_DIR/.commandcode/plugin.json" "$TARGET/.commandcode/" 2>/dev/null
-    cp -r "$SCRIPT_DIR/.commandcode/skills/"* "$TARGET/.commandcode/skills/" 2>/dev/null
-    echo "  ✓ .commandcode"
-  fi
-
-  # Copy .mcp.json reference
-  cp "$SCRIPT_DIR/.mcp.json" "$TARGET/../mcp.json" 2>/dev/null && echo "  ✓ MCP config reference"
+  # Copy .mcp.json reference to resolved parent dir
+  local mcp_dest
+  mcp_dest="$(cd "$TARGET/.." 2>/dev/null && pwd)/mcp.json" || mcp_dest="${TARGET%/*}/mcp.json"
+  cp "$SCRIPT_DIR/.mcp.json" "$mcp_dest" 2>/dev/null && echo "  ✓ MCP config reference → $mcp_dest"
 }
 
 copy_skills() {
@@ -154,6 +158,7 @@ fi
 # ── MAIN ──
 [ -t 0 ] && [ -z "$TARGET" ] && read -r -p "Install target [$DEFAULT_TARGET]: " TARGET
 TARGET="${TARGET:-$DEFAULT_TARGET}"
+PARENT_DIR="$(cd "$TARGET/.." 2>/dev/null && pwd)" || PARENT_DIR="${TARGET%/*}"
 
 if [ -n "$DOMAIN" ]; then
   if [ "$DOMAIN" = "bugbounty" ]; then
@@ -163,7 +168,7 @@ if [ -n "$DOMAIN" ]; then
     echo "Domain '$DOMAIN' not found"; list_domains; exit 1
   else
     SOURCE="$SKILLS_DIR/$DOMAIN"; DEST="$TARGET/$DOMAIN"
-    WL_SOURCE="$WORDLISTS_DIR/$DOMAIN"; WL_DEST="$TARGET/../wordlists/$DOMAIN"
+    WL_SOURCE="$WORDLISTS_DIR/$DOMAIN"; WL_DEST="$PARENT_DIR/wordlists/$DOMAIN"
   fi
 else
   SOURCE="$SKILLS_DIR"; DEST="$TARGET"
@@ -184,7 +189,7 @@ if [ "$DRY_RUN" -eq 1 ]; then
   echo "  ..."
   find "$SOURCE" -name SKILL.md 2>/dev/null | wc -l | xargs echo "  Total:"
   echo ""
-  echo "  Would install: 2 MCP servers + 11 agent plugins"
+  echo "  Would install: 2 MCP servers + 4 agent plugins (claude, codex, gemini, cmd)"
   exit 0
 fi
 
@@ -193,10 +198,10 @@ copy_skills
 if [ -n "${WL_ALL:-}" ]; then
   for dom in ai api auth network recon web; do
     [ -d "$WORDLISTS_DIR/$dom" ] || continue
-    mkdir -p "$TARGET/../wordlists/$dom"
-    cp -r "$WORDLISTS_DIR/$dom/"* "$TARGET/../wordlists/$dom/" 2>/dev/null
+    mkdir -p "$PARENT_DIR/wordlists/$dom"
+    cp -r "$WORDLISTS_DIR/$dom/"* "$PARENT_DIR/wordlists/$dom/" 2>/dev/null
   done
-  twc=$(find "$TARGET/../wordlists" -name "*.txt" 2>/dev/null | wc -l)
+  twc=$(find "$PARENT_DIR/wordlists" -name "*.txt" 2>/dev/null | wc -l)
   echo "  ✓ $twc wordlist files"
 else
   copy_wordlists
@@ -210,6 +215,6 @@ echo "╔═══════════════════════�
 echo "║  ✅  Done!                               ║"
 echo "║  Skills:  $TARGET           ║"
 echo "║  MCP:     chrome-devtools + hunterkit-router ║"
-echo "║  Plugins: Claude · Codex · Cursor · Gemini · Copilot · Windsurf · Cline · Continue · Aider · OpenInterpreter · cmd ║"
+echo "║  Plugins: Claude Code · Codex CLI · Gemini CLI · Command Code (cmd) ║"
 echo "║  Pipeline: recon-first with decision matrix ║"
 echo "╚═══════════════════════════════════════════╝"

@@ -1,6 +1,5 @@
 invoke_order:
 - payloads
 linked_skills:
- - skills/net/net-01-cloud/
 - skills/network/net-01-cloud/
 wordlist_id: net-26-cloud-iam

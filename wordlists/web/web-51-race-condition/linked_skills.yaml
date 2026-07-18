@@ -3,4 +3,3 @@ invoke_order:
 linked_skills:
 - skills/web/web-35-race-condition/
 wordlist_id: web-51-race-condition
-- skills/web/web-55-race-condition/

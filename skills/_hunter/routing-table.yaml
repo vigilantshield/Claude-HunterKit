@@ -1,4 +1,4 @@
-master_orchestrator: skills/_hunter/
+master_orchestrator: skills/_hunter/_hunter-orchestrator.yaml
 
 domain_routing:
   ai: "Chatbot, LLM endpoint, RAG, prompt injection surface → skills/ai/"
@@ -6,7 +6,7 @@ domain_routing:
   auth: "OAuth flow, JWT tokens, SSO, login page → skills/auth/_orchestrator/"
   cloud: "Cloud provider metadata, IAM, storage buckets → skills/cloud/"
   devtools: "Browser devtools, network analysis, Playwright → skills/devtools/"
-  mcp: "MCP server, tool routing, agentic abuse → skills/mcp-devtools/"
+  mcp: "MCP server, tool routing, agentic abuse → skills/devtools/"
   network: "Infrastructure, cloud metadata, K8s, DNS → skills/network/"
   recon: "Unknown target, need tech fingerprinting, subdomain discovery → skills/recon/"
   reporting: "Document findings, generate reports → skills/reporting/"
