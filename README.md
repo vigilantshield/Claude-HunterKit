@@ -70,7 +70,7 @@ Target → PHASE 0: Categorize (web/api/auth/ai/network/cloud)
 ### Option 1: One-Click Install
 
 ```bash
-git clone https://github.com/vigilantshield/Claude-HunterKit
+git clone https://github.com/vigilantshield/Claude-HunterKit.git.git
 cd Claude-HunterKit
 bash install.sh
 ```
